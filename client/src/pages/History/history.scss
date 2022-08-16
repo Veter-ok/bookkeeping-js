@@ -1,0 +1,18 @@
+@import '../../styles/variables.scss';
+
+
+.container {
+	padding: 15px 30px;
+	border-radius: 10px;
+	background-color: $primaryColor;
+	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+	&:hover{
+		box-shadow: 0 0 10px rgb(0, 0, 0);
+	}
+	&__title {
+		color: $primaryTextColor;
+	}
+	&__prices-group {
+		margin-right: 50%;
+	}
+}

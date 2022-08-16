@@ -1,0 +1,15 @@
+@import '../../../styles/variables.scss';
+
+button {
+	background-color: $secondaryColor;
+	display: block;
+	padding: 15px 30px;
+	border: none;
+	color: $secondaryTextColor;
+	text-transform: uppercase;
+	text-align: center;
+	margin: auto;
+	&:hover {
+		box-shadow: #87abd9 0px 3px 8px;
+	}
+}

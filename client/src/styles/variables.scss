@@ -1,0 +1,27 @@
+$primaryColor: #ffffff;   //#4cc141
+$secondaryColor: #1668d3; //#4cc141  //#0c0c0c //##4688E1
+
+$primaryTextColor: #000;
+$secondaryTextColor: #fff;
+
+$titleText: 18.72px;
+$subTitleText: 16px;
+$contentText: 14px;
+
+$mediaSize1: 1080px;
+
+
+@mixin blockStyle() {
+	margin: 10px 0px;
+	display: flex;
+	justify-content: space-between;
+	background-color: $primaryColor;
+	border: 3px solid rgb(240, 240, 240);
+	border-radius: 10px;
+	padding: 0px 10px;
+	&__content {
+		display: flex;
+		width: 100%;
+		padding: 10px;
+	}
+}

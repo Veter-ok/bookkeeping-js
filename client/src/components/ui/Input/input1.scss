@@ -1,0 +1,55 @@
+@import '../../../styles/variables.scss';
+
+$main-color: #F44336;
+$secondary-color: #2196f3;
+$width: 350px; // Change Me
+
+
+.centered {
+  width: 350px;
+  height: 10px;
+  .group {
+	width: 100%;
+	height: $width/5;
+	overflow: hidden;
+	position: relative;
+	label {
+		position: absolute;
+		top: 20px;
+		color: black;
+		font: 400 $width/15 Roboto;
+		transition: .25s ease;
+	}
+	input {
+		display: block;
+		width: 100%;
+		padding-top: $width/15;
+		color: black;
+		font-size: 20px;
+		transition: .3s ease;
+		&:valid {
+		  ~label {
+			font: 700 $width/25 Roboto;
+			color: rgba(black, .5);
+		  }
+		}
+		&:focus {
+		  outline: none;
+		  ~label {
+			top: 0;
+			font: 700 $width/25 Roboto;
+			color: $secondary-color;
+		  } 
+		  ~ .bar:before {
+		  transform: translateX(0);
+		  }
+		}
+		&:-webkit-autofill {
+		  -webkit-box-shadow: 0 0 0px 1000px $main-color inset;
+		  -webkit-text-fill-color: white !important;
+		}
+	  }
+  }
+}
+
+::selection {background: rgba($secondary-color, .3);}

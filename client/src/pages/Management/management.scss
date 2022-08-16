@@ -1,0 +1,12 @@
+@import '../../styles/variables.scss';
+// rgb(122, 41, 222)
+
+.management-container-group {
+	display: grid;
+	grid-template-areas: 
+	"A A A"
+    "B C D";
+	grid-template-rows: .3fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 50px 30px;
+}

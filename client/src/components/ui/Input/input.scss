@@ -1,0 +1,16 @@
+@import '../../../styles/variables.scss';
+
+.input-element {
+	margin: 10px 0px;
+	label {
+		color: $primaryTextColor;
+		margin-right: 10px;
+	}
+	input {
+		width: 70%;
+		border: 1px solid #bdbdbd;
+		border-radius: 10px;
+		font-size: $subTitleText;
+		padding: 5px;
+	}
+}

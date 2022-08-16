@@ -1,0 +1,39 @@
+@import '../../styles/variables.scss';
+
+.header {
+	display: flex;
+	flex-flow: row nowrap;
+  	justify-content: flex-start;
+  	align-items: center;
+    height: 80px;
+    background-color: $secondaryColor;
+	box-shadow: 0 0 20px rgba(0,0,0,0.5);
+	&__site-title {
+		width: 15%;
+    	margin: 0 5%;
+		h1 {
+			text-align: center;
+			//text-transform: uppercase;
+			color: $secondaryTextColor;
+		}
+	}
+	&__links {
+    	margin-left: auto;
+    	margin-right: 5%;
+		&__item {
+			list-style: none;
+			display: inline-block;
+			margin: 10px;
+			a {
+				text-decoration: none;
+				color: $secondaryTextColor;
+				font-size: 20px;
+				padding: 10px;
+				&:hover{
+					background-color: rgb(95, 95, 219);
+					border-radius: 20px;
+				}
+			}
+		}
+	}
+}

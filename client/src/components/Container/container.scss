@@ -1,0 +1,36 @@
+@import '../../styles/variables.scss';
+
+.container {
+	padding: 15px 30px;
+	display: block;
+	min-height: 100%;
+	border-radius: 10px;
+	background-color: $primaryColor;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+	// overflow-y: scroll;
+	&:hover{
+		box-shadow: 0 0 7px rgba(0, 0, 0, 0.8);
+	}
+	&__title {
+		font-size: $titleText;
+		margin: 5px 0px 15px 0px;
+		font-weight: bold;
+		color: $primaryTextColor;
+	}
+	&__content {
+		overflow:hidden;
+		// border: 10px solid #000;
+	}
+}
+#container-1 {
+	grid-area: A;
+}
+#container-2 {
+	grid-area: B;
+}
+#container-3 {
+	grid-area: C;
+}
+#container-4 {
+	grid-area: D;
+}

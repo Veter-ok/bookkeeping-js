@@ -1,0 +1,15 @@
+@import '../../../../styles/variables.scss';
+
+.block {
+	@include blockStyle;
+	&__content {
+		&__name {
+			width: 50%;
+			color: black
+		}
+		&__money {
+			width: 50%;
+			color: green
+		}
+	}
+}

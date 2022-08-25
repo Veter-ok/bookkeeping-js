@@ -1,10 +1,10 @@
+import React from 'react'
 import './input.scss'
 
-export const Input = (props) => {
+export const Input = ({text, type, value, onChange}) => {
 	return (
 		<div className="input-element">
-			<label htmlFor="name">{props.text}</label>
-			<input onChange={(e) => props.onChange(e.target.value)} value={props.value} id="name" type="text" required="required"/>
+			<input type={type} placeholder={text} value={value} onChange={(e) => onChange(e.target.value)}/>
 		</div>
 	)
 }

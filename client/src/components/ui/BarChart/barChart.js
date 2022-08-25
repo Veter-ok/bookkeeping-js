@@ -4,10 +4,10 @@ import {Chart as ChartJS} from 'chart.js/auto'
 
 export const BarChart = ({dataChart}) => {
 	const data = {
-		labels: dataChart.map(data => data.month),
+		labels: dataChart !== undefined ? dataChart.map(data => data.month) : [],
 		datasets: [{
 		  label: "Ежемесячный доход",
-		  data: dataChart.map(data => data.money),
+		  data: dataChart !== undefined ? dataChart.map(data => data.income - data.expenditure) : [],
 		  backgroundColor: [
 			'#1668d3'
 		  ],

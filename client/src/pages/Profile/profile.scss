@@ -1,0 +1,11 @@
+@import '../../styles/variables.scss';
+
+.profile-container-group {
+	display: grid;
+	grid-template-areas: 
+	"A B"
+    "A B";
+	grid-template-rows: 1fr 1fr;
+	grid-template-columns: 1fr 1fr;
+	gap: 50px 30px;
+}

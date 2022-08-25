@@ -13,12 +13,14 @@ $mediaSize1: 1080px;
 
 @mixin blockStyle() {
 	margin: 10px 0px;
-	display: flex;
 	justify-content: space-between;
 	background-color: $primaryColor;
 	border: 3px solid rgb(240, 240, 240);
 	border-radius: 10px;
 	padding: 0px 10px;
+	&:hover {
+		border: 5px solid rgb(220, 220, 220);
+	}
 	&__content {
 		display: flex;
 		width: 100%;

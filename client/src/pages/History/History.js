@@ -1,21 +1,33 @@
-import {PriceBlock} from '../../components/ui/Blocks/PriceBlock/priceBlock'
-import {ButtonMain} from '../../components/ui/Buttons/buttonMain'
 import './history.scss'
+import { Container } from '../../components/Containers/container'
+import { PriceList } from '../../components/ui/Lists/priceList/priceList'
+import {ButtonMain} from '../../components/ui/Buttons/buttonMain'
+import {Input} from '../../components/ui/Input/input'
+import { useState } from 'react'
+import { User1, User2 } from '../../utils/user'
 
 export const History = () => {
+	const [searchValue, setSearchValue] = useState('')
+
+	const currentlyPayments = User1.history.filter(payment => {
+		if (payment.price.toString().includes(searchValue)){
+			return true
+		}else if(payment.date.toLocaleDateString().includes(searchValue)){
+			return true
+		}else if (payment.bank.toLowerCase().includes(searchValue.toLowerCase())){
+			return true
+		}else {
+			return payment.info.toLowerCase().includes(searchValue.toLowerCase())
+		}
+	})
+
 	return (
 		<div>
-			<div className="container">
-				<h3 className="container__title">Последние платежи</h3>
-				<div className="container__prices-group">
-					<PriceBlock price="1000₽" IsIncome={true} info="Зарплата" date="16.07.22"/>
-					<PriceBlock price="5000₽" IsIncome={false} info="Налоги" date="16.07.22"/>
-					<PriceBlock price="3000₽" IsIncome={false} info="Машина" date="16.07.22"/>
-					<PriceBlock price="5000₽" IsIncome={true} info="Банки" date="16.07.22"/>
-					<PriceBlock price="500₽" IsIncome={false} info="Одежда" date="16.07.22"/>
-				</div>
+			<Container title="Последние платежи">
+				<Input text="Поиск данных по сумме/дате/банку" value={searchValue} onChange={setSearchValue}/>
+				<PriceList full={true} data={currentlyPayments}/>
 				<ButtonMain text="Что-то"/>
-			</div>
+			</Container>
 		</div>
 	)
 }

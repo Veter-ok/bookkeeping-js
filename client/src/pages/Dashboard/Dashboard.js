@@ -1,38 +1,43 @@
 import './dashboard.scss'
-import {User} from '../../utils/user'
+import {totalSum} from '../../utils/summationOfNumbers'
+import {User1, User2} from '../../utils/user'
 import { priceConverter } from '../../utils/priceConverter'
+import { Highlighter } from '../../components/ui/Text/highlighter'
 import { BarChart } from '../../components/ui/BarChart/barChart'
-import {ButtonMain} from '../../components/ui/Buttons/buttonMain'
-import {Container} from '../../components/Container/container'
-import { PriceBlock } from '../../components/ui/Blocks/PriceBlock/priceBlock'
+import {Container} from '../../components/Containers/container'
+import {LinkUI} from '../../components/ui/Link/linkUI'
+import { BankList } from '../../components/ui/Lists/BanksList/BankList'
+import { PriceList } from '../../components/ui/Lists/priceList/priceList'
+import { AccountList } from '../../components/ui/Lists/AccountsList/AccountsList'
 
 export const Dashboard = () => {
-
-	const indexes = [0, 1, 2, 3, 4] 
-
 	return (
 		<div>
-			<div className="dashboard-container-group">
+			<div className="dashboard-container-group-1">
 				<Container id="container-1" title="Последние платежи">
-					<div className="container__content">
-						{indexes.map(index => 
-							<PriceBlock data={User.history[index]}/>
-						)}
-						<ButtonMain text="История"/>
-					</div>
+					<PriceList full={false} data={User1.history}/>
+					<LinkUI href="/history">История</LinkUI>
 				</Container>
 				<Container id="container-2" title="Сальдо:">
-					<p className="container__content__text">{priceConverter(18000000)}</p>
-					<p className="container__content__text">{priceConverter(800000, "$")}</p>
-					<p className="container__content__text">{priceConverter(500000, "€")}</p>
+					<div className="container__content__text"><strong>{priceConverter(totalSum(User1.years))}<Highlighter>₽</Highlighter></strong></div>
+					<div className="container__content__text">{priceConverter(Number((totalSum(User1.years) / 59.9).toFixed(2)))}<Highlighter>$</Highlighter></div>
+					<div className="container__content__text">{priceConverter(Number((totalSum(User1.years) / 59.33).toFixed(2)))}<Highlighter>€</Highlighter></div>
 				</Container>
 				<Container id="container-3" title="Текущий месяц">
-					<p className="container__content__text"><strong>Сальдо: {priceConverter(300000)}</strong></p>
-					<p className="container__content__text">Доход: {priceConverter(500000)}</p>
-					<p className="container__content__text">Расход: {priceConverter(200000)}</p>
+					<div className="container__content__text"><strong>Сальдо: {priceConverter(User1.years["2022"][7].income - User1.years["2022"][7].expenditure)}<Highlighter>₽</Highlighter></strong></div>
+					<div className="container__content__text">Доход: {priceConverter(User1.years["2022"][7].income)}<Highlighter>₽</Highlighter></div>
+					<div className="container__content__text">Расход: {priceConverter(User1.years["2022"][7].expenditure)}<Highlighter>₽</Highlighter></div>
 				</Container>
 				<Container id="container-4" title="Ежемесячный доход">
-						<BarChart dataChart={User.monthly}/>
+					<BarChart dataChart={User1.years["2022"]}/>
+				</Container>
+			</div>
+			<div className="dashboard-container-group-2">
+				<Container id="container-1" title="Ваши счета">
+					<AccountList/>
+				</Container>
+				<Container id="container-2" title="Ваши банки">
+					<BankList/>
 				</Container>
 			</div>
 		</div>

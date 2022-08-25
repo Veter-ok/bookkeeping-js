@@ -6,20 +6,27 @@
 	min-height: 100%;
 	border-radius: 10px;
 	background-color: $primaryColor;
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+	border: 5px solid rgb(240, 240, 240);
+	// box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 	// overflow-y: scroll;
 	&:hover{
-		box-shadow: 0 0 7px rgba(0, 0, 0, 0.8);
+		//box-shadow: 0 0 7px rgba(0, 0, 0, 0.8);
+		border: 5px solid rgb(220, 220, 220);
 	}
 	&__title {
 		font-size: $titleText;
-		margin: 5px 0px 15px 0px;
+		margin: 5px 0px;
 		font-weight: bold;
 		color: $primaryTextColor;
 	}
 	&__content {
 		overflow:hidden;
 		// border: 10px solid #000;
+		&__text {
+			font-size: $contentText;
+			margin: 10px auto;
+			color: $primaryTextColor;
+		}
 	}
 }
 #container-1 {
@@ -33,4 +40,13 @@
 }
 #container-4 {
 	grid-area: D;
+}
+#container-5 {
+	grid-area: E;
+}
+#container-6 {
+	grid-area: F;
+}
+#container-7 {
+	grid-area: G;
 }

@@ -1,6 +1,7 @@
 @import '../../../styles/variables.scss';
 
-button {
+.link-button {
+	width: 100px;
 	background-color: $secondaryColor;
 	display: block;
 	padding: 15px 30px;
@@ -11,5 +12,9 @@ button {
 	margin: 20px auto;
 	&:hover {
 		box-shadow: #87abd9 0px 3px 8px;
+	}
+	a {
+		text-decoration: none;
+		color: $secondaryTextColor;
 	}
 }

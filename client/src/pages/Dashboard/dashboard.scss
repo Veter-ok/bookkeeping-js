@@ -1,13 +1,29 @@
 @import '../../styles/variables.scss';
 // rgb(122, 41, 222)
 
-.dashboard-container-group {
+.dashboard-container-group-1 {
 	display: grid;
+	margin-bottom: 30px;
 	grid-template-areas: 
 	"A B C"
-    "A D D";
+    "A D D"
+	"E F G";
 	grid-template-rows: .3fr .7fr;
 	grid-template-columns: 1fr 0.5fr 1fr;
+	gap: 50px 30px;
+	.container {
+		&__blocks {
+			margin-top: 80px;
+		}
+	}
+}
+.dashboard-container-group-2 {
+	display: grid;
+	margin-bottom: 30px;
+	grid-template-areas: 
+	"A B";
+	grid-template-rows: 1fr 1fr;
+	grid-template-columns: 1fr 1fr;
 	gap: 50px 30px;
 	.container {
 		&__blocks {

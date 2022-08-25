@@ -3,10 +3,11 @@
 
 .management-container-group {
 	display: grid;
+	margin-bottom: 30px;
 	grid-template-areas: 
 	"A A A"
-    "B C D";
-	grid-template-rows: .3fr 1fr;
+    "B C D";	
+	grid-template-rows: 50px 1fr;
 	grid-template-columns: 1fr 1fr 1fr;
 	gap: 50px 30px;
 }

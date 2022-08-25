@@ -1,0 +1,44 @@
+@import '../../../../styles/variables.scss';
+
+.account-block{
+	&__block {
+		@include blockStyle;
+		padding: 15px;
+		&__text {
+			display: inline-block;
+			font-size: $contentText;
+			margin: auto 0px;
+			font-weight: bold;
+			color: $primaryTextColor;
+			width: 33.3%;
+		}
+		&__info {
+			display: inline-block;
+			font-size: $contentText;
+			margin: auto;
+			font-weight: bold;
+			color: $primaryTextColor;
+			width: 33.3%;
+			text-align: right;
+		}
+		&__date {
+			display: inline-block;
+			font-size: $contentText;
+			margin: auto;
+			font-weight: bold;
+			color: $primaryTextColor;
+			width: 33.3%;
+			text-align: center;
+		}
+		.income {
+			color: green;
+		}
+		.expenses {
+			color: red;
+		}
+	}
+	&__moreData {
+		@include blockStyle;
+		padding: 15px;
+	}
+}

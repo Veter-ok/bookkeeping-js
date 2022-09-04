@@ -1,3 +1,5 @@
+// https://www.chartjs.org/docs/latest/getting-started/
+// https://www.youtube.com/watch?v=RF57yDglDfE
 import './barChart.scss'
 import {Bar} from 'react-chartjs-2'
 import {Chart as ChartJS} from 'chart.js/auto'

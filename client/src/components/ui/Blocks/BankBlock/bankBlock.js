@@ -9,7 +9,7 @@ export const BankBlock = ({data}) => {
 			<div key={data.name} className="block">
 				<div className="block__content">
 					<div className="block__content__name">{data.name}</div>
-					<div className="block__content__money">{priceConverter(data.totalMoney)}<Highlighter>₽</Highlighter></div>
+					<div className="block__content__money">{priceConverter(data.money)}<Highlighter>₽</Highlighter></div>
 				</div>
 			</div>
 			:

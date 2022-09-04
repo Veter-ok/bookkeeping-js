@@ -7,13 +7,13 @@ export const PriceList = ({full, data}) => {
 			{full ? 
 			<div>
 				{data.map((payment, index) => 
-					<PriceBlock key={index} data={payment} open={true}/>
+					<PriceBlock key={payment.id} index={index} data={payment} open={true}/>
 				)}
 			</div>
 			:
 			<div>
 				{[0, 1, 2, 3, 4, 5].map(index => 
-					<PriceBlock key={index} data={data[index]} open={false}/>
+					<PriceBlock key={data[index].id} index={index} data={data[index]} open={false}/>
 				)}
 			</div>
 			}

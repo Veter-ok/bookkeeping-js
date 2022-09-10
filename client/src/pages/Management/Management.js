@@ -1,23 +1,30 @@
 import './management.scss'
 import {useState} from 'react'
-import {Add, AddAccount, Subtract} from '../../utils/userController'
-import {User1, User2} from '../../utils/user'
 import {Container} from '../../components/Containers/container'
-import { BankList } from '../../components/ui/Lists/BanksList/BankList'
-import {ButtonMain} from '../../components/ui/Buttons/buttonMain'
+//import { BankList } from '../../components/ui/Lists/BanksList/BankList'
+import {Button} from '../../components/ui/Buttons/button'
 import { InputDate } from '../../components/ui/Input/inputDate'
 import {Input} from '../../components/ui/Input/input'
 import {Select} from '../../components/ui/Select/select'
+import {useDispatch, useSelector} from 'react-redux'
+import {selectName, selectSurname} from 'store/slices/userSlice'
+import { AddAccountPayment, addExpenditurePayment, addIncomePayment, selectBanks, selectHistory } from 'store/slices/paymentSlice'
+
 
 export const Management = () => {
+	const name = useSelector(selectName)
+	const surname = useSelector(selectSurname)
+	const history = useSelector(selectHistory)
+	const banks = useSelector(selectBanks)
+	const dispatch = useDispatch()
 	// -------------------
 	const [incomeValue, setIncomeValue] = useState("")
 	const [incomeDate, setIncomeDate] = useState(new Date())
-	const [incomeBank, setIncomeBank]= useState(User2.banks[0].name)
+	const [incomeBank, setIncomeBank]= useState(banks[0].name)
 	// -------------------
 	const [expenditureValue, setExpenditureValue] = useState("")
 	const [expenditureDate, setExpenditureDate] = useState(new Date())
-	const [expenditureBank, setExpenditureBank]= useState(User2.banks[0].name)
+	const [expenditureBank, setExpenditureBank]= useState(banks[0].name)
 	// -------------------
 	const [baseAmount, setBaseAmount] = useState("")
 	const [accountPercent, setAccountPercent] = useState("")
@@ -27,13 +34,14 @@ export const Management = () => {
 	const addIncome = () => {
 		if (incomeValue !== 0 && incomeValue !== ""){
 			const newData = {
+				id: history[0].id + 1,
 				price: Number(incomeValue),
 				IsIncome: true,
 				info: "Зарплата",
 				date: new Date(incomeDate),
 				bank: incomeBank
 			}
-			Add(newData)
+			dispatch(addIncomePayment(newData))
 			setIncomeValue(0)
 		}
 	}
@@ -41,13 +49,14 @@ export const Management = () => {
 	const addExpenditure = () => {
 		if (expenditureValue !== 0 && expenditureValue !== ""){
 			const newData = {
+				id: history[0].id + 1,
 				price: Number(expenditureValue),
 				IsIncome: false,
 				info: "Налоги",
 				date: new Date(expenditureDate),
 				bank: expenditureBank
 			}
-			Subtract(newData)
+			dispatch(addExpenditurePayment(newData))
 			setExpenditureValue(0)
 		}
 	}
@@ -59,7 +68,7 @@ export const Management = () => {
 			dateOpen: new Date(accountOpenDate),
 			bank: accountBank
 		}
-		AddAccount(newData)
+		dispatch(AddAccountPayment(newData))
 		setBaseAmount(0)
 		setAccountPercent(0)
 	}
@@ -67,26 +76,26 @@ export const Management = () => {
 	return (
 		<div>
 			<div className="management-container-group">
-				<Container id="container-1" title={`${User1.surname} ${User1.name}`}>
+				<Container id="container-1" title={`${surname} ${name}`}>
 				</Container>
 				<Container id="container-2" title="Добавить доход">
 					<Input text="Сумма" type="number" value={incomeValue} onChange={setIncomeValue} />
 					<InputDate  value={incomeDate} onChange={setIncomeDate}/>
-					<Select onChange={setIncomeBank} text="Банк" options={User2.banks}/>
-					<ButtonMain text="Добавить" onClick={() => addIncome()}/>
+					<Select onChange={setIncomeBank} text="Банк" options={banks}/>
+					<Button text="Добавить" onClick={() => addIncome()}/>
 				</Container>
 				<Container id="container-3" title="Добавить расход">
 					<Input text="Сумма" type="number" value={expenditureValue} onChange={setExpenditureValue}/>
 					<InputDate value={expenditureDate} onChange={setExpenditureDate}/>
-					<Select onChange={setExpenditureBank} text="Банк" options={User2.banks}/>
-					<ButtonMain text="Добавить" onClick={() => addExpenditure()}/>
+					<Select onChange={setExpenditureBank} text="Банк" options={banks}/>
+					<Button text="Добавить" onClick={() => addExpenditure()}/>
 				</Container>
 				<Container id="container-4" title="Открыть счёт">
 					<Input text="Сумма" type="number" value={baseAmount} onChange={setBaseAmount}/>
 					<Input text="Процент" type="number" value={accountPercent} onChange={setAccountPercent}/>
 					<InputDate value={accountOpenDate} onChange={setAccountOpenDate}/>
-					<Select onChange={setAccountBank} text="Банк" options={User2.banks}/>
-					<ButtonMain text="Открыть" onClick={() => addAccount()}/>
+					<Select onChange={setAccountBank} text="Банк" options={banks}/>
+					<Button text="Открыть" onClick={() => addAccount()}/>
 				</Container>
 			</div>
 		</div>

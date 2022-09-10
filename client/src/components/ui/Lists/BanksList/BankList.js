@@ -1,10 +1,12 @@
-import {User1, User2} from '../../../../utils/user'
 import { BankBlock } from '../../Blocks/BankBlock/bankBlock'
+import {useSelector} from 'react-redux'
+import { selectBanks } from 'store/slices/paymentSlice'
 
 export const BankList = () => {
+	const banks = useSelector(selectBanks)
 	return (
 		<div>
-			{User1.banks.map(data => 
+			{banks.map(data => 
 				<BankBlock key={data.name} data={data}/>
 			)}
 			{/* {full ? 

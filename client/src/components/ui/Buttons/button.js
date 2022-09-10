@@ -1,6 +1,6 @@
-import './buttonMain.scss'
+import './button.scss'
 
-export const ButtonMain = (props) => {
+export const Button = (props) => {
 	return (
 		<button onClick={() => props.onClick()}>{props.text}</button>
 	)

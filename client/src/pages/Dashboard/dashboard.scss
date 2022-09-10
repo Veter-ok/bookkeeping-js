@@ -8,7 +8,7 @@
 	"A B C"
     "A D D"
 	"E F G";
-	grid-template-rows: .3fr .7fr;
+	grid-template-rows: 150px 350px;
 	grid-template-columns: 1fr 0.5fr 1fr;
 	gap: 50px 30px;
 	.container {

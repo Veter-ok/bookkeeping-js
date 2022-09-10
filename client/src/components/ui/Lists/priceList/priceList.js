@@ -1,19 +1,23 @@
 import './priceList.scss'
 import { PriceBlock } from '../../Blocks/PriceBlock/priceBlock'
+import { useSelector } from 'react-redux'
+import { selectHistory } from 'store/slices/paymentSlice'
 
-export const PriceList = ({full, data}) => {
+export const PriceList = ({full}) => {
+	const hitory = useSelector(selectHistory)
 	return (
 		<div>
 			{full ? 
 			<div>
-				{data.map((payment, index) => 
+
+				{hitory.map((payment, index) => 
 					<PriceBlock key={payment.id} index={index} data={payment} open={true}/>
 				)}
 			</div>
 			:
 			<div>
-				{[0, 1, 2, 3, 4, 5].map(index => 
-					<PriceBlock key={data[index].id} index={index} data={data[index]} open={false}/>
+				{hitory.slice(0, 6).map((payment, index) => 
+					<PriceBlock key={payment.id} index={index} data={payment} open={false}/>
 				)}
 			</div>
 			}

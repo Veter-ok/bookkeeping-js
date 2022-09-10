@@ -2,7 +2,7 @@ import './profile.scss'
 import {User1, User2} from '../../utils/user'
 import {Container} from '../../components/Containers/container'
 import {Input} from '../../components/ui/Input/input'
-import { ButtonMain } from '../../components/ui/Buttons/buttonMain'
+import { Button } from '../../components/ui/Buttons/button'
 
 export const Profile = () => {
 	return (
@@ -15,7 +15,7 @@ export const Profile = () => {
 				<Container id="container-2" title="Редактировать">
 					<Input text="Имя" value={User1.name}/>
 					<Input text="Фамилия" value={User1.surname}/>
-					<ButtonMain text="Сохранить"/>
+					<Button text="Сохранить"/>
 				</Container>
 			</div>
 		</div>

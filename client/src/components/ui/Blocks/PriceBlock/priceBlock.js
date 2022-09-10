@@ -1,12 +1,15 @@
 import './priceBlock.scss'
 import { useState } from 'react'
-import { deletePayment } from 'utils/userController'
 import { priceConverter } from '../../../../utils/priceConverter'
 import {Highlighter} from '../../Text/highlighter'
 import TRASH_LOGO from '../../../../assets/img/trash.svg'
+import { useDispatch } from 'react-redux'
+import { deletePayment } from 'store/slices/paymentSlice'
 
 export const PriceBlock = ({index, data, open}) => {
 	const [isVisible, setIsVisible] = useState(false)
+	const dispatch = useDispatch()
+
 	return (
 		<>
 			{data !== undefined ?
@@ -25,7 +28,7 @@ export const PriceBlock = ({index, data, open}) => {
 						<div>Сумма: {priceConverter(data.price)}<Highlighter>₽</Highlighter></div>
 						<div>Дата {data.IsIncome ? "начисления" : "списания"}: {data.date.toLocaleDateString()}</div>
 						<div>Банк: {data.bank}</div>
-						<div onClick={() => deletePayment(index)}><img src={TRASH_LOGO } alt="trash icon"/></div>
+						<div onClick={() => dispatch(deletePayment(index))}><img src={TRASH_LOGO} alt="trash icon"/></div>
 					</div>
 					:
 					<div></div>

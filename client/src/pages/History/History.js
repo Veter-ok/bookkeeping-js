@@ -1,15 +1,18 @@
 import './history.scss'
 import { Container } from '../../components/Containers/container'
 import { PriceList } from '../../components/ui/Lists/priceList/priceList'
-import {ButtonMain} from '../../components/ui/Buttons/buttonMain'
+import {Button} from '../../components/ui/Buttons/button'
 import {Input} from '../../components/ui/Input/input'
 import { useState } from 'react'
-import { User1, User2 } from '../../utils/user'
+import {useSelector} from 'react-redux'
+import { selectHistory } from 'store/slices/paymentSlice'
 
 export const History = () => {
 	const [searchValue, setSearchValue] = useState('')
+	const history = useSelector(selectHistory)
 
-	const currentlyPayments = User1.history.filter(payment => {
+
+	const currentlyPayments = history.filter(payment => {
 		if (payment.price.toString().includes(searchValue)){
 			return true
 		}else if(payment.date.toLocaleDateString().includes(searchValue)){
@@ -26,7 +29,7 @@ export const History = () => {
 			<Container title="Последние платежи">
 				<Input text="Поиск данных по сумме/дате/банку" value={searchValue} onChange={setSearchValue}/>
 				<PriceList full={true} data={currentlyPayments}/>
-				<ButtonMain text="Что-то"/>
+				<Button text="Что-то"/>
 			</Container>
 		</div>
 	)

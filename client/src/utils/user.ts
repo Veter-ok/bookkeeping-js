@@ -41,12 +41,12 @@ export var User1: User = {
 		]
 	},
 	history: [
-		{id: 1, price: 200000, IsIncome: true, info:"Зарплата", date: new Date(), bank: "Тинькофф Банк"},
-		{id: 2, price: 8000, IsIncome: false, info:"Налоги", date: new Date(), bank: "Тинькофф Банк"},
+		{id: 5, price: 200000, IsIncome: true, info:"Зарплата", date: new Date(), bank: "Тинькофф Банк"},
+		{id: 4, price: 8000, IsIncome: false, info:"Налоги", date: new Date(), bank: "Тинькофф Банк"},
 		{id: 3, price: 15000, IsIncome: false, info:"Машина", date: new Date(), bank: "Тинькофф Банк"},
-		{id: 4, price: 10000, IsIncome: true, info:"Проценты", date: new Date(), bank: "Тинькофф Банк"},
-		{id: 5, price: 20000, IsIncome: false, info:"Одежда", date: new Date(), bank: "Альфа Банк"},
-		{id: 6, price: 8000, IsIncome: false, info:"Продукты", date: new Date(), bank: "Альфа Банк"}
+		{id: 2, price: 10000, IsIncome: true, info:"Проценты", date: new Date(), bank: "Тинькофф Банк"},
+		{id: 1, price: 20000, IsIncome: false, info:"Одежда", date: new Date(), bank: "Альфа Банк"},
+		{id: 0, price: 8000, IsIncome: false, info:"Продукты", date: new Date(), bank: "Альфа Банк"}
 	]
 }
 

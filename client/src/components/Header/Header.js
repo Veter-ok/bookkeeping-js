@@ -13,9 +13,6 @@ export const Header = () => {
 				<li className="header__links__item"><Link to="/management">Управление</Link></li>
 				<li className="header__links__item"><Link to="/dashboard">Dashboard</Link></li>
 				<li className="header__links__item"><Link to="/profile"><img src={USER_LOGO} alt="user icon"/></Link></li>
-				{/* <NavLink>more projects</NavLink>
-				<NavLink>my site</NavLink>
-				<NavLink>about me</NavLink> */}
 			</ul>
 		</div>
 	)

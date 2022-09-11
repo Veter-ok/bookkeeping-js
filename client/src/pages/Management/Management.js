@@ -1,7 +1,7 @@
 import './management.scss'
 import {useState} from 'react'
+import { expenditureTypes, incomeTypes } from 'types/typesOfPayments'
 import {Container} from '../../components/Containers/container'
-//import { BankList } from '../../components/ui/Lists/BanksList/BankList'
 import {Button} from '../../components/ui/Buttons/button'
 import { InputDate } from '../../components/ui/Input/inputDate'
 import {Input} from '../../components/ui/Input/input'
@@ -24,10 +24,12 @@ export const Management = () => {
 	// -------------------
 	const [incomeValue, setIncomeValue] = useState("")
 	const [incomeDate, setIncomeDate] = useState(formattedDate)
+	const [incomeType, setIncomeType] = useState()
 	const [incomeBank, setIncomeBank]= useState(banks[0].name)
 	// -------------------
 	const [expenditureValue, setExpenditureValue] = useState("")
 	const [expenditureDate, setExpenditureDate] = useState(formattedDate)
+	const [expenditureType, setExpenditureType] = useState()
 	const [expenditureBank, setExpenditureBank]= useState(banks[0].name)
 	// -------------------
 	const [baseAmount, setBaseAmount] = useState("")
@@ -41,7 +43,7 @@ export const Management = () => {
 				id: history[0].id + 1,
 				price: Number(incomeValue),
 				IsIncome: true,
-				info: "Зарплата",
+				info: incomeType,
 				date: new Date(incomeDate),
 				bank: incomeBank
 			}
@@ -56,7 +58,7 @@ export const Management = () => {
 				id: history[0].id + 1,
 				price: Number(expenditureValue),
 				IsIncome: false,
-				info: "Налоги",
+				info: expenditureType,
 				date: new Date(expenditureDate),
 				bank: expenditureBank
 			}
@@ -77,6 +79,14 @@ export const Management = () => {
 		setAccountPercent(0)
 	}
 
+	const getFields = (array, field) => {
+		let output = []
+		for (var i=0; i < array.length ; ++i)
+			output.push(array[i][field])
+		console.log(output)
+		return output
+	}
+
 	return (
 		<div>
 			<div className="management-container-group">
@@ -85,20 +95,22 @@ export const Management = () => {
 				<Container id="container-2" title="Добавить доход">
 					<Input text="Сумма" type="number" value={incomeValue} onChange={setIncomeValue} />
 					<InputDate  value={incomeDate} onChange={setIncomeDate}/>
-					<Select onChange={setIncomeBank} text="Банк" options={banks}/>
+					<Select onChange={setIncomeType} text="Банк" options={incomeTypes}/>
+					<Select onChange={setIncomeBank} text="Банк" options={getFields(banks, "name")}/>
 					<Button text="Добавить" onClick={() => addIncome()}/>
 				</Container>
 				<Container id="container-3" title="Добавить расход">
 					<Input text="Сумма" type="number" value={expenditureValue} onChange={setExpenditureValue}/>
 					<InputDate value={expenditureDate} onChange={setExpenditureDate}/>
-					<Select onChange={setExpenditureBank} text="Банк" options={banks}/>
+					<Select onChange={setExpenditureType} text="Банк" options={expenditureTypes}/>
+					<Select onChange={setExpenditureBank} text="Банк" options={getFields(banks, "name")}/>
 					<Button text="Добавить" onClick={() => addExpenditure()}/>
 				</Container>
 				<Container id="container-4" title="Открыть счёт">
 					<Input text="Сумма" type="number" value={baseAmount} onChange={setBaseAmount}/>
 					<Input text="Процент" type="number" value={accountPercent} onChange={setAccountPercent}/>
 					<InputDate value={accountOpenDate} onChange={setAccountOpenDate}/>
-					<Select onChange={setAccountBank} text="Банк" options={banks}/>
+					<Select onChange={setAccountBank} text="Банк" options={getFields(banks, "name")}/>
 					<Button text="Открыть" onClick={() => addAccount()}/>
 				</Container>
 			</div>

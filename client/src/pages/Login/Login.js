@@ -39,7 +39,6 @@ export const Login = () => {
 					{Auth ? `${userName} ${userSurname}` : ''}
 					<Input text="Имя" type="text" value={name} onChange={setName}/>
 					<Input text="Пароль" type="password" value={password} onChange={setPassword}/>
-					{/* <Button text="Войти"/> */}
 					<button type="submit">Войти</button>
 				</Container>
 			</form>

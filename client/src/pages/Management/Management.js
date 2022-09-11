@@ -17,18 +17,22 @@ export const Management = () => {
 	const history = useSelector(selectHistory)
 	const banks = useSelector(selectBanks)
 	const dispatch = useDispatch()
+	const todayDate = new Date(); 
+	const formatDate = todayDate.getDate() < 10 ? `0${todayDate.getDate()}`:todayDate.getDate();
+	const formatMonth = todayDate.getMonth() < 10 ? `0${todayDate.getMonth()}`: todayDate.getMonth();
+	const formattedDate = [todayDate.getFullYear(), formatMonth, formatDate].join('-');	
 	// -------------------
 	const [incomeValue, setIncomeValue] = useState("")
-	const [incomeDate, setIncomeDate] = useState(new Date())
+	const [incomeDate, setIncomeDate] = useState(formattedDate)
 	const [incomeBank, setIncomeBank]= useState(banks[0].name)
 	// -------------------
 	const [expenditureValue, setExpenditureValue] = useState("")
-	const [expenditureDate, setExpenditureDate] = useState(new Date())
+	const [expenditureDate, setExpenditureDate] = useState(formattedDate)
 	const [expenditureBank, setExpenditureBank]= useState(banks[0].name)
 	// -------------------
 	const [baseAmount, setBaseAmount] = useState("")
 	const [accountPercent, setAccountPercent] = useState("")
-	const [accountOpenDate, setAccountOpenDate] = useState(new Date())
+	const [accountOpenDate, setAccountOpenDate] = useState(formattedDate)
 	const [accountBank, setAccountBank] = useState("")
 
 	const addIncome = () => {

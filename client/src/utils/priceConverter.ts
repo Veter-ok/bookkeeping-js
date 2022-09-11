@@ -6,11 +6,13 @@ export const priceConverter = (dafeultPrice: string) => {
 		finallyPrice += price[index]
 		lengthNow -= 1
 		if (lengthNow % 3 === 0 && lengthNow !== 0){
-			if (price[index + 1] !== "." && price[index + 2] !== "."){
-				finallyPrice += ','
-			}else{
-				finallyPrice += price.slice(index + 1, price.length)
-				break
+			if (price[index] !== "-"){
+				if (price[index + 1] !== "." && price[index + 2] !== "."){
+					finallyPrice += ','
+				}else{
+					finallyPrice += price.slice(index + 1, price.length)
+					break
+				}
 			}
 		}
 	}

@@ -12,13 +12,13 @@ const paymentSlice = createSlice({
 	name: 'payment',
 	initialState,
 	reducers: {
-		loginPayment: (state, action) => {
+		loginPayment: (state:PaymentState, action) => {
 			state.banks = action.payload.banks
 			state.accounts = action.payload.accounts
 			state.years = action.payload.years
 			state.history = action.payload.history
 		},
-		addIncomePayment: (state, action) => {
+		addIncomePayment: (state:PaymentState, action) => {
 			console.log(action.payload)
 			let year:number = action.payload.date.getFullYear()
 			let month:number = action.payload.date.getMonth()
@@ -31,7 +31,7 @@ const paymentSlice = createSlice({
 				}
 			}
 		},
-		addExpenditurePayment: (state, action) => {
+		addExpenditurePayment: (state:PaymentState, action) => {
 			let year:number = action.payload.date.getFullYear()
 			let month:number = action.payload.date.getMonth()
 			state.history = [action.payload, ...state.history]
@@ -43,10 +43,10 @@ const paymentSlice = createSlice({
 				}
 			}
 		},
-		AddAccountPayment: (state, action) => {
+		AddAccountPayment: (state:PaymentState, action) => {
 			state.accounts = [action.payload, ...state.accounts]
 		},
-		deletePayment: (state, action) => {
+		deletePayment: (state:PaymentState, action) => {
 			state.history.splice(action.payload, 1)
 		}
 	}

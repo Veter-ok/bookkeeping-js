@@ -1,11 +1,13 @@
 import './accountList.scss'
-import {User1, User2} from '../../../../utils/user'
 import { AccountBlock } from '../../Blocks/AccountBlock/accountBlock'
+import { useSelector } from 'react-redux'
+import { selectAccounts } from 'store/slices/paymentSlice'
 
 export const AccountList = () => {
+	const accounts = useSelector(selectAccounts)
 	return (
 		<div>
-			{User1.accounts.map((data, index) => 
+			{accounts.map((data, index) => 
 				<AccountBlock key={index} data={data} open={true}/>
 			)}
 		</div>

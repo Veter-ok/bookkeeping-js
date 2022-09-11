@@ -11,7 +11,6 @@ export const History = () => {
 	const [searchValue, setSearchValue] = useState('')
 	const history = useSelector(selectHistory)
 
-
 	const currentlyPayments = history.filter(payment => {
 		if (payment.price.toString().includes(searchValue)){
 			return true

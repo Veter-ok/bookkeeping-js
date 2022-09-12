@@ -5,10 +5,11 @@ import {Button} from '../../components/ui/Buttons/button'
 import {Input} from '../../components/ui/Input/input'
 import { useState } from 'react'
 import {useSelector} from 'react-redux'
-import { selectHistory } from 'store/slices/paymentSlice'
+import { selectHistory, selectYears } from 'store/slices/paymentSlice'
 
 export const History = () => {
 	const [searchValue, setSearchValue] = useState('')
+	const years = useSelector(selectYears)
 	const history = useSelector(selectHistory)
 
 	const currentlyPayments = history.filter(payment => {
@@ -22,6 +23,7 @@ export const History = () => {
 			return payment.info.toLowerCase().includes(searchValue.toLowerCase())
 		}
 	})
+	console.log(years)
 
 	return (
 		<div>

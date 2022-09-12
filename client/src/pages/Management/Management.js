@@ -24,12 +24,12 @@ export const Management = () => {
 	// -------------------
 	const [incomeValue, setIncomeValue] = useState("")
 	const [incomeDate, setIncomeDate] = useState(formattedDate)
-	const [incomeType, setIncomeType] = useState()
+	const [incomeType, setIncomeType] = useState(incomeTypes[0])
 	const [incomeBank, setIncomeBank]= useState(banks[0].name)
 	// -------------------
 	const [expenditureValue, setExpenditureValue] = useState("")
 	const [expenditureDate, setExpenditureDate] = useState(formattedDate)
-	const [expenditureType, setExpenditureType] = useState()
+	const [expenditureType, setExpenditureType] = useState(expenditureTypes[0])
 	const [expenditureBank, setExpenditureBank]= useState(banks[0].name)
 	// -------------------
 	const [baseAmount, setBaseAmount] = useState("")
@@ -40,9 +40,9 @@ export const Management = () => {
 	const addIncome = () => {
 		if (incomeValue !== 0 && incomeValue !== ""){
 			const newData = {
-				id: history[0].id + 1,
+				id: history[0] === undefined ? 1 : history[0].id + 1,
 				price: Number(incomeValue),
-				IsIncome: true,
+				isIncome: true,
 				info: incomeType,
 				date: new Date(incomeDate),
 				bank: incomeBank
@@ -55,9 +55,9 @@ export const Management = () => {
 	const addExpenditure = () => {
 		if (expenditureValue !== 0 && expenditureValue !== ""){
 			const newData = {
-				id: history[0].id + 1,
+				id: history[0].id + 1 === undefined ? history[0].id + 1 : 1,
 				price: Number(expenditureValue),
-				IsIncome: false,
+				isIncome: false,
 				info: expenditureType,
 				date: new Date(expenditureDate),
 				bank: expenditureBank
@@ -83,7 +83,6 @@ export const Management = () => {
 		let output = []
 		for (var i=0; i < array.length ; ++i)
 			output.push(array[i][field])
-		console.log(output)
 		return output
 	}
 

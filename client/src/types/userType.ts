@@ -6,7 +6,7 @@ export interface Banks {
 export interface Payment {
 	id: number;
 	price: number;
-	IsIncome: boolean;
+	isIncome: boolean;
 	info: string;
 	date: Date;
 	bank: string;

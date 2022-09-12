@@ -26,9 +26,9 @@ export const Dashboard = () => {
 					<div className="container__content__text">{priceConverter(Number((totalSum(years) / 59.33).toFixed(2)))}<Highlighter>€</Highlighter></div>
 				</Container>
 				<Container id="container-3" title="Текущий месяц">
-					<div className="container__content__text"><strong>Сальдо: {priceConverter(years["2022"][7].income - years["2022"][7].expenditure)}<Highlighter>₽</Highlighter></strong></div>
-					<div className="container__content__text">Доход: {priceConverter(years["2022"][7].income)}<Highlighter>₽</Highlighter></div>
-					<div className="container__content__text">Расход: {priceConverter(years["2022"][7].expenditure)}<Highlighter>₽</Highlighter></div>
+					<div className="container__content__text"><strong>Сальдо: {priceConverter(years["2022"][8].income - years["2022"][8].expenditure)}<Highlighter>₽</Highlighter></strong></div>
+					<div className="container__content__text">Доход: {priceConverter(years["2022"][8].income)}<Highlighter>₽</Highlighter></div>
+					<div className="container__content__text">Расход: {priceConverter(years["2022"][8].expenditure)}<Highlighter>₽</Highlighter></div>
 				</Container>
 				<Container id="container-4" title="Ежемесячный доход">
 					<BarChart dataChart={years["2022"]}/>

@@ -19,7 +19,6 @@ const paymentSlice = createSlice({
 			state.history = action.payload.history
 		},
 		addIncomePayment: (state:PaymentState, action) => {
-			console.log(action.payload)
 			let year:number = action.payload.date.getFullYear()
 			let month:number = action.payload.date.getMonth()
 			state.history = [action.payload, ...state.history]
@@ -44,10 +43,38 @@ const paymentSlice = createSlice({
 			}
 		},
 		AddAccountPayment: (state:PaymentState, action) => {
+			let year:number = action.payload.dateOpen.getFullYear()
+			let month:number = action.payload.dateOpen.getMonth()
+			state.years[year][month].income +=  action.payload.amount
+			for (var index = 0; index < state.banks.length; index++) {
+				if (state.banks[index].name === action.payload.bank){
+					state.banks[index].money += action.payload.amount
+					break
+				}
+			}
 			state.accounts = [action.payload, ...state.accounts]
 		},
 		deletePayment: (state:PaymentState, action) => {
-			state.history.splice(action.payload, 1)
+			let year:number = action.payload.date.getFullYear()
+			let month:number = action.payload.date.getMonth()
+			console.log(action.payload)
+			if (action.payload.isIncome){
+				state.years[year][month].income -=  action.payload.price
+			}else{
+				state.years[year][month].expenditure -= action.payload.price
+			}
+			for (let index = 0; index < state.history.length; index++) {
+				if (state.history[index].id === action.payload.id){
+					state.history.splice(index, 1)
+					break
+				}
+			}
+			for (let index = 0; index < state.banks.length; index++) {
+				if (state.banks[index].name === action.payload.bank){
+					state.banks[index].money -= action.payload.price
+					break
+				}
+			}
 		}
 	}
 })

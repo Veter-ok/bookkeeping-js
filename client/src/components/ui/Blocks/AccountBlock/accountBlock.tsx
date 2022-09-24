@@ -1,9 +1,15 @@
 import './accountBlock.scss'
-import { useState } from 'react'
+import React, {FunctionComponent as FC, useState} from 'react'
+import {Account} from 'types/userType'
 import { priceConverter } from '../../../../utils/priceConverter'
 import {Highlighter} from '../../Text/highlighter'
 
-export const AccountBlock = ({data, open}) => {
+interface IAccountBlockProps {
+	data: Account,
+	open: boolean
+}
+
+export const AccountBlock:FC<IAccountBlockProps> = ({data, open}) => {
 	const [isVisible, setIsVisible] = useState(false)
 
 	const moreData = () => {

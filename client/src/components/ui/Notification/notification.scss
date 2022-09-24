@@ -1,0 +1,29 @@
+@import '../../../styles/variables.scss';
+
+.notification-success {
+	width: 100%;
+	height: 100%;
+	background-color: rgb(5, 191, 64);
+	border-radius: 15px;
+	margin: 10px 0px;
+	&__content {
+		padding: 10px;
+		&__text{
+			color: $secondaryTextColor;
+		}
+	}
+}
+
+.notification-error {
+	width: 100%;
+	height: 100%;
+	background-color: rgb(197, 32, 32);
+	border-radius: 15px;
+	margin: 10px 0px;
+	&__content {
+		padding: 10px;
+		&__text{
+			color: $secondaryTextColor;
+		}
+	}
+}

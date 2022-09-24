@@ -1,12 +1,18 @@
 import './priceBlock.scss'
-import { useState } from 'react'
+import React, {FunctionComponent as FC, useState } from 'react'
+import { Payment } from 'types/userType'
 import { priceConverter } from '../../../../utils/priceConverter'
 import {Highlighter} from '../../Text/highlighter'
 import TRASH_LOGO from '../../../../assets/img/trash.svg'
 import { useDispatch } from 'react-redux'
 import { deletePayment } from 'store/slices/paymentSlice'
 
-export const PriceBlock = ({index, data, open}) => {
+interface IPriceBlockProps {
+	data: Payment,
+	open: boolean
+}
+
+export const PriceBlock:FC<IPriceBlockProps> = ({data, open}) => {
 	const [isVisible, setIsVisible] = useState(false)
 	const dispatch = useDispatch()
 

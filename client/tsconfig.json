@@ -24,6 +24,8 @@
       "noEmitHelpers":true
    },
    "include":[ 
+      "src/components", 
+      "custom.d.ts",
       "src/**/*"
    ],
    "exclude":[ 

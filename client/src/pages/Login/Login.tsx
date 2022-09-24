@@ -1,14 +1,14 @@
 import './login.scss'
+import React, {FunctionComponent as FC, useState} from 'react'
 import {User1} from '../../utils/user'
 import {Container} from '../../components/Containers/container'
 import {Input} from '../../components/ui/Input/input'
 //import { Button } from '../../components/ui/Buttons/button'
 import {useDispatch, useSelector} from 'react-redux'
-import { useState } from 'react'
 import { login, selectAuth, selectName, selectSurname} from 'store/slices/userSlice'
 import { loginPayment } from 'store/slices/paymentSlice'
 
-export const Login = () => {
+export const Login:FC = () => {
 	const Auth = useSelector(selectAuth)
 	const userName = useSelector(selectName)
 	const userSurname = useSelector(selectSurname)
@@ -16,7 +16,7 @@ export const Login = () => {
 	const [name, setName] = useState("")
 	const [password, setPassword] = useState("")
 
-	const logIn = (event) => {
+	const logIn = (event: any) => {
 		event.preventDefault()
 		dispatch(login({
 			Auth: true,

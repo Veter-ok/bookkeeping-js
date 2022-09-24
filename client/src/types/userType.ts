@@ -14,7 +14,7 @@ export interface Payment {
 export interface Account {
 	amount: number;
 	percent: number;
-	date: Date;
+	dateOpen: Date;
 	bank: string;
 }
 

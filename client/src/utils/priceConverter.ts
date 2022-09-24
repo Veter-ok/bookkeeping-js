@@ -1,5 +1,5 @@
-export const priceConverter = (dafeultPrice: string) => {
-	const price:string = Number(dafeultPrice).toString()
+export const priceConverter = (dafeultPrice: number) => {
+	const price:string = dafeultPrice.toString()
 	let finallyPrice:string = ''
 	let lengthNow:number = price.length
 	for (var index = 0; index < price.length; index++) {

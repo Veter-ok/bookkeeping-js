@@ -1,8 +1,14 @@
 import './bankBlock.scss'
+import React, {FunctionComponent as FC} from 'react'
+import { Banks } from 'types/userType'
 import { priceConverter } from '../../../../utils/priceConverter'
 import { Highlighter } from '../../Text/highlighter'
 
-export const BankBlock = ({data}) => {
+interface IBankBlockProps {
+	data: Banks
+}
+
+export const BankBlock:FC<IBankBlockProps> = ({data}) => {
 	return (
 		<>
 			{data !== undefined ?

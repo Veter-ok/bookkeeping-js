@@ -1,4 +1,4 @@
-import { UserState, UserAction} from "store/types/user"
+import { UserState} from "store/types/user"
 import {createSlice} from '@reduxjs/toolkit'
 
 const initialState:UserState = {
@@ -12,7 +12,7 @@ const userSlice = createSlice({
 	name: 'user',
 	initialState,
 	reducers: {
-		login: (state:UserState, action: UserAction) => {
+		login: (state:UserState, action: {payload:UserState}) => {
 			state.Auth = action.payload.Auth
 			state.name = action.payload.name
 			state.surname = action.payload.surname

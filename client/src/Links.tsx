@@ -3,5 +3,6 @@ export enum Links {
 	MANAGEMENT = '/management',
 	HISTORY = '/history',
 	PROFILE = '/profile',
-	LOGIN = '/login'
+	LOGIN = '/login',
+	REGISTRATION = '/registration'
 }

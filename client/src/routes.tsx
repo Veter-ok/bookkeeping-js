@@ -5,6 +5,7 @@ import {History} from './pages/History/History'
 import {Management} from './pages/Management/Management'
 import {Profile} from './pages/Profile/Profile'
 import {Login} from './pages/Login/Login'
+import {Registration} from './pages/Registration/registration'
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import {MainLayout} from './components/layouts/mainLayout'
 import {useSelector} from 'react-redux'
@@ -22,11 +23,11 @@ export const Navigation = () => {
                 <Route path={Links.MANAGEMENT} element={<Management/>}/>
                 <Route path={Links.HISTORY} element={<History/>}/>
                 <Route path={Links.PROFILE} element={<Profile/>}/>
-                <Route path={Links.LOGIN} element={<Login/>}/>
               </Routes>
               :
               <Routes>
                 <Route path={Links.LOGIN} element={<Login/>}/>
+                <Route path={Links.REGISTRATION} element={<Registration/>}/>
               </Routes>
             }
           </MainLayout>

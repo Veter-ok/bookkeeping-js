@@ -1,10 +1,18 @@
 // https://www.chartjs.org/docs/latest/getting-started/
 // https://www.youtube.com/watch?v=RF57yDglDfE
 import './barChart.scss'
+import React, {FunctionComponent as FC} from 'react'
 import {Bar} from 'react-chartjs-2'
-import {Chart as ChartJS} from 'chart.js/auto'
+import {Chart as ChartJS, CategoryScale} from 'chart.js'
+import { Month } from 'types/userType'
 
-export const BarChart = ({dataChart}) => {
+interface IBarChartProps {
+	dataChart: Array<Month>
+}
+
+ChartJS.register(CategoryScale)
+
+export const BarChart:FC<IBarChartProps> = ({dataChart}) => {
 	const data = {
 		labels: dataChart !== undefined ? dataChart.map(data => data.month) : [],
 		datasets: [{

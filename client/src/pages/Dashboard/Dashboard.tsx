@@ -1,5 +1,5 @@
-import './dashboard.scss'
 import React, {FunctionComponent as FC} from 'react'
+import './dashboard.scss'
 import {totalSum} from '../../utils/summationOfNumbers'
 import { priceConverter } from '../../utils/priceConverter'
 import { Highlighter } from '../../components/ui/Text/highlighter'
@@ -11,9 +11,10 @@ import { PriceList } from '../../components/ui/Lists/priceList/priceList'
 import { AccountList } from '../../components/ui/Lists/AccountsList/AccountsList'
 import {useSelector} from 'react-redux'
 import {selectYears } from 'store/slices/paymentSlice'
+import { Years } from 'types/userType'
 
 export const Dashboard:FC = () => {
-	const years = useSelector(selectYears)
+	const years:Years = useSelector(selectYears)
 	return (
 		<div>
 			<div className="dashboard-container-group-1">

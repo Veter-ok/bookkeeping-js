@@ -1,10 +1,10 @@
 import './container.scss'
-import React, { useState, FunctionComponent as FC} from 'react';
+import React, {FunctionComponent as FC} from 'react';
 
 type ContainerProps = {
 	id?: string,
 	title: string,
-	children: any
+	children: JSX.Element | JSX.Element[]
 }
 
 export const Container:FC<ContainerProps> = ({id, title, children}) => {

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 interface ILinkUIProps {
 	href: string,
-	children: any
+	children: string
 }
 
 export const LinkUI:FC<ILinkUIProps> = ({href, children}) => {

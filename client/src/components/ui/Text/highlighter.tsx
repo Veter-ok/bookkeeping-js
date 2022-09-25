@@ -2,7 +2,7 @@ import './highlighter.scss'
 import React, {FunctionComponent as FC} from 'react'
 
 interface IHighlighterProps {
-	children: any
+	children: string
 }
 
 export const Highlighter:FC<IHighlighterProps> = ({children}) => {

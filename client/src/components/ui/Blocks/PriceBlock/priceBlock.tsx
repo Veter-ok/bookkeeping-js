@@ -13,7 +13,7 @@ interface IPriceBlockProps {
 }
 
 export const PriceBlock:FC<IPriceBlockProps> = ({data, open}) => {
-	const [isVisible, setIsVisible] = useState(false)
+	const [isVisible, setIsVisible] = useState<boolean>(false)
 	const dispatch = useDispatch()
 
 	return (

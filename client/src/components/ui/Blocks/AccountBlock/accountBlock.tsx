@@ -10,7 +10,7 @@ interface IAccountBlockProps {
 }
 
 export const AccountBlock:FC<IAccountBlockProps> = ({data, open}) => {
-	const [isVisible, setIsVisible] = useState(false)
+	const [isVisible, setIsVisible] = useState<boolean>(false)
 
 	const moreData = () => {
 		if (open) {

@@ -22,35 +22,39 @@ export const Management:FC = () => {
 	const formatMonth = todayDate.getMonth() < 10 ? `0${todayDate.getMonth() + 1}`: todayDate.getMonth() + 1;
 	const formattedDate = [todayDate.getFullYear(), formatMonth, formatDate].join('-');	
 	// -------------------
-	const [incomeValue, setIncomeValue] = useState(0)
-	const [incomeDate, setIncomeDate] = useState(formattedDate)
-	const [incomeType, setIncomeType] = useState(incomeTypes[0])
-	const [incomeBank, setIncomeBank]= useState(banks[0].name)
-	const [errorMsgAddIncome, setErrorMsgAddIncome] = useState(null)
-	const [successMsgAddIncome, setSuccessMsgAddIncome] = useState(null)
+	const [incomeValue, setIncomeValue] = useState<number>(0)
+	const [incomeDate, setIncomeDate] = useState<string>(formattedDate)
+	const [incomeType, setIncomeType] = useState<string>(incomeTypes[0])
+	const [incomeBank, setIncomeBank]= useState<string>(banks[0].name)
+	const [errorMsgAddIncome, setErrorMsgAddIncome] = useState<string | null>(null)
+	const [successMsgAddIncome, setSuccessMsgAddIncome] = useState<string | null>(null)
 	// -------------------
-	const [expenditureValue, setExpenditureValue] = useState(0)
-	const [expenditureDate, setExpenditureDate] = useState(formattedDate)
-	const [expenditureType, setExpenditureType] = useState(expenditureTypes[0])
-	const [expenditureBank, setExpenditureBank]= useState(banks[0].name)
+	const [expenditureValue, setExpenditureValue] = useState<number>(0)
+	const [expenditureDate, setExpenditureDate] = useState<string>(formattedDate)
+	const [expenditureType, setExpenditureType] = useState<string>(expenditureTypes[0])
+	const [expenditureBank, setExpenditureBank]= useState<string>(banks[0].name)
+	const [errorMsgAddExpenses, setErrorMsgAddExpenses] = useState<string | null>(null)
+	const [successMsgAddExpenses, setSuccessMsgAddExpenses] = useState<string | null>(null)
 	// -------------------
-	const [baseAmount, setBaseAmount] = useState(0)
-	const [accountPercent, setAccountPercent] = useState(0)
-	const [accountOpenDate, setAccountOpenDate] = useState(formattedDate)
-	const [accountBank, setAccountBank] = useState("")
+	const [baseAmount, setBaseAmount] = useState<number>(0)
+	const [accountPercent, setAccountPercent] = useState<number>(0)
+	const [accountOpenDate, setAccountOpenDate] = useState<string>(formattedDate)
+	const [accountBank, setAccountBank] = useState<string>("")
+	const [errorMsgAddAccount, setErrorMsgAddAccount] = useState<string | null>(null)
+	const [successMsgAddAccount, setSuccessMsgAddAccount] = useState<string | null>(null)
 
 	const addIncome = () => {
 		if (incomeValue !== 0){
 			const newData = {
 				id: history[0] === undefined ? 1 : history[0].id + 1,
-				price: Number(incomeValue),
+				price: incomeValue,
 				isIncome: true,
 				info: incomeType,
 				date: new Date(incomeDate),
 				bank: incomeBank
 			}
 			dispatch(addIncomePayment(newData))
-			setErrorMsgAddIncome(false)
+			setErrorMsgAddIncome(null)
 			setSuccessMsgAddIncome("Доход успешно добавлен")
 			setIncomeValue(0)
 		}else{
@@ -61,28 +65,38 @@ export const Management:FC = () => {
 	const addExpenditure = () => {
 		if (expenditureValue !== 0){
 			const newData = {
-				id: history[0].id + 1 === undefined ? history[0].id + 1 : 1,
-				price: Number(expenditureValue),
+				id: history[0] === undefined ? 1 : history[0].id + 1,
+				price: expenditureValue,
 				isIncome: false,
 				info: expenditureType,
 				date: new Date(expenditureDate),
 				bank: expenditureBank
 			}
 			dispatch(addExpenditurePayment(newData))
+			setErrorMsgAddExpenses(null)
+			setSuccessMsgAddExpenses("Расход успешно добавлен")
 			setExpenditureValue(0)
+		}else{
+			setErrorMsgAddExpenses("Вы не заполнили все поля")
 		}
 	}
 
 	const addAccount = () => {
-		const newData = {
-			amount: Number(baseAmount),
-			percent: Number(accountPercent),
-			dateOpen: new Date(accountOpenDate),
-			bank: accountBank
+		if (baseAmount !== 0 && accountPercent !== 0) {
+			const newData = {
+				amount: baseAmount,
+				percent: accountPercent,
+				dateOpen: new Date(accountOpenDate),
+				bank: accountBank
+			}
+			dispatch(AddAccountPayment(newData))
+			setErrorMsgAddAccount(null)
+			setSuccessMsgAddAccount("Счёт успешно добавлен")
+			setBaseAmount(0)
+			setAccountPercent(0)
+		}else{
+			setErrorMsgAddAccount("Вы не заполнили все поля")
 		}
-		dispatch(AddAccountPayment(newData))
-		setBaseAmount(0)
-		setAccountPercent(0)
 	}
 
 	const getFields = (array:Array<any>, field:string) => {
@@ -107,6 +121,8 @@ export const Management:FC = () => {
 					<Button text="Добавить" onClick={() => addIncome()}/>
 				</Container>
 				<Container id="container-3" title="Добавить расход">
+					{errorMsgAddExpenses ? <NotificationError text={errorMsgAddExpenses}/> : <></> }
+					{successMsgAddExpenses ? <NotificationSuccess text={successMsgAddExpenses}/> : <></>}
 					<Input text="Сумма" type="number" value={expenditureValue} onChange={setExpenditureValue}/>
 					<InputDate text={incomeDate} value={expenditureDate} onChange={setExpenditureDate}/>
 					<Select onChange={setExpenditureType} options={expenditureTypes}/>
@@ -114,6 +130,8 @@ export const Management:FC = () => {
 					<Button text="Добавить" onClick={() => addExpenditure()}/>
 				</Container>
 				<Container id="container-4" title="Открыть счёт">
+					{errorMsgAddAccount ? <NotificationError text={errorMsgAddAccount}/> : <></> }
+					{successMsgAddAccount ? <NotificationSuccess text={successMsgAddAccount}/> : <></>}
 					<Input text="Сумма" type="number" value={baseAmount} onChange={setBaseAmount}/>
 					<Input text="Процент" type="number" value={accountPercent} onChange={setAccountPercent}/>
 					<InputDate text={incomeDate} value={accountOpenDate} onChange={setAccountOpenDate}/>

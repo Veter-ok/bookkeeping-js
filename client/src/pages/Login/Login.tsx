@@ -1,9 +1,8 @@
 import './login.scss'
-import React, {FunctionComponent as FC, useState} from 'react'
+import React, {FormEvent, useState, FunctionComponent as FC} from 'react'
 import {User1} from '../../utils/user'
 import {Container} from '../../components/Containers/container'
 import {Input} from '../../components/ui/Input/input'
-//import { Button } from '../../components/ui/Buttons/button'
 import {useDispatch, useSelector} from 'react-redux'
 import { login, selectAuth, selectName, selectSurname} from 'store/slices/userSlice'
 import { loginPayment } from 'store/slices/paymentSlice'
@@ -13,10 +12,10 @@ export const Login:FC = () => {
 	const userName = useSelector(selectName)
 	const userSurname = useSelector(selectSurname)
 	const dispatch = useDispatch()
-	const [name, setName] = useState("")
-	const [password, setPassword] = useState("")
+	const [name, setName] = useState<string>("")
+	const [password, setPassword] = useState<string>("")
 
-	const logIn = (event: any) => {
+	const logIn = (event: FormEvent) => {
 		event.preventDefault()
 		dispatch(login({
 			Auth: true,
@@ -36,7 +35,7 @@ export const Login:FC = () => {
 		<div className="form">
 			<form onSubmit={(e) => logIn(e)}>
 				<Container title="Вход">
-					{Auth ? `${userName} ${userSurname}` : ''}
+					<p>{Auth ? `${userName} ${userSurname}` : ''}</p>
 					<Input text="Имя" type="text" value={name} onChange={setName}/>
 					<Input text="Пароль" type="password" value={password} onChange={setPassword}/>
 					<button type="submit">Войти</button>

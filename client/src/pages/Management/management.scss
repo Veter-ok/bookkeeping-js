@@ -6,7 +6,8 @@
 	margin-bottom: 30px;
 	grid-template-areas: 
 	"A A A"
-    "B C D";	
+    "B C D"
+	"E E E";	
 	grid-template-rows: 50px 1fr;
 	grid-template-columns: 1fr 1fr 1fr;
 	gap: 50px 30px;

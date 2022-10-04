@@ -19,7 +19,7 @@ export interface Account {
 }
 
 export interface Month {
-	month:string;
+	month: string;
 	income: number;
 	expenditure: number;
 }

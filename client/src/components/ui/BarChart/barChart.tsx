@@ -3,14 +3,14 @@
 import './barChart.scss'
 import React, {FunctionComponent as FC} from 'react'
 import {Bar} from 'react-chartjs-2'
-import {Chart as ChartJS, CategoryScale} from 'chart.js'
+import {Chart as ChartJS, registerables} from 'chart.js'
 import { Month } from 'types/userType'
 
 interface IBarChartProps {
 	dataChart: Array<Month>
 }
 
-ChartJS.register(CategoryScale)
+ChartJS.register(...registerables)
 
 export const BarChart:FC<IBarChartProps> = ({dataChart}) => {
 	const data = {

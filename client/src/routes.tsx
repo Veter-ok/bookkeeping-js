@@ -1,5 +1,5 @@
 import React from 'react'
-import { Links } from 'Links'
+import { Links } from 'variables/Links'
 import {Dashboard} from './pages/Dashboard/Dashboard'
 import {History} from './pages/History/History'
 import {Management} from './pages/Management/Management'

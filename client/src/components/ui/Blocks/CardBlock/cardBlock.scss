@@ -1,0 +1,33 @@
+@import '../../../../styles/variables.scss';
+
+.card-block {
+	display: flex;
+	min-width: 735px;
+	margin-top: 20px;
+	&__img {
+		width: 50%;
+		img {
+			display: block;
+			height: 200px;
+			width: 350px;
+			margin: 0px auto;
+		}
+	}
+	&__text {
+		width: 50%;
+		padding: 0px 15px;
+		&__name {
+			font-size: large;
+			margin: 7px 0px;
+			color: $primaryTextColor
+		}
+		&__percent {
+			margin: 7px 0px;
+			color: $primaryTextColor
+		}
+		&__description {
+			margin: 7px 0px;
+			color: $primaryTextColor
+		}
+	}
+}

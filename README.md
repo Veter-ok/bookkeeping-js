@@ -4,13 +4,13 @@
 Clone the project  
 
 ~~~bash  
-  git clone https://link-to-project
+git clone https://github.com/Veter-ok/bookkeeping-js.git
 ~~~
 
 Go to the project directory  
 
 ~~~bash  
-  cd my-project
+cd client
 ~~~
 
 Install dependencies  
@@ -22,5 +22,5 @@ npm install
 Start the server  
 
 ~~~bash  
-npm run start
+npm start
 ~~~  

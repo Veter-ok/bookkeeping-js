@@ -2,7 +2,7 @@
 import './header.scss'
 import React, {FunctionComponent as FC} from 'react'
 import USER_LOGO from '../../assets/img/user.svg'
-import {Links} from '../../Links'
+import {Links} from '../../variables/Links'
 import { Link } from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import {selectAuth} from 'store/slices/userSlice'

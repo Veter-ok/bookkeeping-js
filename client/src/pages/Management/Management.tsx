@@ -1,15 +1,18 @@
 import './management.scss'
 import React, {FunctionComponent as FC, useState} from 'react'
-import { expenditureTypes, incomeTypes } from 'types/typesOfPayments'
+import {expenditureTypes, incomeTypes} from 'types/typesOfPayments'
+import { cards } from 'utils/cards'
+import { Card } from 'types/cardTypes'
 import {Container} from '../../components/Containers/container'
 import {Button} from '../../components/ui/Buttons/button'
-import { InputDate } from '../../components/ui/Input/inputDate'
-import {Input} from '../../components/ui/Input/input'
+import {Input, InputDate} from '../../components/ui/Input/input'
 import {Select} from '../../components/ui/Select/select'
+import { Slider } from 'components/ui/Slider/Slider'
 import {NotificationSuccess, NotificationError} from '../../components/ui/Notification/notification'
 import {useDispatch, useSelector} from 'react-redux'
 import {selectName, selectSurname} from 'store/slices/userSlice'
 import { AddAccountPayment, addExpenditurePayment, addIncomePayment, selectBanks, selectHistory } from 'store/slices/paymentSlice'
+import { CardBlock } from 'components/ui/Blocks/CardBlock/cardBlock'
 
 export const Management:FC = () => {
 	const name = useSelector(selectName)
@@ -115,7 +118,7 @@ export const Management:FC = () => {
 					{errorMsgAddIncome ? <NotificationError text={errorMsgAddIncome}/> : <></> }
 					{successMsgAddIncome ? <NotificationSuccess text={successMsgAddIncome}/> : <></>}
 					<Input text="Сумма" type="number" value={incomeValue} onChange={setIncomeValue} />
-					<InputDate text={incomeDate} value={incomeDate} onChange={setIncomeDate}/>
+					<InputDate value={incomeDate} onChange={setIncomeDate}/>
 					<Select onChange={setIncomeType} options={incomeTypes}/>
 					<Select onChange={setIncomeBank} options={getFields(banks, "name")}/>
 					<Button text="Добавить" onClick={() => addIncome()}/>
@@ -124,7 +127,7 @@ export const Management:FC = () => {
 					{errorMsgAddExpenses ? <NotificationError text={errorMsgAddExpenses}/> : <></> }
 					{successMsgAddExpenses ? <NotificationSuccess text={successMsgAddExpenses}/> : <></>}
 					<Input text="Сумма" type="number" value={expenditureValue} onChange={setExpenditureValue}/>
-					<InputDate text={incomeDate} value={expenditureDate} onChange={setExpenditureDate}/>
+					<InputDate value={expenditureDate} onChange={setExpenditureDate}/>
 					<Select onChange={setExpenditureType} options={expenditureTypes}/>
 					<Select onChange={setExpenditureBank}options={getFields(banks, "name")}/>
 					<Button text="Добавить" onClick={() => addExpenditure()}/>
@@ -134,9 +137,19 @@ export const Management:FC = () => {
 					{successMsgAddAccount ? <NotificationSuccess text={successMsgAddAccount}/> : <></>}
 					<Input text="Сумма" type="number" value={baseAmount} onChange={setBaseAmount}/>
 					<Input text="Процент" type="number" value={accountPercent} onChange={setAccountPercent}/>
-					<InputDate text={incomeDate} value={accountOpenDate} onChange={setAccountOpenDate}/>
+					<InputDate value={accountOpenDate} onChange={setAccountOpenDate}/>
 					<Select onChange={setAccountBank} options={getFields(banks, "name")}/>
 					<Button text="Открыть" onClick={() => addAccount()}/>
+				</Container>
+				<Container id="container-5" title="Добавить карту">
+					{errorMsgAddAccount ? <NotificationError text={errorMsgAddAccount}/> : <></> }
+					{successMsgAddAccount ? <NotificationSuccess text={successMsgAddAccount}/> : <></>}
+					<Slider length={735}>
+						{cards.map((card:Card, index:number) => 
+							<CardBlock key={index} card={card}/>
+						)}
+					</Slider>
+					<Button text="Добавить" onClick={() => console.log("Add card")}/>
 				</Container>
 			</div>
 		</div>

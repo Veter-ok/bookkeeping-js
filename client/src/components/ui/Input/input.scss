@@ -11,3 +11,15 @@
 		padding: 5px;
 	}
 }
+
+.inputDate-element {
+	input {
+		display: block;
+		width: 96%;
+		margin: 10px auto;
+		border: 1px solid #bdbdbd;
+		border-radius: 10px;
+		font-size: $subTitleText;
+		padding: 5px;
+	}
+}

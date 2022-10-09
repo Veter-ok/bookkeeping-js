@@ -1,24 +1,34 @@
-import {createSlice} from '@reduxjs/toolkit'
-import { PaymentState } from "store/types/payment"
+import {createSlice, PayloadAction} from '@reduxjs/toolkit'
+import { RootState } from 'store'
+import { Account, Card, Payment, Banks, Years} from 'types/userType'
 
 const initialState:PaymentState = {
-	banks: null,
-	accounts: null,
+	banks: [],
+	accounts: [],
+	cards: [],
 	years: null,
-	history: null
+	history: []
+}
+
+interface PaymentState {
+	banks: Array<Banks> | null,
+	cards: Array<Card> | null,
+	accounts: Array<Account>  | null,
+	years: Years | null,
+	history: Array<Payment> | null,
 }
 
 const paymentSlice = createSlice({
 	name: 'payment',
 	initialState,
 	reducers: {
-		loginPayment: (state:PaymentState, action) => {
+		loginPayment: (state:PaymentState, action: PayloadAction<PaymentState>) => {
 			state.banks = action.payload.banks
 			state.accounts = action.payload.accounts
 			state.years = action.payload.years
 			state.history = action.payload.history
 		},
-		addIncomePayment: (state:PaymentState, action) => {
+		addIncomePayment: (state:PaymentState, action: PayloadAction<Payment>) => {
 			let year:number = action.payload.date.getFullYear()
 			let month:number = action.payload.date.getMonth()
 			state.history = [action.payload, ...state.history]
@@ -30,7 +40,7 @@ const paymentSlice = createSlice({
 				}
 			}
 		},
-		addExpenditurePayment: (state:PaymentState, action) => {
+		addExpenditurePayment: (state:PaymentState, action: PayloadAction<Payment>) => {
 			let year:number = action.payload.date.getFullYear()
 			let month:number = action.payload.date.getMonth()
 			state.history = [action.payload, ...state.history]
@@ -42,7 +52,7 @@ const paymentSlice = createSlice({
 				}
 			}
 		},
-		AddAccountPayment: (state:PaymentState, action) => {
+		AddAccountPayment: (state:PaymentState, action: PayloadAction<Account>) => {
 			let year:number = action.payload.dateOpen.getFullYear()
 			let month:number = action.payload.dateOpen.getMonth()
 			state.years[year][month].income +=  action.payload.amount
@@ -54,7 +64,7 @@ const paymentSlice = createSlice({
 			}
 			state.accounts = [action.payload, ...state.accounts]
 		},
-		deletePayment: (state:PaymentState, action) => {
+		deletePayment: (state:PaymentState, action: PayloadAction<Payment>) => {
 			let year:number = action.payload.date.getFullYear()
 			let month:number = action.payload.date.getMonth()
 			console.log(action.payload)
@@ -75,13 +85,18 @@ const paymentSlice = createSlice({
 					break
 				}
 			}
+		},
+		addCard: (state: PaymentState, action: PayloadAction<Card>) => {
+			state.cards = [action.payload, ...state.cards]
 		}
 	}
 })
 
+
 export default paymentSlice.reducer
-export const {loginPayment, addIncomePayment, addExpenditurePayment, AddAccountPayment, deletePayment} = paymentSlice.actions
-export const selectBanks = (state:any) => state.payment.banks
-export const selectAccounts = (state:any) => state.payment.accounts
-export const selectYears = (state:any) => state.payment.years
-export const selectHistory = (state:any) => state.payment.history
+export const {loginPayment, addIncomePayment, addExpenditurePayment, AddAccountPayment, deletePayment, addCard} = paymentSlice.actions
+export const selectBanks = (state:RootState) => state.payment.banks
+export const selectAccounts = (state:RootState) => state.payment.accounts
+export const selectYears = (state:RootState) => state.payment.years
+export const selectHistory = (state:RootState) => state.payment.history
+export const selectCards = (state:RootState) => state.payment.cards

@@ -1,6 +1,6 @@
 import React, {FunctionComponent as FC} from 'react';
 import './cardBlock.scss'
-import { Card } from 'types/cardTypes';
+import { Card } from 'types/userType';
 import {Highlighter} from '../../Text/highlighter'
 
 interface ICardBlockProps {

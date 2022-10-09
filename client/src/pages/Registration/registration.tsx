@@ -17,6 +17,7 @@ export const Registration:FC = () => {
 			surname: surname,
 			birthday: birthday,
 			banks: [],
+			cards: [],
 			accounts: [],
 			years: {"2022": [
 					{month: "янв", income: 0, expenditure: 0},

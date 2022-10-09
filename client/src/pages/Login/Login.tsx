@@ -26,6 +26,7 @@ export const Login:FC = () => {
 		dispatch(loginPayment({
 			banks: User1.banks,
 			accounts: User1.accounts,
+			cards: User1.cards,
 			years: User1.years,
 			history: User1.history
 		}))

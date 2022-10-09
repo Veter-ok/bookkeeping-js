@@ -2,7 +2,7 @@
 
 .slider {
 	width: 1000px;
-	height: 220px;
+	height: 250px;
 	margin: 40px auto;
 	display: flex;
 	align-items: center;
@@ -11,8 +11,10 @@
 		height: 100%;
 		padding: 10px;
 		margin: 20px;
-		//box-shadow: 0 0 7px rgba(0, 0, 0, 0.8);
-		border-radius: 15px;
+		box-shadow: 0 0 7px rgba(0, 0, 0, 0.8);
+		border-radius: 16px;
+		backdrop-filter: blur(5px);
+		-webkit-backdrop-filter: blur(5px);
 		overflow: hidden;
 		.all-items {
 			height: 100%;

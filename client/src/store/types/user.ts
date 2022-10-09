@@ -1,10 +1,11 @@
 export interface UserState {
-	Auth: true | false;
+	Auth: boolean;
 	name: string;
 	surname: string;
 	birthday: string;
 }
 
 export interface UserAction {
-	payload?: any;
+	type: string
+	payload?: UserState;
 }

@@ -9,6 +9,7 @@ export var User1: User = {
 		{name: "Альфа Банк", money: 0},
 		{name: "Тинькофф Банк", money: 12018.07}
 	],
+	cards: [],
 	accounts: [],
 	years: {
 		"2022": [
@@ -58,6 +59,7 @@ export var User2: User = {
 		{name: "Альфа Банк", money: 0},
 		{name: "Тинькофф Банк", money: 0}
 	], 
+	cards: [],
 	accounts: [],
 	years: {
 		"2022": [

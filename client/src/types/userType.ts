@@ -28,11 +28,21 @@ export interface Years {
 	[k: string]: Month[] | []
 }
 
+export interface Card {
+	id: number,
+	name: string,
+	img: string,
+	bank: string,
+	percent: number,
+	description: string
+}
+
 export interface User {
 	name: string;
 	surname: string;
 	birthday: string;
 	banks: Array<Banks> | [];
+	cards: Array<Card>
 	accounts: Array<Account> | [];
 	years: Years;
 	history: Array<Payment> | [];

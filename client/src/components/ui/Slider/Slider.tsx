@@ -3,25 +3,35 @@ import './slider.scss'
 
 interface ISliderProps {
 	children: JSX.Element | JSX.Element[],
-	length: number
+	length: number,
+	onChange: Function
 }
 
-export const Slider:FC<ISliderProps> = ({children, length}) => {
+export const Slider:FC<ISliderProps> = ({children, length, onChange}) => {
 	const [page, setPage] = useState([])
 	const [offset, setOffset] = useState(0)
+	const [currentlyOffsetIndex, setCurrentlyOffsetIndex] = useState(0)
 
 	const leftButton = () => {
-		setOffset((currentlyOffset) => {
-			const newOffset = currentlyOffset + length
-			return newOffset
-		})
+		if (currentlyOffsetIndex > 0){
+			setCurrentlyOffsetIndex(currentlyOffsetIndex - 1)
+			onChange(currentlyOffsetIndex - 1)
+			setOffset((currentlyOffset) => {
+				const newOffset = currentlyOffset + length
+				return newOffset
+			})
+		}
 	}
 	
 	const rightButton = () => {
-		setOffset((currentlyOffset) => {
-			const newOffset = currentlyOffset - length
-			return newOffset
-		})
+		if (currentlyOffsetIndex < page.length - 1){
+			setCurrentlyOffsetIndex(currentlyOffsetIndex + 1)
+			onChange(currentlyOffsetIndex + 1)
+			setOffset((currentlyOffset) => {
+				const newOffset = currentlyOffset - length
+				return newOffset
+			})
+		}
 	}
 
 	useEffect(() => {

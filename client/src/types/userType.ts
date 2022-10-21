@@ -13,6 +13,7 @@ export interface Payment {
 }
 export interface Account {
 	amount: number;
+	type: string
 	percent: number;
 	dateOpen: Date;
 	bank: string;
@@ -42,7 +43,7 @@ export interface User {
 	surname: string;
 	birthday: string;
 	banks: Array<Banks> | [];
-	cards: Array<Card>
+	cards: Array<Card> | []
 	accounts: Array<Account> | [];
 	years: Years;
 	history: Array<Payment> | [];

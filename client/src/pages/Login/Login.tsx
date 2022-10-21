@@ -37,8 +37,8 @@ export const Login:FC = () => {
 			<form onSubmit={(e) => logIn(e)}>
 				<Container title="Вход">
 					<p>{Auth ? `${userName} ${userSurname}` : ''}</p>
-					<Input text="Имя" type="text" value={name} onChange={setName}/>
-					<Input text="Пароль" type="password" value={password} onChange={setPassword}/>
+					<Input placeholder="Имя" type="text" value={name} onChange={setName}/>
+					<Input placeholder="Пароль" type="password" value={password} onChange={setPassword}/>
 					<button type="submit">Войти</button>
 				</Container>
 			</form>

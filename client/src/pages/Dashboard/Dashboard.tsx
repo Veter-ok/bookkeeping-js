@@ -22,8 +22,8 @@ export const Dashboard:FC = () => {
 				</Container>
 				<Container id="container-2" title="Сальдо:">
 					<div className="container__content__text"><strong>{priceConverter(totalSum(years))}<Highlighter>₽</Highlighter></strong></div>
-					<div className="container__content__text">{priceConverter(Number((totalSum(years) / 59.9).toFixed(2)))}<Highlighter>$</Highlighter></div>
-					<div className="container__content__text">{priceConverter(Number((totalSum(years) / 59.33).toFixed(2)))}<Highlighter>€</Highlighter></div>
+					<div className="container__content__text">{priceConverter((totalSum(years) / 59.9).toFixed(2))}<Highlighter>$</Highlighter></div>
+					<div className="container__content__text">{priceConverter((totalSum(years) / 59.33).toFixed(2))}<Highlighter>€</Highlighter></div>
 				</Container>
 				<Container id="container-3" title="Текущий месяц">
 					<div className="container__content__text"><strong>Сальдо: {priceConverter(years["2022"][8].income - years["2022"][8].expenditure)}<Highlighter>₽</Highlighter></strong></div>

@@ -29,7 +29,7 @@ export const History:FC = () => {
 	return (
 		<div>
 			<Container title="Последние платежи">
-				<Input text="Поиск данных по сумме/дате/банку" type="text" value={searchValue} onChange={setSearchValue}/>
+				<Input placeholder="Поиск данных по сумме/дате/банку" type="text" value={searchValue} onChange={setSearchValue}/>
 				<PriceList full={true} data={currentlyPayments}/>
 				<Button text="Что-то" onClick={() => console.log("click")}/>
 			</Container>

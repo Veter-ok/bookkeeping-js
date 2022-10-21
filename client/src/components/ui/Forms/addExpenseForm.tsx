@@ -1,5 +1,5 @@
 import React, {FunctionComponent as FC, useState} from 'react'
-import { Input, InputDate } from '../Input/input';
+import {InputCurrency, InputDate } from '../Input/input';
 import { Select } from '../Select/select';
 import { Button } from '../Buttons/button';
 import { NotificationSuccess,  NotificationError} from '../Notification/notification';
@@ -7,18 +7,15 @@ import {addExpenditurePayment, selectBanks, selectHistory } from 'store/slices/p
 import {useDispatch, useSelector} from 'react-redux'
 import {expenditureTypes} from 'types/typesOfPayments'
 import { getFields } from 'utils/getFields';
+import { formatDate } from 'utils/formatDate';
 
 export const ExpenseForm:FC = () => {
 	const history = useSelector(selectHistory)
 	const banks = useSelector(selectBanks)
 	const dispatch = useDispatch()
-	const todayDate = new Date(); 
-	const formatDate = todayDate.getDate() < 10 ? `0${todayDate.getDate()}`:todayDate.getDate();
-	const formatMonth = todayDate.getMonth() < 10 ? `0${todayDate.getMonth() + 1}`: todayDate.getMonth() + 1;
-	const formattedDate = [todayDate.getFullYear(), formatMonth, formatDate].join('-');
-	//
+	const todayDate = formatDate(new Date())
 	const [expenditureValue, setExpenditureValue] = useState<number>(0)
-	const [expenditureDate, setExpenditureDate] = useState<string>(formattedDate)
+	const [expenditureDate, setExpenditureDate] = useState<string>(todayDate)
 	const [expenditureType, setExpenditureType] = useState<string>(expenditureTypes[0])
 	const [expenditureBank, setExpenditureBank]= useState<string>(banks[0].name)
 	const [errorMsgAddExpenses, setErrorMsgAddExpenses] = useState<string | null>(null)
@@ -47,7 +44,7 @@ export const ExpenseForm:FC = () => {
 	<>
 		{errorMsgAddExpenses ? <NotificationError text={errorMsgAddExpenses}/> : <></> }
 		{successMsgAddExpenses ? <NotificationSuccess text={successMsgAddExpenses}/> : <></>}
-		<Input text="Сумма" type="number" value={expenditureValue} onChange={setExpenditureValue}/>
+		<InputCurrency prefix="₽" onChange={setExpenditureValue}/>
 		<InputDate value={expenditureDate} onChange={setExpenditureDate}/>
 		<Select onChange={setExpenditureType} options={expenditureTypes}/>
 		<Select onChange={setExpenditureBank}options={getFields(banks, "name")}/>

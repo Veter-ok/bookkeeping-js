@@ -17,8 +17,8 @@ export const Profile:FC = () => {
 					<div className="container__content__text">Фамилия: {surname}</div>
 				</Container>
 				<Container id="container-2" title="Редактировать">
-					<Input text="Имя" type="text" value={name} onChange={() => {console.log("input name")}}/>
-					<Input text="Фамилия" type="text" value={surname} onChange={() => {console.log("input surname")}}/>
+					<Input placeholder="Имя" type="text" value={name} onChange={() => {console.log("input name")}}/>
+					<Input placeholder="Фамилия" type="text" value={surname} onChange={() => {console.log("input surname")}}/>
 					<Button text="Сохранить" onClick={() => {console.log("click")}}/>
 				</Container>
 			</div>

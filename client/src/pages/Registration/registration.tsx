@@ -44,9 +44,9 @@ export const Registration:FC = () => {
 			<form onSubmit={(e) => singUp(e)}>
 				<Container title="Регистрация">
 					{/* {Auth ? `${userName} ${userSurname}` : ''} */}
-					<Input text="Введите своё имя" type="text" value={name} onChange={setName}/>
-					<Input text="Введите свою фамилию" type="text" value={surname} onChange={setSurname}/>
-					<Input text="Введите пароль" type="password" value={password} onChange={setPassword}/>
+					<Input placeholder="Введите своё имя" type="text" value={name} onChange={setName}/>
+					<Input placeholder="Введите свою фамилию" type="text" value={surname} onChange={setSurname}/>
+					<Input placeholder="Введите пароль" type="password" value={password} onChange={setPassword}/>
 					<InputDate value={birthday} onChange={setBirthday}/>
 					<button type="submit">Создать</button>
 				</Container>

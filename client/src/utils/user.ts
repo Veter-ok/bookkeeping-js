@@ -1,4 +1,5 @@
 import { User } from "types/userType"
+import { ALFA_BANK, TINKOFF_BANK } from "variables/Banks"
 
 
 export var User1: User = {
@@ -6,8 +7,8 @@ export var User1: User = {
 	surname: "Лавров",
 	birthday: "06.03.2006",
 	banks: [
-		{name: "Альфа Банк", money: 0},
-		{name: "Тинькофф Банк", money: 12018.07}
+		{name: ALFA_BANK, money: 0},
+		{name: TINKOFF_BANK, money: 12018.07}
 	],
 	cards: [],
 	accounts: [],

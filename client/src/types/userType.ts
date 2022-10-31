@@ -12,11 +12,10 @@ export interface Payment {
 	bank: string;
 }
 export interface Account {
+	id: number, // for user accounts
+	idAaccount: number, // for all types of account
 	amount: number;
-	type: string
-	percent: number;
 	dateOpen: Date;
-	bank: string;
 }
 
 export interface Month {

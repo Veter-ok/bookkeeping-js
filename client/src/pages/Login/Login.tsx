@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import { login, selectAuth, selectName, selectSurname} from 'store/slices/userSlice'
 import { loginPayment } from 'store/slices/paymentSlice'
 
-export const Login:FC = () => {
+const Login:FC = () => {
 	const Auth = useSelector(selectAuth)
 	const userName = useSelector(selectName)
 	const userSurname = useSelector(selectSurname)
@@ -45,3 +45,5 @@ export const Login:FC = () => {
 		</div>
 	)
 }
+
+export default Login

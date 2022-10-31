@@ -1,5 +1,5 @@
 import React, {FunctionComponent as FC} from 'react'
-import { AccountBlock } from '../Blocks/AccountBlock/accountBlock'
+import AccountBlock from '../Blocks/AccountBlock/accountBlock'
 import { BankBlock } from '../Blocks/BankBlock/bankBlock'
 import { PriceBlock } from '../Blocks/PriceBlock/priceBlock'
 import { useSelector } from 'react-redux'

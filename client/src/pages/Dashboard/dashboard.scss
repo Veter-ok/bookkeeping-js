@@ -21,8 +21,9 @@
 	display: grid;
 	margin-bottom: 30px;
 	grid-template-areas: 
-	"A B";
-	grid-template-rows: 1fr 1fr;
+	"A B"
+	"C C";
+	grid-template-rows: 270px 1fr;
 	grid-template-columns: 1fr 1fr;
 	gap: 50px 30px;
 	.container {

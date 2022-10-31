@@ -26,7 +26,7 @@ export const CardForm:FC = () => {
 	<>
 		{errorMsgAddCard ? <NotificationError text={errorMsgAddCard}/> : <></> }
 		{successMsgAddCard ? <NotificationSuccess text={successMsgAddCard}/> : <></>}
-		<Slider length={735} onChange={setCardIndex}>
+		<Slider length={860} elementsLength={735} onChange={setCardIndex}>
 			{CARDS.map((card:Card, index:number) => 
 				<CardBlock key={index} card={card}/>
 			)}

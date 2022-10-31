@@ -3,13 +3,14 @@ import React, {FunctionComponent as FC, useState} from 'react'
 import {Account} from 'types/userType'
 import { priceConverter } from '../../../../utils/priceConverter'
 import {Highlighter} from '../../Text/highlighter'
+import { ACCOUNTS } from 'utils/accounts'
 
 interface IAccountBlockProps {
 	data: Account,
 	open: boolean
 }
 
-export const AccountBlock:FC<IAccountBlockProps> = ({data, open}) => {
+const AccountBlock:FC<IAccountBlockProps> = ({data, open}) => {
 	const [isVisible, setIsVisible] = useState<boolean>(false)
 
 	const moreData = () => {
@@ -29,14 +30,14 @@ export const AccountBlock:FC<IAccountBlockProps> = ({data, open}) => {
 						<div className="account-block__block__text expenses">-{priceConverter(data.amount)}<Highlighter>₽</Highlighter></div>
 					}
 					<div className="account-block__block__date">{data.dateOpen.toLocaleDateString()}</div>
-					<div className="account-block__block__info">{data.bank}</div>
+					<div className="account-block__block__info">{ACCOUNTS[data.idAaccount].bank}</div>
 				</div>
 				{isVisible ?
 					<div className="account-block__moreData">
 						<div>Сумма: {priceConverter(data.amount)}<Highlighter>₽</Highlighter></div>
 						<div>Дата открытия {data.dateOpen.toLocaleDateString()}</div>
-						<div>Процент: {data.percent}<Highlighter>%</Highlighter></div>
-						<div>Банк: {data.bank}</div>
+						<div>Процент: {ACCOUNTS[data.idAaccount].percent}<Highlighter>%</Highlighter></div>
+						<div>Банк: {ACCOUNTS[data.idAaccount].bank}</div>
 					</div>
 					:
 					<div></div>
@@ -48,3 +49,5 @@ export const AccountBlock:FC<IAccountBlockProps> = ({data, open}) => {
 		</>
 	)
 }
+
+export default AccountBlock

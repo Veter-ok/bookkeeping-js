@@ -6,7 +6,7 @@ import { Button } from '../../components/ui/Buttons/button'
 import { useSelector } from 'react-redux'
 import { selectName, selectSurname } from 'store/slices/userSlice'
 
-export const Profile:FC = () => {
+const Profile:FC = () => {
 	const name = useSelector(selectName)
 	const surname = useSelector(selectSurname)
 	return (
@@ -25,3 +25,5 @@ export const Profile:FC = () => {
 		</div>
 	)
 }
+
+export default Profile

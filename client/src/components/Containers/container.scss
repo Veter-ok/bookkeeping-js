@@ -24,6 +24,11 @@
 			margin: 10px auto;
 			color: $primaryTextColor;
 		}
+		&__placeholder {
+			margin: 20px 0px;
+			font-weight: bold;
+			text-align: center;
+		}
 	}
 }
 #container-1 {

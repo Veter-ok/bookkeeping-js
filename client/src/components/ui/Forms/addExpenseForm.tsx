@@ -6,7 +6,7 @@ import { NotificationSuccess,  NotificationError} from '../Notification/notifica
 import {addExpenditurePayment, selectBanks, selectHistory } from 'store/slices/paymentSlice'
 import {useDispatch, useSelector} from 'react-redux'
 import {expenditureTypes} from 'types/typesOfPayments'
-import { getFields } from 'utils/getFields';
+import { getFields } from 'utils/getData';
 import { formatDate } from 'utils/formatDate';
 
 export const ExpenseForm:FC = () => {

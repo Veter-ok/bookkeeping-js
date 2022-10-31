@@ -8,7 +8,7 @@ import {Container} from '../../components/Containers/container'
 import {useSelector} from 'react-redux'
 import {selectName, selectSurname} from 'store/slices/userSlice'
 
-export const Management:FC = () => {
+const Management:FC = () => {
 	const name = useSelector(selectName)
 	const surname = useSelector(selectSurname)
 
@@ -33,3 +33,5 @@ export const Management:FC = () => {
 		</div>
 	)
 }
+
+export default Management

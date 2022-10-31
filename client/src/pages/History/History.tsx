@@ -8,7 +8,7 @@ import {Input} from '../../components/ui/Input/input'
 import {useSelector} from 'react-redux'
 import { selectHistory, selectYears } from 'store/slices/paymentSlice'
 
-export const History:FC = () => {
+const History:FC = () => {
 	const [searchValue, setSearchValue] = useState<string>('')
 	const years = useSelector(selectYears)
 	const history = useSelector(selectHistory)
@@ -36,3 +36,5 @@ export const History:FC = () => {
 		</div>
 	)
 }
+
+export default History

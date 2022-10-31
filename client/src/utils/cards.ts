@@ -18,7 +18,7 @@ export const AlfafBlack:Card = {
 	img: AlfaCardImg,
 	bank: ALFA_BANK,
 	percent: 2,
-	description: '- 2% на всё (при покупках от 100,000₽)\n- 1,5% на всё (при покупках от 10,000₽)'
+	description: '- 2% при покупках от 100,000₽\n- 1,5% на всё'
 }
 
 export const CARDS:Array<Card> = [TinkoffBlack, AlfafBlack]

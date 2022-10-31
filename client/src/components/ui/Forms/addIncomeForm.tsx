@@ -6,7 +6,7 @@ import { NotificationSuccess,  NotificationError} from '../Notification/notifica
 import {addIncomePayment, selectBanks, selectHistory } from 'store/slices/paymentSlice'
 import {useDispatch, useSelector} from 'react-redux'
 import {incomeTypes} from 'types/typesOfPayments'
-import { getFields } from 'utils/getFields';
+import { getFields } from 'utils/getData';
 import { formatDate } from 'utils/formatDate';
 
 export const IncomeForm:FC = ()  => {

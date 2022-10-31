@@ -4,7 +4,7 @@ import {Container} from '../../components/Containers/container'
 import {Input, InputDate} from '../../components/ui/Input/input'
 import { User } from 'types/userType';
 
-export const Registration:FC = () => {
+const Registration:FC = () => {
 	const [name, setName] = useState("")
 	const [surname, setSurname] = useState<string>("")
 	const [password, setPassword] = useState<string>("")
@@ -54,3 +54,5 @@ export const Registration:FC = () => {
 		</div>
 	)
 }
+
+export default Registration

@@ -1,13 +1,15 @@
 import React, {Children, cloneElement, FunctionComponent as FC, useEffect, useState} from 'react';
+import {ArrowButton} from '../Buttons/button'
 import './slider.scss'
 
 interface ISliderProps {
 	children: JSX.Element | JSX.Element[],
 	length: number,
-	onChange: Function
+	elementsLength: number,
+	onChange?: Function
 }
 
-export const Slider:FC<ISliderProps> = ({children, length, onChange}) => {
+export const Slider:FC<ISliderProps> = ({children, length, elementsLength, onChange}) => {
 	const [page, setPage] = useState([])
 	const [offset, setOffset] = useState(0)
 	const [currentlyOffsetIndex, setCurrentlyOffsetIndex] = useState(0)
@@ -15,9 +17,9 @@ export const Slider:FC<ISliderProps> = ({children, length, onChange}) => {
 	const leftButton = () => {
 		if (currentlyOffsetIndex > 0){
 			setCurrentlyOffsetIndex(currentlyOffsetIndex - 1)
-			onChange(currentlyOffsetIndex - 1)
+			if (onChange){ onChange(currentlyOffsetIndex - 1) }
 			setOffset((currentlyOffset) => {
-				const newOffset = currentlyOffset + length
+				const newOffset = currentlyOffset + elementsLength
 				return newOffset
 			})
 		}
@@ -26,9 +28,9 @@ export const Slider:FC<ISliderProps> = ({children, length, onChange}) => {
 	const rightButton = () => {
 		if (currentlyOffsetIndex < page.length - 1){
 			setCurrentlyOffsetIndex(currentlyOffsetIndex + 1)
-			onChange(currentlyOffsetIndex + 1)
+			if (onChange){ onChange(currentlyOffsetIndex + 1) }
 			setOffset((currentlyOffset) => {
-				const newOffset = currentlyOffset - length
+				const newOffset = currentlyOffset - elementsLength
 				return newOffset
 			})
 		}
@@ -40,23 +42,23 @@ export const Slider:FC<ISliderProps> = ({children, length, onChange}) => {
 				return cloneElement(child, {
 					style: {
 						height: "100%",
-						minWidth: `${length}px`,
-						maxWidth: `${length}px`
+						minWidth: `${elementsLength}px`,
+						maxWidth: `${elementsLength}px`
 					}
 				})
 			})
 		)
-	}, [children, length])
+	}, [children, elementsLength])
 
 	return (
-	<div className="slider">
-		<button onClick={() => leftButton()}>назад</button>
+	<div className="slider" style={{width: `${length}px`}}>
+		<ArrowButton onClick={() => leftButton()} direction="left"/>
 		<div className="window">
 			<div className="all-items" style={{transform: `translateX(${offset}px)`}}>
 				{page}
 			</div>
 		</div>
-		<button onClick={() => rightButton()}>вперёд</button>
+		<ArrowButton onClick={() => rightButton()} direction="right"/>
 	</div>
   )
 };

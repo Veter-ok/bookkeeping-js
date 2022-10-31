@@ -23,14 +23,13 @@ export const Input:FC<IInputProps> = ({placeholder, type, value, onChange}) => {
 
 
 interface IInputCurrencyProps {
-	//placeholder?: string,
+	placeholder?: string,
 	prefix: string
 	onChange: Function
-	//value: number | string,
 }
 
 
-export const InputCurrency:FC<IInputCurrencyProps> = ({prefix, onChange}) => {
+export const InputCurrency:FC<IInputCurrencyProps> = ({prefix, onChange, placeholder}) => {
 	const [currentlyValue, SetCurrentlyValue] = useState<string>("0")
 	const [isPoint, setIsPoint] = useState<boolean>(false)
 	const [fractionalValue, setFractionalValue] = useState<string>("")
@@ -76,7 +75,7 @@ export const InputCurrency:FC<IInputCurrencyProps> = ({prefix, onChange}) => {
 		<div className="input-element">
 			<input 
 				type="text" 
-				// placeholder={placeholder}
+				placeholder={placeholder}
 				value={currencyMask(currentlyValue)} 
 				onChange={(e) => changeValue(e)}
 			/>

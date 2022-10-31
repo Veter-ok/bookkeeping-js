@@ -1,18 +1,21 @@
-import React, {FunctionComponent as FC} from 'react'
 import './dashboard.scss'
+import React, {FunctionComponent as FC} from 'react'
 import {totalSum} from '../../utils/summationOfNumbers'
 import { priceConverter } from '../../utils/priceConverter'
 import { Highlighter } from '../../components/ui/Text/highlighter'
 import { BarChart } from '../../components/ui/BarChart/barChart'
 import {Container} from '../../components/Containers/container'
 import {LinkUI} from '../../components/ui/Link/linkUI'
+import { Slider } from 'components/ui/Slider/Slider'
+import { CardBlock } from 'components/ui/Blocks/CardBlock/cardBlock'
 import { BankList, PriceList, AccountList } from '../../components/ui/Lists/Lists'
 import {useSelector} from 'react-redux'
-import {selectYears } from 'store/slices/paymentSlice'
-import { Years } from 'types/userType'
+import {selectCards, selectYears } from 'store/slices/paymentSlice'
+import { Card, Years } from 'types/userType'
 
-export const Dashboard:FC = () => {
+const Dashboard:FC = () => {
 	const years:Years = useSelector(selectYears)
+	const cards:Card[] = useSelector(selectCards)
 	return (
 		<div>
 			<div className="dashboard-container-group-1">
@@ -41,7 +44,20 @@ export const Dashboard:FC = () => {
 				<Container id="container-2" title="Ваши банки">
 					<BankList/>
 				</Container>
+				<Container id="container-3" title="Ваши карты">
+					{cards.length > 0 ?
+						<Slider length={860} elementsLength={735}>
+							{cards.map((card:Card, index:number) => 
+								<CardBlock key={index} card={card}/>
+							)}
+						</Slider>
+						:
+						<div className="container__content__placeholder">У вас пока нет карт</div>
+					}
+				</Container>
 			</div>
 		</div>
 	)
 }
+
+export default Dashboard

@@ -22,8 +22,8 @@ export var User1: User = {
 			{month: "июнь", income: 0, expenditure: 0},
 			{month: "июль", income: 0, expenditure: 0},
 			{month: "авг", income: 0, expenditure: 0},
-			{month: "сен", income: 12822.07, expenditure: 804},
-			{month: "окт", income: 0, expenditure: 0},
+			{month: "сен", income: 13038.07, expenditure: 1152},
+			{month: "окт", income: 189.59, expenditure: 907},
 			{month: "нояб", income: 0, expenditure: 0},
 			{month: "дек", income: 0, expenditure: 0},
 		],
@@ -43,12 +43,20 @@ export var User1: User = {
 		]
 	},
 	history: [
-		{id: 6, price: 2138, isIncome: true, info: "Другое", date: new Date("11.09.2022"), bank: "Тинькофф Банк"},
-		{id: 5, price: 466, isIncome: false, info: "Еда", date: new Date("11.09.2022"), bank: "Тинькофф Банк"},
-		{id: 4, price: 200, isIncome: false, info: "Еда", date: new Date("11.09.2022"), bank: "Тинькофф Банк"},
-		{id: 3, price: 138, isIncome: false, info: "Транспорт", date: new Date("11.09.2022"), bank: "Тинькофф Банк"},
-		{id: 2, price: 684.07, isIncome: true, info: "Проценты", date: new Date("10.09.2022"), bank: "Тинькофф Банк"},
-		{id: 1, price: 10000, isIncome: true, info: "Другое", date: new Date("05.09.2022"), bank: "Тинькофф Банк"}
+		{id: 14, price: 179.59, isIncome: true, info: "Кэшбек", date: new Date(2022, 9, 15), bank: "Тинькофф Банк"},
+		{id: 13, price: 10, isIncome: true, info: "Кэшбек", date: new Date(2022, 9, 14), bank: "Тинькофф Банк"},
+		{id: 12, price: 263, isIncome: false, info: "Еда", date: new Date(2022, 9, 8), bank: "Тинькофф Банк"},
+		{id: 11, price: 644, isIncome: false, info: "Транспорт", date: new Date(2022, 9, 3), bank: "Тинькофф Банк"},
+		{id: 10, price: 256, isIncome: false, info: "Еда", date: new Date(2022, 8, 25), bank: "Тинькофф Банк"},
+		{id: 9, price: 92, isIncome: false, info: "Транспорт", date: new Date(2022, 8, 25), bank: "Тинькофф Банк"},
+		{id: 8, price: 150, isIncome: true, info: "Другое", date: new Date(2022, 8, 19), bank: "Тинькофф Банк"},
+		{id: 7, price: 66, isIncome: true, info: "Кэшбек", date: new Date(2022, 8, 14), bank: "Тинькофф Банк"},
+		{id: 6, price: 2138, isIncome: true, info: "Другое", date: new Date(2022, 8, 11), bank: "Тинькофф Банк"},
+		{id: 5, price: 466, isIncome: false, info: "Еда", date: new Date(2022, 8, 11), bank: "Тинькофф Банк"},
+		{id: 4, price: 200, isIncome: false, info: "Еда", date: new Date(2022, 8, 11), bank: "Тинькофф Банк"},
+		{id: 3, price: 138, isIncome: false, info: "Транспорт", date: new Date(2022, 8, 11), bank: "Тинькофф Банк"},
+		{id: 2, price: 684.07, isIncome: true, info: "Проценты", date: new Date(2022, 8, 10), bank: "Тинькофф Банк"},
+		{id: 1, price: 10000, isIncome: true, info: "Другое", date: new Date(2022, 8, 5), bank: "Тинькофф Банк"}
 	]
 }
 

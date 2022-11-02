@@ -1,4 +1,4 @@
-import React, {FunctionComponent as FC} from 'react'
+import React, {FunctionComponent as FC, useEffect, useState} from 'react'
 import AccountBlock from '../Blocks/AccountBlock/accountBlock'
 import { BankBlock } from '../Blocks/BankBlock/bankBlock'
 import { PriceBlock } from '../Blocks/PriceBlock/priceBlock'
@@ -32,22 +32,39 @@ export const BankList:FC = () => {
 
 interface IPriceListProps {
 	full: boolean,
-	data?: Array<Payment>
+	data?: Payment[]
 }
 
 export const PriceList:FC<IPriceListProps> = ({full, data}) => {
 	const hitory = useSelector(selectHistory)
+	const [currentlyData, setCurrentlyData] = useState(data ? data : hitory)
+
+	useEffect(() => {
+		let newCurrentlyData = [...hitory]
+		newCurrentlyData.sort(function(a:Payment, b:Payment) {
+			console.log(a.price, a.date.getMonth())
+			if (a.date > b.date){
+				return -1
+			}
+			if ((a.date < b.date)){
+				return 1
+			}
+			return 0
+		})
+		setCurrentlyData(newCurrentlyData)
+	}, [hitory])
+
 	return (
 		<div>
 			{full ? 
 			<div>
-				{data.map((payment:Payment) => 
+				{currentlyData.map((payment:Payment) => 
 					<PriceBlock key={payment.id} data={payment} open={true}/>
 				)}
 			</div>
 			:
 			<div>
-				{hitory.slice(0, 6).map((payment:Payment) => 
+				{currentlyData.slice(0, 6).map((payment:Payment) => 
 					<PriceBlock key={payment.id} data={payment} open={false}/>
 				)}
 			</div>

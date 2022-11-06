@@ -1,6 +1,6 @@
 import './login.scss'
 import React, {FormEvent, useState, FunctionComponent as FC} from 'react'
-import {User1} from '../../utils/user'
+import {User1} from '../../utils/constants/user'
 import {Container} from '../../components/Containers/container'
 import {Input} from '../../components/ui/Input/input'
 import {useDispatch, useSelector} from 'react-redux'

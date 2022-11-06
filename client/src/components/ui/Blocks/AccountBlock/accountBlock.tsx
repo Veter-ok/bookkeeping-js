@@ -1,9 +1,9 @@
 import './accountBlock.scss'
 import React, {FunctionComponent as FC, useState} from 'react'
 import {Account} from 'types/userType'
-import { priceConverter } from '../../../../utils/priceConverter'
+import { priceConverter } from '../../../../utils/helpers/priceConverter'
 import {Highlighter} from '../../Text/highlighter'
-import { ACCOUNTS } from 'utils/accounts'
+import { ACCOUNTS } from 'utils/constants/accounts'
 
 interface IAccountBlockProps {
 	data: Account,

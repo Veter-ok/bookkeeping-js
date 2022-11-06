@@ -1,6 +1,6 @@
 import { Card } from 'types/userType';
-import TinkoffBankImg from '../assets/img/cards/TinkoffBlack.png'
-import AlfaCardImg from '../assets/img/cards/Alfa-Card.png'
+import TinkoffBankImg from '../../assets/img/cards/TinkoffBlack.png'
+import AlfaCardImg from '../../assets/img/cards/Alfa-Card.png'
 import { ALFA_BANK, TINKOFF_BANK } from "variables/Banks";
 
 export const TinkoffBlack:Card = {

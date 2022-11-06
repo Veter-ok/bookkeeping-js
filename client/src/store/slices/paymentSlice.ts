@@ -1,8 +1,8 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 import { RootState } from 'store'
 import { Account, Card, Payment, Banks, Years} from 'types/userType'
-import { ACCOUNTS } from 'utils/accounts'
-import { getByID } from 'utils/getData'
+import { ACCOUNTS } from 'utils/constants/accounts'
+import { getByID } from 'utils/helpers/getData'
 
 const initialState:PaymentState = {
 	banks: [],

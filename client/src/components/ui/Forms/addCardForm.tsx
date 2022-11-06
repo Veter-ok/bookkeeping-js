@@ -1,7 +1,7 @@
 import React, {FunctionComponent as FC, useState} from 'react'
 import { Slider } from '../Slider/Slider';
 import { CardBlock } from '../Blocks/CardBlock/cardBlock';
-import { CARDS } from 'utils/cards';
+import { CARDS } from 'utils/constants/cards';
 import { Card } from 'types/userType';
 import { Button } from '../Buttons/button';
 import { NotificationSuccess,  NotificationError} from '../Notification/notification';

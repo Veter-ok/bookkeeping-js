@@ -4,11 +4,11 @@ import { Select } from '../Select/select';
 import { Button } from '../Buttons/button';
 import { NotificationSuccess,  NotificationError} from '../Notification/notification';
 import { Slider } from '../Slider/Slider';
-import { ACCOUNTS, BanksAccount } from 'utils/accounts';
+import { ACCOUNTS, BanksAccount } from 'utils/constants/accounts';
 import { AddAccountPayment, selectBanks} from 'store/slices/paymentSlice'
 import {useDispatch, useSelector} from 'react-redux'
-import { getFields } from 'utils/getData';
-import { formatDate } from 'utils/formatDate';
+import { getFields } from 'utils/helpers/getData';
+import { formatDate } from 'utils/helpers/formatDate';
 import BankAccountBlock from '../Blocks/BankAccountBlock/BankAccountBlock';
 import { Account } from 'types/userType';
 

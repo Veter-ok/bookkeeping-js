@@ -1,6 +1,6 @@
 import './BankAccountBlock.scss'
 import React, {FunctionComponent as FC} from "react";
-import { BanksAccount } from "utils/accounts";
+import { BanksAccount } from "utils/constants/accounts";
 
 interface IBankAccountBlockProps {
 	account: BanksAccount

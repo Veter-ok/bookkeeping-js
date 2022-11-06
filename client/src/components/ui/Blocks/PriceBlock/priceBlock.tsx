@@ -1,7 +1,7 @@
 import './priceBlock.scss'
 import React, {FunctionComponent as FC, useState } from 'react'
 import { Payment } from 'types/userType'
-import { priceConverter } from '../../../../utils/priceConverter'
+import { priceConverter } from '../../../../utils/helpers/priceConverter'
 import {Highlighter} from '../../Text/highlighter'
 import TRASH_LOGO from '../../../../assets/img/trash.svg'
 import { useDispatch } from 'react-redux'

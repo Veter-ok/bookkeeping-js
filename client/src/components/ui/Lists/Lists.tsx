@@ -42,11 +42,10 @@ export const PriceList:FC<IPriceListProps> = ({full, data}) => {
 	useEffect(() => {
 		let newCurrentlyData = [...hitory]
 		newCurrentlyData.sort(function(a:Payment, b:Payment) {
-			console.log(a.price, a.date.getMonth())
-			if (a.date > b.date){
+			if (new Date(a.date) > new Date(b.date)){
 				return -1
 			}
-			if ((a.date < b.date)){
+			if ((new Date(a.date) < new Date(b.date))){
 				return 1
 			}
 			return 0

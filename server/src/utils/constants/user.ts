@@ -5,8 +5,8 @@ export var User1: User = {
 	surname: "Лавров",
 	birthday: "06.03.2006",
 	banks: [
-		{name: "sz", money: 0},
-		{name: "", money: 12018.07}
+		{name: "Альфа-Банк", money: 0},
+		{name: "Тинькофф Банк", money: 12018.07}
 	],
 	cards: [],
 	accounts: [],

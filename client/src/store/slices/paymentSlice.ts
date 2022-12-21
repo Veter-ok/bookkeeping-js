@@ -1,7 +1,7 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 import { RootState } from 'store'
-import { Account, Card, Payment, Banks, Years} from 'types/userType'
-import { ACCOUNTS } from 'utils/constants/accounts'
+import { AccountPaymentAction, PaymentState } from 'store/types/payment'
+import { Card, Payment} from 'types/userType'
 import { getByID } from 'utils/helpers/getData'
 
 const initialState:PaymentState = {
@@ -10,14 +10,6 @@ const initialState:PaymentState = {
 	cards: [],
 	years: null,
 	history: []
-}
-
-interface PaymentState {
-	banks: Array<Banks> | null,
-	cards: Array<Card> | null,
-	accounts: Array<Account>  | null,
-	years: Years | null,
-	history: Array<Payment> | null,
 }
 
 const paymentSlice = createSlice({
@@ -54,13 +46,12 @@ const paymentSlice = createSlice({
 				}
 			}
 		},
-		AddAccountPayment: (state:PaymentState, action: PayloadAction<Account>) => {
+		AddAccountPayment: (state:PaymentState, action: PayloadAction<AccountPaymentAction>) => {
 			let year:number = action.payload.dateOpen.getFullYear()
 			let month:number = action.payload.dateOpen.getMonth()
-			console.log(state.years[year][month].income, typeof action.payload.amount)
 			state.years[year][month].income +=  action.payload.amount
 			for (var index = 0; index < state.banks.length; index++) {
-				if (state.banks[index].name === getByID(ACCOUNTS, action.payload.idAaccount).bank){
+				if (state.banks[index].name === getByID(action.payload.allAccounts, action.payload.idAaccount).bank){
 					state.banks[index].money += action.payload.amount
 					break
 				}

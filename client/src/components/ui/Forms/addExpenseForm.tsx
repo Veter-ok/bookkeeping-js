@@ -6,18 +6,18 @@ import { NotificationSuccess,  NotificationError} from '../Notification/notifica
 import {addExpenditurePayment, selectBanks, selectHistory } from 'store/slices/paymentSlice'
 import {useDispatch, useSelector} from 'react-redux'
 import {expenditureTypes} from 'types/typesOfPayments'
-import { getFields } from 'utils/helpers/getData';
 import { formatDate } from 'utils/helpers/formatDate';
+import { getFields } from 'utils/helpers/getData';
 
 export const ExpenseForm:FC = () => {
 	const history = useSelector(selectHistory)
-	const banks = useSelector(selectBanks)
 	const dispatch = useDispatch()
 	const todayDate = formatDate(new Date())
+	const banks = useSelector(selectBanks)
 	const [expenditureValue, setExpenditureValue] = useState<number>(0)
 	const [expenditureDate, setExpenditureDate] = useState<string>(todayDate)
 	const [expenditureType, setExpenditureType] = useState<string>(expenditureTypes[0])
-	const [expenditureBank, setExpenditureBank]= useState<string>(banks[0].name)
+	const [expenditureBank, setExpenditureBank]= useState<string>("")
 	const [errorMsgAddExpenses, setErrorMsgAddExpenses] = useState<string | null>(null)
 	const [successMsgAddExpenses, setSuccessMsgAddExpenses] = useState<string | null>(null)
 
@@ -47,7 +47,7 @@ export const ExpenseForm:FC = () => {
 		<InputCurrency prefix="₽" onChange={setExpenditureValue}/>
 		<InputDate value={expenditureDate} onChange={setExpenditureDate}/>
 		<Select onChange={setExpenditureType} options={expenditureTypes}/>
-		<Select onChange={setExpenditureBank}options={getFields(banks, "name")}/>
+		<Select onChange={setExpenditureBank}options={getFields(banks, 'name')}/>
 		<Button text="Добавить" onClick={() => addExpenditure()}/>
 	</>
   )

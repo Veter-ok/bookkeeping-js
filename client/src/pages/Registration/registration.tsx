@@ -3,6 +3,8 @@ import React, { useState, FunctionComponent as FC, FormEvent} from 'react';
 import {Container} from '../../components/Containers/container'
 import {Input, InputDate} from '../../components/ui/Input/input'
 import { User } from 'types/userType';
+import axios from 'axios';
+import { REGISTRATION } from 'utils/constants/routerLinks';
 
 const Registration:FC = () => {
 	const [name, setName] = useState("")
@@ -36,7 +38,10 @@ const Registration:FC = () => {
 			},
 			history: []
 		}
-		console.log(newUser)
+		axios.post(`http://localhost:5000/api/v1/${REGISTRATION}`, newUser).then(() => {
+			console.log(newUser)
+		})
+		.catch((err) => console.log(err))
 	}
 
 	return (

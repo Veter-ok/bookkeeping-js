@@ -18,26 +18,28 @@ const Login:FC = () => {
 
 	const logIn = (event: FormEvent) => {
 		event.preventDefault()
-		axios.get('http://localhost:5000/api/v1/auth/login').then(resp => {
-			const newUser:User = resp.data
-			console.log(newUser)
-			dispatch(login({
-				Auth: true,
-				name: newUser.name,
-				surname: newUser.surname,
-				birthday: newUser.birthday
-			}))
-			dispatch(loginPayment({
-				banks: newUser.banks,
-				accounts: newUser.accounts,
-				cards: newUser.cards,
-				years: newUser.years,
-				history: newUser.history
-			}))
-		})
-		.catch((err) => {
-			console.log(err)
-		})
+		axios.post('http://localhost:5000/api/v1/auth/login', {
+				"name": name,
+				"password":	password
+			}).then(resp => {
+				const newUser:User = resp.data
+				dispatch(login({
+					Auth: true,
+					name: newUser.name,
+					surname: newUser.surname,
+					birthday: newUser.birthday
+				}))
+				dispatch(loginPayment({
+					banks: newUser.banks,
+					accounts: newUser.accounts,
+					cards: newUser.cards,
+					years: newUser.years,
+					history: newUser.history
+				}))
+			})
+			.catch((err) => {
+				console.log(err)
+			})
 	}
 
 	return (

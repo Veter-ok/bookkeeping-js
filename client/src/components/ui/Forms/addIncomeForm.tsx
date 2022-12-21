@@ -14,7 +14,6 @@ export const IncomeForm:FC = ()  => {
 	const banks = useSelector(selectBanks)
 	const dispatch = useDispatch()
 	const todayDate = formatDate(new Date())
-	//const [income, setIncome] = useState<Payment>({id: 0, price: 0, isIncome: true, info: '', date: new Date(formattedDate), bank: ''})	
 	const [incomeValue, setIncomeValue] = useState<number>(0)
 	const [incomeDate, setIncomeDate] = useState<string>(todayDate)
 	const [incomeType, setIncomeType] = useState<string>(incomeTypes[0])

@@ -10,6 +10,7 @@ import { Payment } from 'types/userType'
 
 export const AccountList:FC = () => {
 	const accounts = useSelector(selectAccounts)
+
 	return (
 		<div>
 			{accounts.map((data:Account, index:number) => 

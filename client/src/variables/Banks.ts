@@ -1,2 +1,2 @@
-export const TINKOFF_BANK = 'Тинькофф банк'
-export const ALFA_BANK = 'Альфа банк'
+export const TINKOFF_BANK = 'Тинькофф Банк'
+export const ALFA_BANK = 'Альфа Банк'

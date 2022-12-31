@@ -1,7 +1,6 @@
 import React, {FunctionComponent as FC, useEffect, useState} from 'react'
 import { Slider } from '../Slider/Slider';
 import { CardBlock } from '../Blocks/CardBlock/cardBlock';
-import { CARDS } from 'utils/constants/cards';
 import { Card } from 'types/userType';
 import { Button } from '../Buttons/button';
 import { NotificationSuccess,  NotificationError} from '../Notification/notification';
@@ -11,16 +10,19 @@ import axios from 'axios';
 
 export const CardForm:FC = () => {
 	const dispatch = useDispatch()
+	const [cards, setCards] = useState([])
 	const [errorMsgAddCard, setErrorMsgAddCard] = useState<string | null>(null) 
 	const [successMsgAddCard, setSuccessMsgAddCard] = useState<string | null>(null)
 	const [cardIndex, setCardIndex] = useState(0)
 
 	useEffect(() => {
-		axios.get('')
+		axios.get(`http://localhost:5000/api/v1/data/cards`).then((resp) => {
+			setCards(resp.data)
+		})
 	})
 
 	const AddCard = () => {
-		const newCard = CARDS[cardIndex]
+		const newCard = cards[cardIndex]
 		console.log(newCard)
 		dispatch(addCard(newCard))
 		setSuccessMsgAddCard(`Карта ${newCard.name} успешна добавлена`)
@@ -32,7 +34,7 @@ export const CardForm:FC = () => {
 		{errorMsgAddCard ? <NotificationError text={errorMsgAddCard}/> : <></> }
 		{successMsgAddCard ? <NotificationSuccess text={successMsgAddCard}/> : <></>}
 		<Slider length={860} elementsLength={735} onChange={setCardIndex}>
-			{CARDS.map((card:Card, index:number) => 
+			{cards.map((card:Card, index:number) => 
 				<CardBlock key={index} card={card}/>
 			)}
 		</Slider>

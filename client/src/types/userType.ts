@@ -1,7 +1,4 @@
-export interface Banks {
-	name: string;
-	money: number;
-}
+import { UserBank } from "./banksTypes";
 
 export interface Payment {
 	id: number;
@@ -41,7 +38,7 @@ export interface User {
 	name: string;
 	surname: string;
 	birthday: string;
-	banks: Array<Banks> | [];
+	banks: Array<UserBank> | [];
 	cards: Array<Card> | []
 	accounts: Array<Account> | [];
 	years: Years;

@@ -1,4 +1,4 @@
-import { BanksAccount } from "../constants/accounts"
+import { BanksAccount } from "types/banksTypes"
 
 export const getFields = (array:Array<any>, field:string) => {
 	let output = []

@@ -1,12 +1,15 @@
-import { Card } from 'types/userType';
-import TinkoffBankImg from '../../assets/img/cards/TinkoffBlack.png'
-import AlfaCardImg from '../../assets/img/cards/Alfa-Card.png'
-import { ALFA_BANK, TINKOFF_BANK } from "variables/Banks";
+import { Card } from "../../types/userTypes.js"
+import { ALFA_BANK, TINKOFF_BANK } from "./Banks.js"
+import path from 'path';
+import {fileURLToPath} from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export const TinkoffBlack:Card = {
 	id: 1,
 	name: 'Тинькофф Black',
-	img: TinkoffBankImg,
+	img: __dirname + '/images/' + 'Alfa-card.png',
 	bank: TINKOFF_BANK,
 	percent: 3,
 	description: ''
@@ -15,7 +18,7 @@ export const TinkoffBlack:Card = {
 export const AlfafBlack:Card = {
 	id: 2,
 	name: 'Альфа-Карта',
-	img: AlfaCardImg,
+	img:  __dirname + '/images/' + 'TinkoffBlack.png',
 	bank: ALFA_BANK,
 	percent: 2,
 	description: '- 2% при покупках от 100,000₽\n- 1,5% на всё'

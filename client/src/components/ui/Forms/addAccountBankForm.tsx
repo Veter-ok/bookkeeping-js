@@ -4,7 +4,6 @@ import { Select } from '../Select/select';
 import { Button } from '../Buttons/button';
 import { NotificationSuccess,  NotificationError} from '../Notification/notification';
 import { Slider } from '../Slider/Slider';
-import {BanksAccount } from 'utils/constants/accounts';
 import { AddAccountPayment, selectBanks} from 'store/slices/paymentSlice'
 import {useDispatch} from 'react-redux'
 import { formatDate } from 'utils/helpers/formatDate';
@@ -13,6 +12,7 @@ import axios from 'axios';
 import { ACCOUNTS } from 'utils/constants/routerLinks';
 import { useSelector } from 'react-redux';
 import { getFields } from 'utils/helpers/getData';
+import { BanksAccount } from 'types/banksTypes';
 
 export const AccountBankForm:FC = () => {
 	const dispatch = useDispatch()

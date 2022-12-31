@@ -1,8 +1,8 @@
-import { BanksAccount } from 'utils/constants/accounts';
-import {Account, Banks, Card, Payment, Years} from '../../types/userType'
+import {Account, Card, Payment, Years} from '../../types/userType'
+import { BanksAccount, UserBank } from 'types/banksTypes';
 
 export interface PaymentState {
-	banks: Array<Banks>,
+	banks: Array<UserBank>,
 	cards: Array<Card>,
 	accounts: Array<Account>,
 	years: Years | null,

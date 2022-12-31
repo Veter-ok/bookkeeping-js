@@ -12,6 +12,8 @@ app.use(cors())
 app.use(express.json())
 app.use('/api/v1/', router)
 
+app.get('')
+
 app.get("/", (req:Request, res) => {
 	res.send("Hello world")
 })

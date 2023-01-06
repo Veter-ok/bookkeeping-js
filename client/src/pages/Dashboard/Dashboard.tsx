@@ -24,17 +24,41 @@ const Dashboard:FC = () => {
 					<LinkUI href="/history">История</LinkUI>
 				</Container>
 				<Container id="container-2" title="Сальдо:">
-					<div className="container__content__text"><strong>{priceConverter(totalSum(years))}<Highlighter>₽</Highlighter></strong></div>
-					<div className="container__content__text">{priceConverter((totalSum(years) / 59.9).toFixed(2))}<Highlighter>$</Highlighter></div>
-					<div className="container__content__text">{priceConverter((totalSum(years) / 59.33).toFixed(2))}<Highlighter>€</Highlighter></div>
+					{years ? 
+						<>
+							<div className="container__content__text"><strong>{priceConverter(totalSum(years))}<Highlighter>₽</Highlighter></strong></div>
+							<div className="container__content__text">{priceConverter((totalSum(years) / 59.9).toFixed(2))}<Highlighter>$</Highlighter></div>
+							<div className="container__content__text">{priceConverter((totalSum(years) / 59.33).toFixed(2))}<Highlighter>€</Highlighter></div>
+						</>
+						:
+						<>
+							<div className="container__content__text"><strong>{0}<Highlighter>₽</Highlighter></strong></div>
+							<div className="container__content__text">{0}<Highlighter>$</Highlighter></div>
+							<div className="container__content__text">{0}<Highlighter>€</Highlighter></div>
+						</>
+					}
 				</Container>
 				<Container id="container-3" title="Текущий месяц">
-					<div className="container__content__text"><strong>Сальдо: {priceConverter(years["2022"][8].income - years["2022"][8].expenditure)}<Highlighter>₽</Highlighter></strong></div>
-					<div className="container__content__text">Доход: {priceConverter(years["2022"][8].income)}<Highlighter>₽</Highlighter></div>
-					<div className="container__content__text">Расход: {priceConverter(years["2022"][8].expenditure)}<Highlighter>₽</Highlighter></div>
+					{years ? 
+					<>
+						<div className="container__content__text"><strong>Сальдо: {priceConverter(years["2022"][8].income - years["2022"][8].expenditure)}<Highlighter>₽</Highlighter></strong></div>
+						<div className="container__content__text">Доход: {priceConverter(years["2022"][8].income)}<Highlighter>₽</Highlighter></div>
+						<div className="container__content__text">Расход: {priceConverter(years["2022"][8].expenditure)}<Highlighter>₽</Highlighter></div>
+					</>
+					:
+					<>
+						<div className="container__content__text"><strong>Сальдо: {0}<Highlighter>₽</Highlighter></strong></div>
+						<div className="container__content__text">Доход: {0}<Highlighter>₽</Highlighter></div>
+						<div className="container__content__text">Расход: {0}<Highlighter>₽</Highlighter></div>
+					</>
+					}					
 				</Container>
 				<Container id="container-4" title="Ежемесячный доход">
-					<BarChart dataChart={years["2022"]}/>
+					{years ? 
+						<BarChart dataChart={years["2022"]}/>
+						:
+						<></>
+					}
 				</Container>
 			</div>
 			<div className="dashboard-container-group-2">

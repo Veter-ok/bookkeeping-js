@@ -5,8 +5,11 @@ import {Input, InputDate} from '../../components/ui/Input/input'
 import { User } from 'types/userType';
 import axios from 'axios';
 import { REGISTRATION } from 'utils/constants/routerLinks';
+import { login } from 'store/slices/userSlice';
+import { useDispatch } from 'react-redux';
 
 const Registration:FC = () => {
+	const dispatch = useDispatch()
 	const [name, setName] = useState("")
 	const [surname, setSurname] = useState<string>("")
 	const [password, setPassword] = useState<string>("")
@@ -14,32 +17,22 @@ const Registration:FC = () => {
 
 	const singUp = (event: FormEvent) => {
 		event.preventDefault()
-		const newUser: User = {
+		const newUser:User = {
 			name: name,
 			surname: surname,
-			birthday: birthday,
-			banks: [],
-			cards: [],
-			accounts: [],
-			years: {"2022": [
-					{month: "янв", income: 0, expenditure: 0},
-					{month: "фев", income: 0, expenditure: 0},
-					{month: "март", income: 0, expenditure: 0},
-					{month: "апр", income: 0, expenditure: 0},
-					{month: "май", income: 0, expenditure: 0},
-					{month: "июнь", income: 0, expenditure: 0},
-					{month: "июль", income: 0, expenditure: 0},
-					{month: "авг", income: 0, expenditure: 0},
-					{month: "сен", income: 0, expenditure: 0},
-					{month: "окт", income: 0, expenditure: 0},
-					{month: "нояб", income: 0, expenditure: 0},
-					{month: "дек", income: 0, expenditure: 0},
-				],
-			},
-			history: []
+			password: password,
+			birthday: birthday
 		}
-		axios.post(`http://localhost:5000/api/v1/${REGISTRATION}`, newUser).then(() => {
-			console.log(newUser)
+		axios.post(`http://localhost:5000/api/v1/${REGISTRATION}`, newUser).then((resp) => {
+			console.log(resp.status, resp.data)
+			if (resp.status === 200){
+				dispatch(login({
+					Auth: true,
+					name: newUser.name,
+					surname: newUser.surname,
+					birthday: newUser.birthday
+				}))
+			}
 		})
 		.catch((err) => console.log(err))
 	}

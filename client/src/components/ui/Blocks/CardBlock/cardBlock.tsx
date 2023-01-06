@@ -11,7 +11,7 @@ export const CardBlock:FC<ICardBlockProps> = ({card}) => {
   return (
 	<div className="card-block">
 		<div className="card-block__img">
-			<img src={card.img} alt="Tinkoff Bank"/>
+			<img src={`http://localhost:5000/static/cards/${card.img}`} alt="Tinkoff Bank"/>
 		</div>
 		<div className="card-block__text">
 			<div className="card-block__text__name">{card.name} от {card.bank}</div>

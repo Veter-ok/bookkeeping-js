@@ -4,7 +4,6 @@ import {Container} from '../../components/Containers/container'
 import {Input} from '../../components/ui/Input/input'
 import {useDispatch, useSelector} from 'react-redux'
 import { login, selectAuth, selectName, selectSurname} from 'store/slices/userSlice'
-import { loginPayment } from 'store/slices/paymentSlice'
 import axios from 'axios'
 import { User } from 'types/userType'
 
@@ -29,16 +28,10 @@ const Login:FC = () => {
 					surname: newUser.surname,
 					birthday: newUser.birthday
 				}))
-				dispatch(loginPayment({
-					banks: newUser.banks,
-					accounts: newUser.accounts,
-					cards: newUser.cards,
-					years: newUser.years,
-					history: newUser.history
-				}))
 			})
 			.catch((err) => {
 				console.log(err)
+				console.log(err.response.data.msg)
 			})
 	}
 

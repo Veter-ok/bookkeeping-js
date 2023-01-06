@@ -1,6 +1,6 @@
-import { User } from "../../types/userTypes.js"
+import { UserType } from "../../types/userTypes.js"
 
-export var User1: User = {
+export var User1: UserType = {
 	name: "Родион",
 	surname: "Лавров",
 	birthday: "06.03.2006",
@@ -58,7 +58,7 @@ export var User1: User = {
 	]
 }
 
-export var User2: User = {
+export var User2: UserType = {
 	name: "Родион",
 	surname: "Лавров",
 	birthday: "06.03.2006",

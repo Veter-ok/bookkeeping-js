@@ -37,7 +37,7 @@ export interface Card {
 	description: string
 }
 
-export interface User {
+export interface UserType {
 	name: string;
 	surname: string;
 	birthday: string;

@@ -37,10 +37,11 @@ export interface Card {
 export interface User {
 	name: string;
 	surname: string;
+	password: string,
 	birthday: string;
-	banks: Array<UserBank> | [];
-	cards: Array<Card> | []
-	accounts: Array<Account> | [];
-	years: Years;
-	history: Array<Payment> | [];
+	// banks: Array<UserBank> | [];
+	// cards: Array<Card> | []
+	// accounts: Array<Account> | [];
+	// years: Years;
+	// history: Array<Payment> | [];
 }

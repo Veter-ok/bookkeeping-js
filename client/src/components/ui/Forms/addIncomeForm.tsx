@@ -17,7 +17,7 @@ export const IncomeForm:FC = ()  => {
 	const [incomeValue, setIncomeValue] = useState<number>(0)
 	const [incomeDate, setIncomeDate] = useState<string>(todayDate)
 	const [incomeType, setIncomeType] = useState<string>(incomeTypes[0])
-	const [incomeBank, setIncomeBank]= useState<string>(banks[0].name)
+	const [incomeBank, setIncomeBank]= useState<string>('')
 	const [errorMsgAddIncome, setErrorMsgAddIncome] = useState<string | null>(null)
 	const [successMsgAddIncome, setSuccessMsgAddIncome] = useState<string | null>(null)
 

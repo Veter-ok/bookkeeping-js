@@ -1,12 +1,17 @@
-import {login, singUp} from './auth.js'
+import User from './auth.js'
 import { Router} from 'express'
-import { accounts, banks_name, cards } from './data.js'
+import AllData from './data.js'
+import Cards from './cardsRouter.js'
+import PaymentsController from './paymentsRouter.js'
+import Banks from './banksController.js'
 
 export const router = Router()
 
-router.post('/auth/login', login)
-router.post('/auth/registration', singUp)
+router.post('/auth/login', User.login)
+router.post('/auth/registration', User.singUp)
 
-router.get('/data/accounts', accounts)
-router.get('/data/banks-name', banks_name)
-router.get('/data/cards', cards)
+router.get('/data/accounts', AllData.accounts)
+router.get('/banks', Banks.allbanks)
+router.get('/data/cards', Cards.cards)
+router.get('/payments/get/:id', PaymentsController.get_payment)
+//router.get('/cards/img/:id', Cards.cards_img)

@@ -4,20 +4,24 @@ import { Select } from '../Select/select';
 import { Button } from '../Buttons/button';
 import { NotificationSuccess,  NotificationError} from '../Notification/notification';
 import { Slider } from '../Slider/Slider';
-import { AddAccountPayment, selectBanks} from 'store/slices/paymentSlice'
+import { AddAccountPayment} from 'store/slices/paymentSlice'
 import {useDispatch} from 'react-redux'
 import { formatDate } from 'utils/helpers/formatDate';
 import BankAccountBlock from '../Blocks/BankAccountBlock/BankAccountBlock';
 import axios from 'axios';
 import { ACCOUNTS } from 'utils/constants/routerLinks';
-import { useSelector } from 'react-redux';
 import { getFields } from 'utils/helpers/getData';
 import { BanksAccount } from 'types/banksTypes';
+
+interface Banks {
+	id: number,
+	name: string,
+}
 
 export const AccountBankForm:FC = () => {
 	const dispatch = useDispatch()
 	const todayDate = formatDate(new Date())
-	const banks = useSelector(selectBanks)
+	const [banks, setBanks] = useState<Array<Banks>>([])
 	const [accounts, setAccounts] = useState<Array<BanksAccount>>([])
 	const [currentlyAccountID, setCurrentlyAccountID] = useState<number>(0)
 	const [baseAmount, setBaseAmount] = useState<number>(0)
@@ -30,6 +34,9 @@ export const AccountBankForm:FC = () => {
 		axios.get(`http://localhost:5000/api/v1/${ACCOUNTS}`).then(resp => {
 			setAccounts(resp.data)
 		}).catch((err) => console.log(err))
+		axios.get(`http://localhost:5000/api/v1/banks`).then(resp => { 
+			setBanks(resp.data)
+		})
 	}, [])
 
 	const addAccount = () => {

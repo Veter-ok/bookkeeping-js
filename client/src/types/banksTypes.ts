@@ -3,11 +3,16 @@ export interface UserBank {
 	money: number;
 }
 
-export interface BanksAccount {
+export interface Bank {
+	bank_id: number,
+	name: string
+}
+
+export interface BankAccount {
 	id: number,
-	type: string,
-	name: string,
-	bank: string,
+	bank_id: number,
 	percent: number,
-	duration: number // number of months
+	term: number, // number of months
+	title: string,
+	description: string
 }

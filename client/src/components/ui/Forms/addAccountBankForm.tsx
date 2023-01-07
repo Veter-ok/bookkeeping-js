@@ -9,20 +9,14 @@ import {useDispatch} from 'react-redux'
 import { formatDate } from 'utils/helpers/formatDate';
 import BankAccountBlock from '../Blocks/BankAccountBlock/BankAccountBlock';
 import axios from 'axios';
-import { ACCOUNTS } from 'utils/constants/routerLinks';
-import { getFields } from 'utils/helpers/getData';
-import { BanksAccount } from 'types/banksTypes';
-
-interface Banks {
-	id: number,
-	name: string,
-}
+import {getBankByID, getFields } from 'utils/helpers/getData';
+import { Bank, BankAccount } from 'types/banksTypes';
 
 export const AccountBankForm:FC = () => {
 	const dispatch = useDispatch()
 	const todayDate = formatDate(new Date())
-	const [banks, setBanks] = useState<Array<Banks>>([])
-	const [accounts, setAccounts] = useState<Array<BanksAccount>>([])
+	const [banks, setBanks] = useState<Bank[]>([])
+	const [accounts, setAccounts] = useState<BankAccount[] | any[]>([])
 	const [currentlyAccountID, setCurrentlyAccountID] = useState<number>(0)
 	const [baseAmount, setBaseAmount] = useState<number>(0)
 	const [openDate, setOpenDate] = useState<string>(todayDate)
@@ -31,8 +25,10 @@ export const AccountBankForm:FC = () => {
 	const [successMsgAddAccount, setSuccessMsgAddAccount] = useState<string>("")
 
 	useEffect(() => {
-		axios.get(`http://localhost:5000/api/v1/${ACCOUNTS}`).then(resp => {
-			setAccounts(resp.data)
+		axios.get(`http://localhost:5000/api/v1/accounts`).then(resp => {
+			if (resp.data !== ''){
+				setAccounts(resp.data)
+			}
 		}).catch((err) => console.log(err))
 		axios.get(`http://localhost:5000/api/v1/banks`).then(resp => { 
 			setBanks(resp.data)
@@ -57,9 +53,13 @@ export const AccountBankForm:FC = () => {
 		}
 	}
 
-	const currentlyAccounts = accounts.filter((account) => {
-		if (account.bank === accountBank){
-			return true
+	const currentlyAccounts = accounts.filter((account:BankAccount) => {
+		const bank = getBankByID(banks, account.bank_id)
+		if (bank) {
+			console.log(bank.name)
+			if (getBankByID(banks, account.bank_id).name === accountBank){
+				return true
+			}
 		}
 		return false
 	})
@@ -73,8 +73,8 @@ export const AccountBankForm:FC = () => {
 		<Select onChange={setAccountBank} options={getFields(banks, 'name')}/>
 		{currentlyAccounts.length !== 0 ?
 			<Slider length={340} elementsLength={200} onChange={setCurrentlyAccountID}>
-				{currentlyAccounts.map((account: BanksAccount) => 
-					<BankAccountBlock key={account.id} account={account}/>
+				{currentlyAccounts.map((account: BankAccount) => 
+					<BankAccountBlock key={account.id} account={account} banks={banks}/>
 				)}
 			</Slider>
 			:

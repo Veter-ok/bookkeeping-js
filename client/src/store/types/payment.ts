@@ -1,5 +1,5 @@
 import {Account, Card, Payment, Years} from '../../types/userType'
-import { BanksAccount, UserBank } from 'types/banksTypes';
+import { BankAccount, UserBank } from 'types/banksTypes';
 
 export interface PaymentState {
 	banks: Array<UserBank>,
@@ -14,5 +14,5 @@ export interface AccountPaymentAction {
 	idAaccount: number, // for all types of account
 	amount: number,
 	dateOpen: Date,
-	allAccounts: Array<BanksAccount> | [],
+	allAccounts: Array<BankAccount> | [],
 }

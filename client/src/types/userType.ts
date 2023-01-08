@@ -1,5 +1,3 @@
-import { UserBank } from "./banksTypes";
-
 export interface Payment {
 	id: number;
 	price: number;
@@ -35,13 +33,10 @@ export interface Card {
 }
 
 export interface User {
+	id: number;
 	name: string;
+	role: string,
 	surname: string;
-	password: string,
+	password: string;
 	birthday: string;
-	// banks: Array<UserBank> | [];
-	// cards: Array<Card> | []
-	// accounts: Array<Account> | [];
-	// years: Years;
-	// history: Array<Payment> | [];
 }

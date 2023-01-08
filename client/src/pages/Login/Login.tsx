@@ -1,11 +1,12 @@
 import './login.scss'
 import React, {FormEvent, useState, FunctionComponent as FC} from 'react'
-import {Container} from '../../components/Containers/container'
-import {Input} from '../../components/ui/Input/input'
+import {Container} from 'components/Containers/container'
+import {Input} from 'components/ui/Input/input'
 import {useDispatch, useSelector} from 'react-redux'
 import { login, selectAuth, selectName, selectSurname} from 'store/slices/userSlice'
 import axios from 'axios'
 import { User } from 'types/userType'
+import { ButtonSubmit } from 'components/ui/Buttons/button'
 
 const Login:FC = () => {
 	const Auth = useSelector(selectAuth)
@@ -21,12 +22,16 @@ const Login:FC = () => {
 				"name": name,
 				"password":	password
 			}).then(resp => {
+				console.log(resp.data)
 				const newUser:User = resp.data
 				dispatch(login({
 					Auth: true,
+					id: newUser.id,
 					name: newUser.name,
+					role: newUser.role,
 					surname: newUser.surname,
-					birthday: newUser.birthday
+					password: newUser.surname,
+					birthday: newUser.birthday,
 				}))
 			})
 			.catch((err) => {
@@ -42,7 +47,7 @@ const Login:FC = () => {
 					<p>{Auth ? `${userName} ${userSurname}` : ''}</p>
 					<Input placeholder="Имя" type="text" value={name} onChange={setName}/>
 					<Input placeholder="Пароль" type="password" value={password} onChange={setPassword}/>
-					<button type="submit">Войти</button>
+					<ButtonSubmit text="Войти"/>
 				</Container>
 			</form>
 		</div>

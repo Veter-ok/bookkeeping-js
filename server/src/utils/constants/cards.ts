@@ -1,21 +1,20 @@
-import { Card } from "../../types/userTypes.js"
-import { ALFA_BANK, TINKOFF_BANK } from "./Banks.js"
+import { Card } from "../../types/mainTypes.js"
 
 export const TinkoffBlack:Card = {
 	id: 1,
-	name: 'Тинькофф Black',
-	img: 'TinkoffBlack.png',
-	bank: TINKOFF_BANK,
-	percent: 3,
+	bank_id: 1,
+	image: 'TinkoffBlack.png',
+	percent: 1,
+	title: 'Тинькофф Black',
 	description: ''
 }
 
 export const AlfafBlack:Card = {
 	id: 2,
-	name: 'Альфа-Карта',
-	img:  'Alfa-card.png',
-	bank: ALFA_BANK,
+	bank_id: 2,
+	image:  'Alfa-card.png',
 	percent: 2,
+	title: '',
 	description: '- 2% при покупках от 100,000₽\n- 1,5% на всё'
 }
 

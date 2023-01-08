@@ -1,0 +1,10 @@
+@import '../../styles/variables.scss';
+
+.admin_panel-container-group {
+	display: grid;
+	grid-template-areas: 
+	"A A A"
+	"B B B";
+	grid-template-rows: 1fr 1fr;
+	grid-template-columns: 1fr 1fr;
+}

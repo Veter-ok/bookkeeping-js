@@ -4,7 +4,7 @@ import { IncomeForm } from 'components/ui/Forms/addIncomeForm'
 import { ExpenseForm } from 'components/ui/Forms/addExpenseForm'
 import { AccountBankForm } from 'components/ui/Forms/addAccountBankForm'
 import { CardForm } from 'components/ui/Forms/addCardForm'
-import {Container} from '../../components/Containers/container'
+import {Container} from 'components/Containers/container'
 import {useSelector} from 'react-redux'
 import {selectName, selectSurname} from 'store/slices/userSlice'
 

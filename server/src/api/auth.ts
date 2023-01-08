@@ -1,5 +1,4 @@
 import {Request, Response} from 'express'
-import { User1 } from '../utils/constants/user.js'
 import { UserType } from '../types/userTypes.js'
 import pool from '../database/index.js'
 
@@ -16,7 +15,6 @@ interface RequestLoginError {
 class User {
 	async login(req:Request<RequestLogin>, res: Response<UserType | RequestLoginError>) {
 		const {name, password} = req.body
-		//res.send(User1)
 		await pool.query("SELECT * FROM Users WHERE name=$1", [name]).then((response) => {
 			if (response.rows.length !== 0) {
 				if (response.rows[0].password === password){
@@ -36,7 +34,7 @@ class User {
 			[name, surname, password, birthday]).then((response) => {
 				res.status(200).json({"msg": "success"})
 			}).catch((err) => {
-				res.status(500).json({"msg": "error"})
+				res.status(500).json({"msg": err})
 			})
 	}
 }

@@ -1,10 +1,10 @@
 import {Request, Response} from 'express'
 import { CARDS } from '../utils/constants/cards.js'
 
-class Cards {
+class userCardsController {
 	async cards(req:Request, res:Response) {
 		res.send(CARDS)
 	}
 }
 
-export default new Cards()
+export default new userCardsController()

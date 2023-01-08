@@ -7,6 +7,7 @@ import axios from 'axios';
 import { REGISTRATION } from 'utils/constants/routerLinks';
 import { login } from 'store/slices/userSlice';
 import { useDispatch } from 'react-redux';
+import { ButtonSubmit } from 'components/ui/Buttons/button';
 
 const Registration:FC = () => {
 	const dispatch = useDispatch()
@@ -17,7 +18,7 @@ const Registration:FC = () => {
 
 	const singUp = (event: FormEvent) => {
 		event.preventDefault()
-		const newUser:User = {
+		const newUser = {
 			name: name,
 			surname: surname,
 			password: password,
@@ -28,8 +29,11 @@ const Registration:FC = () => {
 			if (resp.status === 200){
 				dispatch(login({
 					Auth: true,
+					id: -1,
 					name: newUser.name,
+					role: 'user',
 					surname: newUser.surname,
+					password: newUser.password,
 					birthday: newUser.birthday
 				}))
 			}
@@ -46,7 +50,7 @@ const Registration:FC = () => {
 					<Input placeholder="Введите свою фамилию" type="text" value={surname} onChange={setSurname}/>
 					<Input placeholder="Введите пароль" type="password" value={password} onChange={setPassword}/>
 					<InputDate value={birthday} onChange={setBirthday}/>
-					<button type="submit">Создать</button>
+					<ButtonSubmit text="Создать"/>
 				</Container>
 			</form>
 		</div>

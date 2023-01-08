@@ -1,34 +1,35 @@
 export interface Banks {
+	id: number;
 	name: string;
-	money: number;
 }
 
 export interface Payment {
 	id: number;
-	price: number;
-	isIncome: boolean;
-	info: string;
-	date: Date;
-	bank: string;
+	user_id: number;
+	account_id: number;
+	amount: number;
+	category: string;
+	date: string
 }
-export interface Account {
-	id: number, // for user accounts
-	idAaccount: number, // for all types of account
+export interface UserAccount {
+	id: number; // for user accounts
+	id_user: number; // for all types of account
+	type_id: number; 
 	amount: number;
 	dateOpen: Date;
 }
 
-export interface Month {
-	month: string;
-	income: number;
-	expenditure: number;
-}
+// export interface Month {
+// 	month: string;
+// 	income: number;
+// 	expenditure: number;
+// }
 
-export interface Years {
-	[k: string]: Month[] | []
-}
+// export interface Years {
+// 	[k: string]: Month[] | []
+// }
 
-export interface Card {
+export interface UserCard {
 	id: number,
 	name: string,
 	img: string,
@@ -38,12 +39,10 @@ export interface Card {
 }
 
 export interface UserType {
+	id: number;
 	name: string;
+	role: string,
 	surname: string;
+	password: string;
 	birthday: string;
-	banks: Array<Banks> | [];
-	cards: Array<Card> | []
-	accounts: Array<Account> | [];
-	years: Years;
-	history: Array<Payment> | [];
 }

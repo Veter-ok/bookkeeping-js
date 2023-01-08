@@ -14,6 +14,17 @@ export const Button:FC<IButtonProps> = ({onClick, text}) => {
 	)
 }
 
+
+interface IButtonSubmitProps {
+	text: string
+}
+
+export const ButtonSubmit:FC<IButtonSubmitProps> = ({text}) => {
+	return (
+		<button className="basic-button" type="submit">{text}</button>
+	)
+}
+
 interface IArrowButton {
 	onClick: Function,
 	direction: string

@@ -4,5 +4,6 @@ export enum Links {
 	HISTORY = '/history',
 	PROFILE = '/profile',
 	LOGIN = '/login',
-	REGISTRATION = '/registration'
+	REGISTRATION = '/registration',
+	ADMIN = '/admin_panel'
 }

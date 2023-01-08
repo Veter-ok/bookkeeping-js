@@ -6,6 +6,7 @@ import Management from './pages/Management/Management'
 import Profile from './pages/Profile/Profile'
 import Login from './pages/Login/Login'
 import Registration from './pages/Registration/registration'
+import AdminPanel from 'pages/Admin/AdminPanel'
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import {MainLayout} from './components/layouts/mainLayout'
 import {useSelector} from 'react-redux'
@@ -23,6 +24,7 @@ export const Navigation = () => {
                 <Route path={Links.MANAGEMENT} element={<Management/>}/>
                 <Route path={Links.HISTORY} element={<History/>}/>
                 <Route path={Links.PROFILE} element={<Profile/>}/>
+                <Route path={Links.ADMIN} element={<AdminPanel/>}/>
               </Routes>
               :
               <Routes>

@@ -14,6 +14,7 @@ const Registration:FC = () => {
 	const [name, setName] = useState("")
 	const [surname, setSurname] = useState<string>("")
 	const [password, setPassword] = useState<string>("")
+	const [email, setEmail] = useState<string>("")
 	const [birthday, setBirthday] = useState<string>("")
 
 	const singUp = (event: FormEvent) => {
@@ -21,6 +22,7 @@ const Registration:FC = () => {
 		const newUser = {
 			name: name,
 			surname: surname,
+			email: email,
 			password: password,
 			birthday: birthday
 		}
@@ -48,6 +50,7 @@ const Registration:FC = () => {
 					{/* {Auth ? `${userName} ${userSurname}` : ''} */}
 					<Input placeholder="Введите своё имя" type="text" value={name} onChange={setName}/>
 					<Input placeholder="Введите свою фамилию" type="text" value={surname} onChange={setSurname}/>
+					<Input placeholder="Введите свою почту" type="email" value={email} onChange={setEmail}/>
 					<Input placeholder="Введите пароль" type="password" value={password} onChange={setPassword}/>
 					<InputDate value={birthday} onChange={setBirthday}/>
 					<ButtonSubmit text="Создать"/>

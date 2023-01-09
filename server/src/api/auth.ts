@@ -29,11 +29,12 @@ class User {
 		console.log('[server] send data from /api/v1/auth/login')
 	}
 	async singUp(req:Request, res:Response) {
-		const {name, surname, password, birthday} = req.body
-		await pool.query("INSERT INTO Users (name, surname, password, birthday) VALUES($1, $2, $3, $4)", 
-			[name, surname, password, birthday]).then((response) => {
+		const {name, surname, email, password, birthday} = req.body
+		await pool.query("INSERT INTO Users (role, name, email, surname, password, birthday) VALUES($1, $2, $3, $4, $5, $6)", 
+			['user', name, email, surname, password, birthday]).then((response) => {
 				res.status(200).json({"msg": "success"})
 			}).catch((err) => {
+				console.log(err)
 				res.status(500).json({"msg": err})
 			})
 	}

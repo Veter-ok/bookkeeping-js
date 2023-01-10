@@ -16,10 +16,10 @@ export const CardForm:FC = () => {
 	const [cardIndex, setCardIndex] = useState(0)
 
 	useEffect(() => {
-		axios.get(`http://localhost:5000/api/v1/data/cards`).then((resp) => {
+		axios.get(`http://localhost:5000/api/v1/cards`).then((resp) => {
 			setCards(resp.data)
 		})
-	})
+	}, [])
 
 	const AddCard = () => {
 		const newCard = cards[cardIndex]

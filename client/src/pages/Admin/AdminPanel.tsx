@@ -46,6 +46,15 @@ const AdminPanel:FC = () => {
 		})
 	}
 
+	const deleteUser = (user_id: number) => {
+		console.log(user_id)
+		axios.delete(`http://localhost:5000/api/v1/admin/${1}/delete_user/${user_id}`).then((resp) => {
+			getUsers()
+		}).catch((err) => {
+			console.log(err)
+		})
+	}
+
 	return (
 		<div className="admin_panel-container-group">
 			<Container id="container-1" title="Добавить пользователя">
@@ -61,7 +70,7 @@ const AdminPanel:FC = () => {
 			</Container>
 			<Container id="container-2" title="Пользователи">
 				{users.map((user) => 
-					<UserBlock key={user.id} user={user}/>
+					<UserBlock key={user.id} user={user} del={deleteUser}/>
 				)}
 			</Container>
 		</div>

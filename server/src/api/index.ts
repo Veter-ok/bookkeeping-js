@@ -18,7 +18,6 @@ router.get('/accounts', Accounts.accounts)
 router.get('/banks', Banks.allbanks)
 router.get('/cards', userCardsController.cards)
 router.get('/payments/get/:id', PaymentsController.get_payment)
-//router.get('/cards/img/:id', Cards.cards_img)
 
 // Admin User
 router.get('/admin/:admin_token/user', AdminUserController.get_all_user)

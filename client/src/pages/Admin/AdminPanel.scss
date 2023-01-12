@@ -1,5 +1,28 @@
 @import '../../styles/variables.scss';
 
+.switch-windows {
+	display: block;
+	border-radius: 10px;
+	background-color: $secondaryColor;
+	width: 100%;
+	&__list-windows {
+		padding: 10px;
+		li {
+			color: $primaryColor;
+			width: 25%;
+			font-size: $titleText;
+			border-radius: 10px;
+			padding: 10px 0px;
+			justify-content: center;
+			display: inline-flex;
+		}
+		li:hover {
+			box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.24);
+			background-color: $tertiaryColor;
+		}
+	}
+}
+
 .admin_panel-container-group {
 	display: grid;
 	grid-template-areas: 

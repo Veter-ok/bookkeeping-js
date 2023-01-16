@@ -6,6 +6,7 @@ import PaymentsController from './paymentsRouter.js'
 import Banks from './banksController.js'
 import cardsController from './cardsController.js'
 import AdminUserController from './AdminUserController.js'
+import AdminBanksController from './AdminBanksController.js'
 
 export const router = Router()
 
@@ -23,5 +24,7 @@ router.get('/payments/get/:id', PaymentsController.get_payment)
 router.get('/admin/:admin_token/user', AdminUserController.get_all_user)
 router.delete('/admin/:admin_token/delete_user/:user_id', AdminUserController.delete_user)
 router.post('/admin/add_user', AdminUserController.add_user)
+
+router.post('/admin/add_bank', AdminBanksController.add_bank)
 
 router.post('/admin/add_card', cardsController.add_card)

@@ -15,20 +15,10 @@
 			padding: 10px 0px;
 			justify-content: center;
 			display: inline-flex;
-		}
-		li:hover {
-			box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.24);
-			background-color: $tertiaryColor;
+			&:hover{
+				box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.24);
+				background-color: $tertiaryColor;
+			}
 		}
 	}
-}
-
-.admin_panel-container-group {
-	display: grid;
-	grid-template-areas: 
-	"A A A"
-	"B B B";
-	grid-template-rows: 1fr 1fr;
-	grid-template-columns: 1fr 1fr;
-	gap: 80px 10px;
 }

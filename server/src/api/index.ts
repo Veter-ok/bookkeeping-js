@@ -26,5 +26,6 @@ router.delete('/admin/:admin_token/delete_user/:user_id', AdminUserController.de
 router.post('/admin/add_user', AdminUserController.add_user)
 
 router.post('/admin/add_bank', AdminBanksController.add_bank)
+router.delete('/admin/delete_bank/:admin_token/:bank_id', AdminBanksController.delete_bank)
 
 router.post('/admin/add_card', cardsController.add_card)

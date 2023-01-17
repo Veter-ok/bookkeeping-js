@@ -26,6 +26,12 @@ const BanksAdminWindow:FC = () => {
 		}).catch((err) => {console.log(err)})
 	}
 
+	const deleteBank = (bank_id: number) => {
+		axios.delete(`http://localhost:5000/api/v1/admin/delete_bank/${1}/${bank_id}`).then((resp) => {
+			getBanks()
+		}).catch((err) => {console.log(err)})
+	}
+
 	return (
 		<div className="banks-admin-panel-container-group">
 			<Container id="container-1" title="Добавить банк">
@@ -36,7 +42,7 @@ const BanksAdminWindow:FC = () => {
 			</Container>
 			<Container id="container-2" title="Банки">
 				{banks.map((bank) => 
-					<BankBlock bank={bank}/>
+					<BankBlock bank={bank} del={deleteBank}/>
 				)}
 			</Container>
 		</div>

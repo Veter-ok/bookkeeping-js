@@ -4,9 +4,10 @@ import BankBlock from "components/ui/Blocks/BankAdminBlock/bankBlock";
 import { ButtonSubmit } from "components/ui/Buttons/button";
 import { Input } from "components/ui/Input/input";
 import React, {FunctionComponent as FC, FormEvent, useEffect, useState} from "react";
+import { Bank } from "types/banksTypes";
 
 const BanksAdminWindow:FC = () => {
-	const [banks, setBanks] = useState([])
+	const [banks, setBanks] = useState<Bank[]>([])
 	const [bankName, setBankName] = useState<string>('')
 
 	useEffect(() => {

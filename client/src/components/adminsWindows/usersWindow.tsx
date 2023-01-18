@@ -3,10 +3,11 @@ import './usersWindow.scss'
 import { Container } from "components/Containers/container";
 import { UserBlock } from "components/ui/Blocks/UserBlock/userBlock";
 import AddUserForm from "components/ui/Forms/addUserForm";
-import React, {FunctionComponent as FC, FormEvent, useEffect, useState} from "react";
+import React, {FunctionComponent as FC, useEffect, useState} from "react";
+import { User } from "types/userType";
 
 const UsersAdminWindow:FC = () => {
-	const [users, setUsers] = useState<any[]>([])
+	const [users, setUsers] = useState<User[]>([])
 
 	useEffect(() => {
 		getUsers()
@@ -20,7 +21,7 @@ const UsersAdminWindow:FC = () => {
 		})
 	} 
 
-	const addUser = (event: FormEvent) => {
+	const addUser = () => {
 		getUsers()
 	}
 

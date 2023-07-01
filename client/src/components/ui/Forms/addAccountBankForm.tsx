@@ -32,32 +32,28 @@ export const AccountBankForm:FC = () => {
 		}).catch((err) => console.log(err))
 		axios.get(`http://localhost:5000/api/v1/banks`).then(resp => { 
 			setBanks(resp.data)
+			setAccountBank(resp.data[0].name)
 		})
 	}, [])
 
 	const addAccount = () => {
-		if (baseAmount !== 0) {
-			const newData = {
-				id: 1,
-				idAaccount: currentlyAccounts[currentlyAccountID].id,
-				amount: Number(baseAmount),
-				dateOpen: new Date(openDate),
-				allAccounts: accounts,
-			}
-			dispatch(AddAccountPayment(newData))
-			setErrorMsgAddAccount("")
-			setSuccessMsgAddAccount("Счёт/Вклад успешно добавлен")
-			setBaseAmount(0)
-		}else{
-			setErrorMsgAddAccount("Вы не заполнили все поля")
+		const newData = {
+			id: 1,
+			idAaccount: currentlyAccounts[currentlyAccountID].id,
+			amount: Number(baseAmount),
+			dateOpen: new Date(openDate),
+			allAccounts: accounts,
 		}
+		dispatch(AddAccountPayment(newData))
+		setErrorMsgAddAccount("")
+		setSuccessMsgAddAccount("Счёт/Вклад успешно добавлен")
+		setBaseAmount(0)
 	}
 
 	const currentlyAccounts = accounts.filter((account:BankAccount) => {
 		const bank = getBankByID(banks, account.bank_id)
 		if (bank) {
-			console.log(bank.name)
-			if (getBankByID(banks, account.bank_id).name === accountBank){
+			if (bank.name === accountBank){
 				return true
 			}
 		}

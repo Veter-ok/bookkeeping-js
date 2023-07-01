@@ -6,7 +6,7 @@ export interface Payment {
 	date: Date;
 	bank: string;
 }
-export interface Account {
+export interface UserAccount {
 	id: number, // for user accounts
 	idAaccount: number, // for all types of account
 	amount: number;

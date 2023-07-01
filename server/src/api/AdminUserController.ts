@@ -12,6 +12,7 @@ class AdminUserController {
 	}
 	async add_user(req: Request, res: Response){
 		const {admin_token, name, surname, role, email, password, birthday} = req.body
+		console.log(req.body)
 		await pool.query("INSERT INTO users (role, name, email, surname, password, birthday) VALUES($1, $2, $3, $4, $5, $6)", 
 		[role, name, email, surname, password, birthday]).then((resp) => {
 			res.status(200).json({"msg": "success"})

@@ -6,12 +6,13 @@ CREATE TABLE users(
 	name VARCHAR(255),
 	email VARCHAR(255) UNIQUE,
 	surname VARCHAR(255),
-	password VARCHAR(255)
+	password VARCHAR(255),
+	birthday DATE
 );
 
 CREATE TABLE banks(
 	id SERIAL PRIMARY KEY,
-	name VARCHAR(255),
+	name VARCHAR(255) UNIQUE,
 	description VARCHAR(255)
 );
 
@@ -19,10 +20,9 @@ CREATE TABLE accounts(
 	id SERIAL PRIMARY KEY,
 	bank_id INTEGER,
 	title VARCHAR(255),
-	term DATE,
 	percent INTEGER,
 	description VARCHAR(255),
-	FOREIGN KEY (bank_id) REFERENCES banks(id),
+	FOREIGN KEY (bank_id) REFERENCES banks(id)
 );
 
 CREATE TABLE cards(
@@ -32,7 +32,7 @@ CREATE TABLE cards(
 	percent INTEGER,
 	image VARCHAR(255),
 	description VARCHAR(255),
-	FOREIGN KEY (bank_id) REFERENCES banks(id),
+	FOREIGN KEY (bank_id) REFERENCES banks(id)
 );
 
 CREATE TABLE users_bank_accounts(
@@ -50,7 +50,7 @@ CREATE TABLE users_cards(
 	user_id INTEGER,
 	type_id INTEGER,
 	amount NUMERIC(15, 3),
-	date: DATE,
+	date DATE,
 	FOREIGN KEY (user_id) REFERENCES users(id),
 	FOREIGN KEY (type_id) REFERENCES cards(id)
 );
@@ -62,7 +62,7 @@ CREATE TABLE payments(
 	account_id INTEGER,
 	amount NUMERIC(15, 3),
 	category VARCHAR(255),
-	date: TIMESTAMP,
+	date TIMESTAMP,
 	FOREIGN KEY (user_id) REFERENCES users(id),
 	FOREIGN KEY (account_id) REFERENCES users_bank_accounts(id)
 );

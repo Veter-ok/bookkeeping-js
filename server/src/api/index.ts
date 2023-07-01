@@ -7,6 +7,7 @@ import Banks from './banksController.js'
 import cardsController from './cardsController.js'
 import AdminUserController from './AdminUserController.js'
 import AdminBanksController from './AdminBanksController.js'
+import accountsController from './accountsController.js'
 
 export const router = Router()
 
@@ -27,5 +28,7 @@ router.post('/admin/add_user', AdminUserController.add_user)
 
 router.post('/admin/add_bank', AdminBanksController.add_bank)
 router.delete('/admin/delete_bank/:admin_token/:bank_id', AdminBanksController.delete_bank)
+
+router.post('/admin/add_account', accountsController.add_account)
 
 router.post('/admin/add_card', cardsController.add_card)

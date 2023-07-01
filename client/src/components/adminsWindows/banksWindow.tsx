@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Container } from "components/Containers/container";
-import BankBlock from "components/ui/Blocks/BankAdminBlock/bankBlock";
+import BankBlock from "components/ui/Blocks/Admin/BankAdminBlock/bankBlock";
 import { ButtonSubmit } from "components/ui/Buttons/button";
 import { Input } from "components/ui/Input/input";
 import React, {FunctionComponent as FC, FormEvent, useEffect, useState} from "react";
@@ -43,7 +43,7 @@ const BanksAdminWindow:FC = () => {
 			</Container>
 			<Container id="container-2" title="Банки">
 				{banks.map((bank) => 
-					<BankBlock bank={bank} del={deleteBank}/>
+					<BankBlock key={bank.id} bank={bank} del={deleteBank}/>
 				)}
 			</Container>
 		</div>

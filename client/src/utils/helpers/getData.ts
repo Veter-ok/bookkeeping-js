@@ -18,8 +18,18 @@ export const getAccountByID = (array:Array<BankAccount>, id: number) => {
 
 export const getBankByID = (array:Bank[] | any[], id: number) => {
 	for (var i = 0; i < array.length; i++){
-		if (array[i].bank_id === id){
+		if (array[i].id === id){
 			return array[i]
+		}
+	}
+	return null
+}
+
+export const getBankIdByName = (array:Bank[], name: string) => { 
+	for (var i = 0; i < array.length; i++){
+		if (array[i].name === name){
+			console.log(array[i])
+			return array[i].id
 		}
 	}
 	return null

@@ -1,13 +1,13 @@
 import './accountBlock.scss'
 import React, {FunctionComponent as FC, useEffect, useState} from 'react'
-import {Account} from 'types/userType'
+import {UserAccount} from 'types/userType'
 import { priceConverter } from '../../../../utils/helpers/priceConverter'
 import {Highlighter} from '../../Text/highlighter'
 import axios from 'axios'
 import { ACCOUNTS } from 'utils/constants/routerLinks'
 
 interface IAccountBlockProps {
-	data: Account,
+	data: UserAccount,
 	open: boolean
 }
 

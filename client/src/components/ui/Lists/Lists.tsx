@@ -4,7 +4,7 @@ import { BankBlock } from '../Blocks/BankBlock/bankBlock'
 import { PriceBlock } from '../Blocks/PriceBlock/priceBlock'
 import { useSelector } from 'react-redux'
 import { selectAccounts, selectBanks, selectHistory} from 'store/slices/paymentSlice'
-import { Account } from 'types/userType'
+import { UserAccount } from 'types/userType'
 import { Payment } from 'types/userType'
 import { UserBank } from 'types/banksTypes'
 
@@ -13,7 +13,7 @@ export const AccountList:FC = () => {
 
 	return (
 		<div>
-			{accounts.map((data:Account, index:number) => 
+			{accounts.map((data:UserAccount, index:number) => 
 				<AccountBlock key={index} data={data} open={true}/>
 			)}
 		</div>

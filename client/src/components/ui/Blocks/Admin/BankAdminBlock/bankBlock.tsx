@@ -12,7 +12,7 @@ const BankBlock:FC<IBankBlock> = ({bank, del}) => {
 		<div className="bank-block">
 			<div className="bank-block__content">
 				<div className="bank-block__content__name">{bank.name}</div>
-				<button onClick={() => del(bank.bank_id)}>Удалить</button>
+				<button onClick={() => del(bank.id)}>Удалить</button>
 			</div>
 		</div>
 	)

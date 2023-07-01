@@ -1,10 +1,10 @@
-import {Account, Card, Payment, Years} from '../../types/userType'
+import {UserAccount, Card, Payment, Years} from '../../types/userType'
 import { BankAccount, UserBank } from 'types/banksTypes';
 
 export interface PaymentState {
 	banks: Array<UserBank>,
 	cards: Array<Card>,
-	accounts: Array<Account>,
+	accounts: Array<UserAccount>,
 	years: Years | null,
 	history: Array<Payment>,
 }

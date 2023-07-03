@@ -18,7 +18,7 @@ router.post('/auth/registration', User.singUp)
 // Get all data
 router.get('/accounts', Accounts.accounts)
 router.get('/banks', Banks.allbanks)
-router.get('/cards', userCardsController.cards)
+router.get('/cards', cardsController.get_cards)
 router.get('/payments/get/:id', PaymentsController.get_payment)
 
 // Admin User

@@ -3,11 +3,12 @@ import React, {FunctionComponent as FC, useState} from "react"
 import UsersAdminWindow from 'components/adminsWindows/usersWindow'
 import BanksAdminWindow from 'components/adminsWindows/banksWindow'
 import AccountAdminWindow from 'components/adminsWindows/accountWindow'
+import CardAdminWindow from 'components/adminsWindows/cardsWindow'
 
 const AdminPanel:FC = () => {
 	//const id = useSelector()
 	const [windowIndex, setWindowIndex] = useState<number>(0)
-	const windows = [<UsersAdminWindow/>, <BanksAdminWindow/>, <></>, <AccountAdminWindow/>]
+	const windows = [<UsersAdminWindow/>, <BanksAdminWindow/>, <CardAdminWindow/>, <AccountAdminWindow/>]
 
 	return (
 		<>

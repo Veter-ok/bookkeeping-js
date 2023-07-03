@@ -95,3 +95,34 @@ export const InputDate:FC<IInputDate> = ({value, onChange}) => {
 		</div>
 	)
 }
+
+interface IUploadPhoto {
+	callback(value: File): void
+}
+
+export const UploadPhoto:FC<IUploadPhoto> = ({callback}) => {
+	const [selectedImage, setSelectedImage] = useState(null);
+
+	const onChange = (value: File) => {
+		setSelectedImage(value)
+		callback(value)
+	}
+
+	return (
+		<div className='uploadImg-element'>
+			<input type="file" id="file-input" name='myImage' accept="image/png, image/jpeg" onChange={(e) => onChange(e.target.files[0])}/>
+			<label id="file-input-label" htmlFor="file-input">Select a File</label>
+			<div className='uploadImg-element__img'>
+				{selectedImage ?
+				<img
+					alt="not found"
+					width="40%"
+					src={URL.createObjectURL(selectedImage)}
+				/>
+				:
+				<></>
+				}
+			</div>
+		</div>
+	)
+}

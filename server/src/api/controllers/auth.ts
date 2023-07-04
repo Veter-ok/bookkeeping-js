@@ -1,24 +1,36 @@
 import {Request, Response} from 'express'
-import { UserType } from '../types/userTypes.js'
-import pool from '../database/index.js'
+import { UserType } from '../../types/userTypes.js'
+import pool from '../../database/index.js'
+import jwt from 'jsonwebtoken'
 
 interface RequestLogin {
 	name: string,
 	password: string
 }
 
-interface RequestLoginError {
+interface ResponseLoginError {
 	code?: string,
 	msg: string
 }
 
-class User {
-	async login(req:Request<RequestLogin>, res: Response<UserType | RequestLoginError>) {
+interface ResponseLogin {
+	user: UserType,
+	accessToken: any
+}
+
+class Auth {
+	async login(req:Request<RequestLogin>, res: Response<ResponseLogin | ResponseLoginError>) {
 		const {name, password} = req.body
-		await pool.query("SELECT * FROM Users WHERE name=$1", [name]).then((response) => {
-			if (response.rows.length !== 0) {
-				if (response.rows[0].password === password){
-					res.json(response.rows[0]);
+		await pool.query("SELECT * FROM Users WHERE name=$1", [name]).then((response_db) => {
+			if (response_db.rows.length !== 0) {
+				const user = response_db.rows[0]
+				if (user.password === password){
+					const {password, ...user_data} = user
+					const accessToken = jwt.sign({
+						id: user.id,
+						isAdmin: user.role
+					}, process.env.JWT_SECRET_KEY, {expiresIn: '12h'})
+					res.status(200).json({user: user_data, accessToken: accessToken});
 				}else{
 					res.status(500).json({'msg': 'wrong password'})
 				}
@@ -40,4 +52,4 @@ class User {
 	}
 }
 
-export default new User()
+export default new Auth()

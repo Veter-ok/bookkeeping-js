@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import pool from '../database/index.js'
+import pool from '../../database/index.js'
 
 class AdminUserController {
 	async get_all_user(req: Request, res: Response){

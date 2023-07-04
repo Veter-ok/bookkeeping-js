@@ -1,6 +1,6 @@
 import {Request, Response} from 'express'
-import { Card } from '../types/mainTypes.js'
-import pool from '../database/index.js'
+import { Card } from '../../types/mainTypes.js'
+import pool from '../../database/index.js'
 
 interface AddCardType<T> extends Request {
 	body: T

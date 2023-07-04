@@ -1,6 +1,6 @@
 import {Request, Response} from 'express'
-import pool from '../database/index.js'
-import { Account } from '../types/mainTypes.js'
+import pool from '../../database/index.js'
+import { Account } from '../../types/mainTypes.js'
 
 
 interface RequestAddAccountPropsType extends Request {

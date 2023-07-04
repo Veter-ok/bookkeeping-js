@@ -1,6 +1,6 @@
 import {Request, Response, response} from 'express'
-import pool from '../database/index.js'
-import { CARDS } from '../utils/constants/cards.js'
+import pool from '../../database/index.js'
+import { CARDS } from '../../utils/constants/cards.js'
 
 class UserController {
 	async cards(req:Request, res:Response) {

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import pool from '../database/index.js'
+import pool from '../../database/index.js'
 
 class AdminBanksController {
 	async add_bank(req: Request, res: Response) {

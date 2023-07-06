@@ -17,7 +17,9 @@ export const CardForm:FC = () => {
 
 	useEffect(() => {
 		axios.get(`http://localhost:5000/api/v1/cards`).then((resp) => {
-			setCards(resp.data)
+			if (resp.status === 200){
+				setCards(resp.data)
+			}
 		})
 	}, [])
 

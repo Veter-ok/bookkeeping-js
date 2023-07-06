@@ -22,8 +22,7 @@ const Login:FC = () => {
 				"name": name,
 				"password":	password
 			}).then(resp => {
-				console.log(resp.data)
-				const newUser:User = resp.data
+				const newUser:User = resp.data.user
 				dispatch(login({
 					Auth: true,
 					id: newUser.id,
@@ -33,6 +32,7 @@ const Login:FC = () => {
 					password: newUser.surname,
 					birthday: newUser.birthday,
 				}))
+				localStorage.setItem("token", resp.data.accessToken)
 			})
 			.catch((err) => {
 				console.log(err)

@@ -9,7 +9,11 @@ interface AddCardType<T> extends Request {
 class cardsController {
 	async get_cards(req: Request, res: Response){
 		await pool.query("SELECT * FROM cards").then((response) => {
-			res.status(200).json({"msg":response.rows})
+			if (response.rowa.length == 0){
+				res.status(200).json([])
+			}else{
+				res.status(200).json(response.rows)
+			}
 		}).catch((err) => {
 			res.status(500).json({"msg": err})
 		})

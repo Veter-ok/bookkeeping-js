@@ -50,6 +50,9 @@ class Auth {
 				res.status(500).json({"msg": err})
 			})
 	}
+	async isAuth(req: Request, res:Response) {
+		res.status(200).json("ok")
+	}
 }
 
 export default new Auth()

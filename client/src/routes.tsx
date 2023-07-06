@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Links } from 'variables/Links'
 import Dashboard from './pages/Dashboard/Dashboard'
 import History from './pages/History/History'
@@ -9,16 +9,33 @@ import Registration from './pages/Registration/registration'
 import AdminPanel from 'pages/Admin/AdminPanel'
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import {MainLayout} from './components/layouts/mainLayout'
-import {useSelector} from 'react-redux'
-import {selectAuth } from 'store/slices/userSlice'
+import {useDispatch} from 'react-redux'
+import {DEFAULT_URL} from './utils/constants/routerLinks'
+import axios from 'axios'
 
 export const Navigation = () => {
-  const Auth = useSelector(selectAuth)
+  const [auth, setAuth] = useState(false)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    axios.get(`${DEFAULT_URL}/auth/isAuth`, 
+    {
+      headers: {
+        token: localStorage.getItem("token")
+      }
+    }).then((response) => {
+      if (response.status === 200){
+        setAuth(true)
+        console.log(response.headers.user)
+      }
+    })
+  })
+
   return (
     <>
         <BrowserRouter>
           <MainLayout>
-            {Auth ? 
+            {auth ? 
               <Routes>
                 <Route path={Links.DASHBOARD} element={<Dashboard/>}/>
                 <Route path={Links.MANAGEMENT} element={<Management/>}/>

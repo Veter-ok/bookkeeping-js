@@ -46,12 +46,16 @@ class Auth {
 			['user', name, email, surname, password, birthday]).then((response) => {
 				res.status(200).json({"msg": "success"})
 			}).catch((err) => {
-				console.log(err)
 				res.status(500).json({"msg": err})
 			})
 	}
 	async isAuth(req: Request, res:Response) {
-		res.status(200).json("ok")
+		const user_id = req.headers.user_id
+		await pool.query("SELECT id, role, name, email, surname, birthday FROM users WHERE id=$1", [user_id]).then((resp) => {
+			res.status(200).json(resp.rows[0])
+		}).catch((err) => {
+			res.status(500).json({"message": err})
+		})
 	}
 }
 

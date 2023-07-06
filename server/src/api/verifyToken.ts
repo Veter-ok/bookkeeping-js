@@ -6,6 +6,8 @@ export const verifyToken = (req: Request, res: Response, next) => {
 	if (authHeader){
 		jwt.verify(authHeader, process.env.JWT_SECRET_KEY, (err, user) => {
 			if (err) res.status(403).json({message: "Token is not valid"})
+			res.setHeader("user", user.id)
+			req.headers["user_id"] = user.id
 			next()
 		})
 	}else{
@@ -19,7 +21,6 @@ export const checkPermission = (req: Request, res: Response, next) => {
 		jwt.verify(authHeader, process.env.JWT_SECRET_KEY, (err, user) => {
 			if (err) res.status(403).json({message: "Token is not valid"})
 			if (user.isAdmin !== 'admin') res.status(403).json({message: "You are not allowed"})
-			res.setHeader("user", user)
 			next()
 		})
 	}else{

@@ -11,7 +11,7 @@ export const UserBlock:FC<IUserBlockProps> = ({user, del}) => {
 	return (
 		<div key={user.id} className="user-block">
 			<div className="user-block__content">
-				<div className="user-block__content__role">{user.role}</div>
+				<div className="user-block__content__role">{user.isAdmin}</div>
 				<div className="user-block__content__name">{user.name}</div>
 				<div className="user-block__content__surname">{user.surname}</div>
 				<div className="user-block__content__email">{user.email}</div>

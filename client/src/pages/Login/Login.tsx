@@ -5,7 +5,6 @@ import {Input} from 'components/ui/Input/input'
 import {useDispatch, useSelector} from 'react-redux'
 import { login, selectAuth, selectName, selectSurname} from 'store/slices/userSlice'
 import axios from 'axios'
-import { User } from 'types/userType'
 import { ButtonSubmit } from 'components/ui/Buttons/button'
 
 const Login:FC = () => {
@@ -13,23 +12,22 @@ const Login:FC = () => {
 	const userName = useSelector(selectName)
 	const userSurname = useSelector(selectSurname)
 	const dispatch = useDispatch()
-	const [name, setName] = useState<string>("")
+	const [email, setEmail] = useState<string>("")
 	const [password, setPassword] = useState<string>("")
 
 	const logIn = (event: FormEvent) => {
 		event.preventDefault()
 		axios.post('http://localhost:5000/api/v1/auth/login', {
-				"name": name,
+				"email": email,
 				"password":	password
 			}).then(resp => {
-				const newUser:User = resp.data.user
+				const newUser = resp.data.user
 				dispatch(login({
 					Auth: true,
 					id: newUser.id,
 					name: newUser.name,
-					role: newUser.role,
+					isAdmin: newUser.isAdmin,
 					surname: newUser.surname,
-					password: newUser.surname,
 					birthday: newUser.birthday,
 				}))
 				localStorage.setItem("token", resp.data.accessToken)
@@ -45,7 +43,7 @@ const Login:FC = () => {
 			<form onSubmit={(e) => logIn(e)}>
 				<Container title="Вход">
 					<p>{Auth ? `${userName} ${userSurname}` : ''}</p>
-					<Input placeholder="Имя" type="text" value={name} onChange={setName}/>
+					<Input placeholder="Email" type="text" value={email} onChange={setEmail}/>
 					<Input placeholder="Пароль" type="password" value={password} onChange={setPassword}/>
 					<ButtonSubmit text="Войти"/>
 				</Container>

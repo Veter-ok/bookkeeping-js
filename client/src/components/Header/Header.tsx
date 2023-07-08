@@ -4,11 +4,12 @@ import USER_LOGO from '../../assets/img/user.svg'
 import {Links} from '../../variables/Links'
 import { Link } from 'react-router-dom'
 import {useSelector} from 'react-redux'
-import {selectAuth, selectRole} from 'store/slices/userSlice'
+import {selectAuth, selectIsAdmin} from 'store/slices/userSlice'
 
 export const Header:FC = () => {
 	const Auth = useSelector(selectAuth)
-	const Role = useSelector(selectRole)
+	const isAdmin = useSelector(selectIsAdmin)
+
 	return (
 		<div className="header">
 			<div className="header__site-title">
@@ -19,7 +20,7 @@ export const Header:FC = () => {
 					<>
 						<li className="header__links__item"><Link to={Links.MANAGEMENT}>Управление</Link></li>
 						<li className="header__links__item"><Link to={Links.DASHBOARD}>Dashboard</Link></li>
-						{Role === "admin" ?
+						{isAdmin ?
 							<li className="header__links__item"><Link to={Links.ADMIN}>Админ Панель</Link></li>
 						:
 							<></>

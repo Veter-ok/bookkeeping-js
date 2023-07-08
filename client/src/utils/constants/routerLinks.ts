@@ -5,3 +5,9 @@ export const REGISTRATION = "auth/registration"
 
 export const ACCOUNTS = "accounts"
 export const BANKS_NAME = "/banks"
+
+export const ADMIN_HEADER = {
+	headers: {
+		token: localStorage.getItem("token")
+  	}
+}

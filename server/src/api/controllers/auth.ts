@@ -31,7 +31,7 @@ class Auth {
 						const {password, ...user_data} = user
 						const accessToken = jwt.sign({
 							id: user.id,
-							isAdmin: user.role
+							isAdmin: user.isadmin
 						}, process.env.JWT_SECRET_KEY, {expiresIn: '12h'})
 						res.status(200).json({user: user_data, accessToken: accessToken});
 					}else{

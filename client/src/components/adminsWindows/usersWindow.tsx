@@ -5,6 +5,7 @@ import { UserBlock } from "components/ui/Blocks/UserBlock/userBlock";
 import AddUserForm from "components/ui/Forms/addUserForm";
 import React, {FunctionComponent as FC, useEffect, useState} from "react";
 import { User } from "types/userType";
+import { ADMIN_HEADER } from "utils/constants/routerLinks";
 
 const UsersAdminWindow:FC = () => {
 	const [users, setUsers] = useState<User[]>([])
@@ -14,7 +15,7 @@ const UsersAdminWindow:FC = () => {
 	}, []) 
 
 	const getUsers = () => {
-		axios.get(`http://localhost:5000/api/v1/admin/${1}/user`).then((resp) => {
+		axios.get(`http://localhost:5000/api/v1/admin/users`, ADMIN_HEADER).then((resp) => {
 			setUsers(resp.data)
 		}).catch((err) => {
 			console.log(err)

@@ -2,15 +2,14 @@ import './registration.scss'
 import React, { useState, FunctionComponent as FC, FormEvent} from 'react';
 import {Container} from '../../components/Containers/container'
 import {Input, InputDate} from '../../components/ui/Input/input'
-import { User } from 'types/userType';
 import axios from 'axios';
-import { REGISTRATION } from 'utils/constants/routerLinks';
-import { login } from 'store/slices/userSlice';
-import { useDispatch } from 'react-redux';
+import bcrypt from 'bcryptjs'
+import { DEFAULT_URL, REGISTRATION } from 'utils/constants/routerLinks';
 import { ButtonSubmit } from 'components/ui/Buttons/button';
+import { useNavigate } from 'react-router-dom';
 
 const Registration:FC = () => {
-	const dispatch = useDispatch()
+	const nav = useNavigate();
 	const [name, setName] = useState("")
 	const [surname, setSurname] = useState<string>("")
 	const [password, setPassword] = useState<string>("")
@@ -23,21 +22,12 @@ const Registration:FC = () => {
 			name: name,
 			surname: surname,
 			email: email,
-			password: password,
+			password: bcrypt.hashSync(password, 10),
 			birthday: birthday
 		}
-		axios.post(`http://localhost:5000/api/v1/${REGISTRATION}`, newUser).then((resp) => {
-			console.log(resp.status, resp.data)
+		axios.post(`${DEFAULT_URL}/${REGISTRATION}`, newUser).then((resp) => {
 			if (resp.status === 200){
-				dispatch(login({
-					Auth: true,
-					id: -1,
-					name: newUser.name,
-					role: 'user',
-					surname: newUser.surname,
-					password: newUser.password,
-					birthday: newUser.birthday
-				}))
+				nav('/login')
 			}
 		})
 		.catch((err) => console.log(err))
@@ -47,7 +37,6 @@ const Registration:FC = () => {
 		<div className="form">
 			<form onSubmit={(e) => singUp(e)}>
 				<Container title="Регистрация">
-					{/* {Auth ? `${userName} ${userSurname}` : ''} */}
 					<Input placeholder="Введите своё имя" type="text" value={name} onChange={setName}/>
 					<Input placeholder="Введите свою фамилию" type="text" value={surname} onChange={setSurname}/>
 					<Input placeholder="Введите свою почту" type="email" value={email} onChange={setEmail}/>

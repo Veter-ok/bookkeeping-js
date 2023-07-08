@@ -5,6 +5,7 @@ import { ButtonSubmit } from "components/ui/Buttons/button";
 import { Input } from "components/ui/Input/input";
 import React, {FunctionComponent as FC, FormEvent, useEffect, useState} from "react";
 import { Bank } from "types/banksTypes";
+import { ADMIN_HEADER } from "utils/constants/routerLinks";
 
 const BanksAdminWindow:FC = () => {
 	const [banks, setBanks] = useState<Bank[]>([])
@@ -22,14 +23,18 @@ const BanksAdminWindow:FC = () => {
 
 	const addBank = (event: FormEvent) => {
 		event.preventDefault()
-		axios.post(`http://localhost:5000/api/v1/admin/add_bank`, {admin_token: 1, name: bankName}).then((resp) => {
-			getBanks()
+		axios.post('http://localhost:5000/api/v1/admin/add_bank', {name: bankName}, ADMIN_HEADER).then((resp) => {
+			if (resp.status === 200){
+				getBanks()
+			}
 		}).catch((err) => {console.log(err)})
 	}
 
 	const deleteBank = (bank_id: number) => {
-		axios.delete(`http://localhost:5000/api/v1/admin/delete_bank/${1}/${bank_id}`).then((resp) => {
-			getBanks()
+		axios.delete(`http://localhost:5000/api/v1/admin/delete_bank/${bank_id}`, ADMIN_HEADER).then((resp) => {
+			if (resp.status === 200){
+				getBanks()
+			}
 		}).catch((err) => {console.log(err)})
 	}
 

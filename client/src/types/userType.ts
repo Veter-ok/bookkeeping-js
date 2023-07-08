@@ -35,9 +35,8 @@ export interface Card {
 export interface User {
 	id: number;
 	name: string;
-	role: string,
+	isAdmin: boolean,
 	surname: string;
 	email: string;
-	password: string;
 	birthday: string;
 }

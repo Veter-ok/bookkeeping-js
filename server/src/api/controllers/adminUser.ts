@@ -3,8 +3,7 @@ import pool from '../../database/index.js'
 
 class AdminUserController {
 	async get_all_user(req: Request, res: Response){
-		const {admin_token} = req.query
-		await pool.query("SELECT id, role, name, surname, email, birthday FROM users").then((response) => {
+		await pool.query("SELECT id, isadmin, name, surname, email, birthday FROM users").then((response) => {
 			res.status(200).send(response.rows)
 		}).catch((err) => {
 			res.status(500).json({"msg": err})

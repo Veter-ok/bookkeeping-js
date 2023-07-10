@@ -1,5 +1,6 @@
 import express, {Express, Request} from 'express' 
 import path from 'path'
+import fileUpload from 'express-fileupload'
 import {fileURLToPath} from 'url';
 import cors from 'cors'
 import dotenv from 'dotenv'
@@ -15,6 +16,7 @@ const __dirname = path.dirname(__filename);
 
 app.use(cors())
 app.use(express.json())
+app.use(fileUpload({}))
 app.use('/api/v1/', router)
 app.disable('x-powered-by');
 

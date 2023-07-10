@@ -1,9 +1,12 @@
 import {Request, Response} from 'express'
 import { Card } from '../../types/mainTypes.js'
+import {v4 as uuid, v4} from 'uuid'
+import path from 'path'
 import pool from '../../database/index.js'
+import { fileURLToPath } from 'url'
 
-interface AddCardType<T> extends Request {
-	body: T
+interface AddCardType extends Request {
+	files: any
 }
 
 class cardsController {
@@ -19,10 +22,15 @@ class cardsController {
 		})
 	}
 
-	async add_card(req:AddCardType<Card>, res:Response) {
-		const {id, bank_id, percent, image, title, description} = req.body
-		await pool.query("INSERT INTO cards (id, bank_id, percent, image, title, description) VALUES($1, $2, $3, $4, $5, $6)",
-		[id, bank_id, percent, image, title, description]).then((resp) => {
+	async add_card(req:AddCardType, res:Response) {
+		const {bank_id, percent, title, description} = req.body
+		const {image} = req.files
+		const __filename = fileURLToPath(import.meta.url);
+		const __dirname = path.dirname(__filename);
+		const imageName = uuid() + ".jpeg"
+		image.mv(path.resolve(__dirname, '../..', 'public/cards', imageName))
+		await pool.query("INSERT INTO cards (bank_id, percent, image, title, description) VALUES($1, $2, $3, $4, $5, $6)",
+		[bank_id, percent, imageName, title, description]).then((resp) => {
 			res.status(200).json({"msg": "success"})
 		}).catch((err) => {
 			res.status(500).json({"msg": err})

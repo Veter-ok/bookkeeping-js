@@ -97,7 +97,7 @@ export const InputDate:FC<IInputDate> = ({value, onChange}) => {
 }
 
 interface IUploadPhoto {
-	callback(value: File): void
+	callback(value: any): void
 }
 
 export const UploadPhoto:FC<IUploadPhoto> = ({callback}) => {

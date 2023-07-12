@@ -12,7 +12,7 @@ interface AddCardType extends Request {
 class cardsController {
 	async get_cards(req: Request, res: Response){
 		await pool.query("SELECT * FROM cards").then((response) => {
-			if (response.rowa.length == 0){
+			if (response.rows.length === 0){
 				res.status(200).json([])
 			}else{
 				res.status(200).json(response.rows)
@@ -28,9 +28,9 @@ class cardsController {
 		const __filename = fileURLToPath(import.meta.url);
 		const __dirname = path.dirname(__filename);
 		const imageName = uuid() + ".jpeg"
-		image.mv(path.resolve(__dirname, '../..', 'public/cards', imageName))
-		await pool.query("INSERT INTO cards (bank_id, percent, image, title, description) VALUES($1, $2, $3, $4, $5, $6)",
-		[bank_id, percent, imageName, title, description]).then((resp) => {
+		await pool.query("INSERT INTO cards (bank_id, title, percent, description, image) VALUES($1, $2, $3, $4, $5)",
+		[Number(bank_id), title, Number(percent), description, imageName]).then((resp) => {
+			image.mv(path.resolve(__dirname, '../..', 'public/cards', imageName))
 			res.status(200).json({"msg": "success"})
 		}).catch((err) => {
 			res.status(500).json({"msg": err})

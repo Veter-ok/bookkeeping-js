@@ -1,5 +1,5 @@
 import './dashboard.scss'
-import React, {FunctionComponent as FC} from 'react'
+import React, {FunctionComponent as FC, useEffect, useState} from 'react'
 import {totalSum} from '../../utils/helpers/summationOfNumbers'
 import { priceConverter } from '../../utils/helpers/priceConverter'
 import { Highlighter } from '../../components/ui/Text/highlighter'
@@ -12,10 +12,22 @@ import { BankList, PriceList, AccountList } from '../../components/ui/Lists/List
 import {useSelector} from 'react-redux'
 import {selectCards, selectYears } from 'store/slices/paymentSlice'
 import { Card, Years } from 'types/userType'
+import { DEFAULT_URL } from 'utils/constants/routerLinks'
+import axios from 'axios'
 
 const Dashboard:FC = () => {
+	const [banks, setBanks] = useState([])
 	const years:Years = useSelector(selectYears)
 	const cards:Card[] = useSelector(selectCards)
+
+	useEffect(() => {
+		axios.get(`${DEFAULT_URL}/banks`).then((resp) => {
+			if (resp.status === 200){
+				setBanks(resp.data)
+			}
+		})
+	})
+
 	return (
 		<div>
 			<div className="dashboard-container-group-1">
@@ -72,7 +84,7 @@ const Dashboard:FC = () => {
 					{cards.length > 0 ?
 						<Slider length={860} elementsLength={735}>
 							{cards.map((card:Card, index:number) => 
-								<CardBlock key={index} card={card}/>
+								<CardBlock key={index} card={card} banks={banks}/>
 							)}
 						</Slider>
 						:

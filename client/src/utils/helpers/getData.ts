@@ -16,7 +16,7 @@ export const getAccountByID = (array:Array<BankAccount>, id: number) => {
 	return null
 }
 
-export const getBankByID = (array:Bank[] | any[], id: number) => {
+export const getBankByID = (array:Bank[] | any[], id: number):null|Bank => {
 	for (var i = 0; i < array.length; i++){
 		if (array[i].id === id){
 			return array[i]

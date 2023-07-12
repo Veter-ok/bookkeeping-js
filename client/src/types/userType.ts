@@ -25,9 +25,9 @@ export interface Years {
 
 export interface Card {
 	id: number,
-	name: string,
-	img: string,
-	bank: string,
+	title: string,
+	image: string,
+	bank_id: number,
 	percent: number,
 	description: string
 }

@@ -6,6 +6,7 @@ export interface UserBank {
 export interface Bank {
 	id: number,
 	name: string
+	description?: string
 }
 
 export interface BankAccount {

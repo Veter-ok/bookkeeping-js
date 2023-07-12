@@ -7,18 +7,26 @@ import { NotificationSuccess,  NotificationError} from '../Notification/notifica
 import {addCard} from 'store/slices/paymentSlice'
 import {useDispatch} from 'react-redux'
 import axios from 'axios';
+import { DEFAULT_URL } from 'utils/constants/routerLinks';
+import { Select } from '../Select/select';
 
 export const CardForm:FC = () => {
 	const dispatch = useDispatch()
 	const [cards, setCards] = useState([])
+	const [banks, setBanks] = useState([])
 	const [errorMsgAddCard, setErrorMsgAddCard] = useState<string | null>(null) 
 	const [successMsgAddCard, setSuccessMsgAddCard] = useState<string | null>(null)
 	const [cardIndex, setCardIndex] = useState(0)
 
 	useEffect(() => {
-		axios.get(`http://localhost:5000/api/v1/cards`).then((resp) => {
+		axios.get(`${DEFAULT_URL}/cards`).then((resp) => {
 			if (resp.status === 200){
 				setCards(resp.data)
+			}
+		})
+		axios.get(`${DEFAULT_URL}/banks`).then((resp) => {
+			if (resp.status === 200){
+				setBanks(resp.data)
 			}
 		})
 	}, [])
@@ -37,9 +45,10 @@ export const CardForm:FC = () => {
 		{successMsgAddCard ? <NotificationSuccess text={successMsgAddCard}/> : <></>}
 		<Slider length={860} elementsLength={735} onChange={setCardIndex}>
 			{cards.map((card:Card, index:number) => 
-				<CardBlock key={index} card={card}/>
+				<CardBlock key={index} card={card} banks={banks}/>
 			)}
 		</Slider>
+		<Select options={[]} onChange={undefined} length={60}/>
 		<Button text="Добавить" onClick={() => AddCard()}/>
 	</>
 	)

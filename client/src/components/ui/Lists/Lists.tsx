@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 import { selectAccounts, selectBanks, selectHistory} from 'store/slices/paymentSlice'
 import { UserAccount } from 'types/userType'
 import { Payment } from 'types/userType'
-import { UserBank } from 'types/banksTypes'
+import { UserBank } from 'types/userType'
 
 export const AccountList:FC = () => {
 	const accounts = useSelector(selectAccounts)

@@ -1,6 +1,6 @@
 import './bankBlock.scss'
 import React, {FunctionComponent as FC} from "react";
-import { Bank } from 'types/banksTypes';
+import { Bank } from 'types/mainTypes';
 
 interface IBankBlock {
 	bank: Bank,

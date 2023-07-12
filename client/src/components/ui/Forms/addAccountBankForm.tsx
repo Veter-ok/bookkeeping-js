@@ -10,13 +10,13 @@ import { formatDate } from 'utils/helpers/formatDate';
 import BankAccountBlock from '../Blocks/BankAccountBlock/BankAccountBlock';
 import axios from 'axios';
 import {getBankByID, getFields } from 'utils/helpers/getData';
-import { Bank, BankAccount } from 'types/banksTypes';
+import { Bank, Account } from 'types/mainTypes';
 
 export const AccountBankForm:FC = () => {
 	const dispatch = useDispatch()
 	const todayDate = formatDate(new Date())
 	const [banks, setBanks] = useState<Bank[]>([])
-	const [accounts, setAccounts] = useState<BankAccount[] | any[]>([])
+	const [accounts, setAccounts] = useState<Account[] | []>([])
 	const [currentlyAccountID, setCurrentlyAccountID] = useState<number>(0)
 	const [baseAmount, setBaseAmount] = useState<number>(0)
 	const [openDate, setOpenDate] = useState<string>(todayDate)
@@ -39,7 +39,8 @@ export const AccountBankForm:FC = () => {
 	const addAccount = () => {
 		const newData = {
 			id: 1,
-			idAaccount: currentlyAccounts[currentlyAccountID].id,
+			user_id : 0,
+			type_id: currentlyAccounts[currentlyAccountID].id,
 			amount: Number(baseAmount),
 			dateOpen: new Date(openDate),
 			allAccounts: accounts,
@@ -50,7 +51,7 @@ export const AccountBankForm:FC = () => {
 		setBaseAmount(0)
 	}
 
-	const currentlyAccounts = accounts.filter((account:BankAccount) => {
+	const currentlyAccounts = accounts.filter((account:Account) => {
 		const bank = getBankByID(banks, account.bank_id)
 		if (bank) {
 			if (bank.name === accountBank){
@@ -69,7 +70,7 @@ export const AccountBankForm:FC = () => {
 		<Select onChange={setAccountBank} options={getFields(banks, 'name')}/>
 		{currentlyAccounts.length !== 0 ?
 			<Slider length={340} elementsLength={200} onChange={setCurrentlyAccountID}>
-				{currentlyAccounts.map((account: BankAccount) => 
+				{currentlyAccounts.map((account: Account) => 
 					<BankAccountBlock key={account.id} account={account} banks={banks}/>
 				)}
 			</Slider>

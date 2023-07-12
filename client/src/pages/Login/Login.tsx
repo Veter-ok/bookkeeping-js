@@ -4,16 +4,17 @@ import {Container} from 'components/Containers/container'
 import {Input} from 'components/ui/Input/input'
 import {useDispatch, useSelector} from 'react-redux'
 import { login, selectAuth, selectName, selectSurname} from 'store/slices/userSlice'
-import axios from 'axios'
 import { ButtonSubmit } from 'components/ui/Buttons/button'
+import { User } from 'types/userType'
+import axios from 'axios'
 
 const Login:FC = () => {
 	const Auth = useSelector(selectAuth)
 	const userName = useSelector(selectName)
 	const userSurname = useSelector(selectSurname)
 	const dispatch = useDispatch()
-	const [email, setEmail] = useState<string>("")
-	const [password, setPassword] = useState<string>("")
+	const [email, setEmail] = useState("")
+	const [password, setPassword] = useState("")
 
 	const logIn = (event: FormEvent) => {
 		event.preventDefault()
@@ -21,7 +22,7 @@ const Login:FC = () => {
 				"email": email,
 				"password":	password
 			}).then(resp => {
-				const newUser = resp.data.user
+				const newUser:User = resp.data.user
 				dispatch(login({
 					Auth: true,
 					id: newUser.id,

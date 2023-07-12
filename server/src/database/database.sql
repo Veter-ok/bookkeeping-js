@@ -19,7 +19,8 @@ CREATE TABLE banks(
 CREATE TABLE accounts(
 	id SERIAL PRIMARY KEY,
 	bank_id INTEGER,
-	title VARCHAR(255),
+	name VARCHAR(255),
+	isCardsAccount BOOLEAN
 	percent INTEGER,
 	description VARCHAR(255),
 	FOREIGN KEY (bank_id) REFERENCES banks(id)

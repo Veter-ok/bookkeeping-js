@@ -14,7 +14,7 @@ export const ExpenseForm:FC = () => {
 	const dispatch = useDispatch()
 	const todayDate = formatDate(new Date())
 	const banks = useSelector(selectBanks)
-	const [expenditureValue, setExpenditureValue] = useState<number>(0)
+	const [expenditureValue, setExpenditureValue] = useState(0)
 	const [expenditureDate, setExpenditureDate] = useState<string>(todayDate)
 	const [expenditureType, setExpenditureType] = useState<string>(expenditureTypes[0])
 	const [expenditureBank, setExpenditureBank]= useState<string>("")

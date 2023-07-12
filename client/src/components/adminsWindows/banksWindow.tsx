@@ -4,7 +4,7 @@ import BankBlock from "components/ui/Blocks/Admin/BankAdminBlock/bankBlock";
 import { ButtonSubmit } from "components/ui/Buttons/button";
 import { Input } from "components/ui/Input/input";
 import React, {FunctionComponent as FC, FormEvent, useEffect, useState} from "react";
-import { Bank } from "types/banksTypes";
+import { Bank } from "types/mainTypes";
 import { ADMIN_HEADER } from "utils/constants/routerLinks";
 
 const BanksAdminWindow:FC = () => {

@@ -1,4 +1,4 @@
-import { Bank, BankAccount } from "types/banksTypes"
+import { Bank, Account } from "types/mainTypes"
 
 export const getFields = (array:Array<any>, field:string) => {
 	let output = []
@@ -7,7 +7,7 @@ export const getFields = (array:Array<any>, field:string) => {
 	return output
 }
 
-export const getAccountByID = (array:Array<BankAccount>, id: number) => {
+export const getAccountByID = (array:Array<Account>, id: number) => {
 	for (var i = 0; i < array.length; i++){
 		if (array[i].id === id){
 			return array[i]

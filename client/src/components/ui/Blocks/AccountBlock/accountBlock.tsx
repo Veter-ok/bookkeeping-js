@@ -38,14 +38,14 @@ const AccountBlock:FC<IAccountBlockProps> = ({data, open}) => {
 						<div className="account-block__block__text expenses">-{priceConverter(data.amount)}<Highlighter>₽</Highlighter></div>
 					}
 					<div className="account-block__block__date">{data.dateOpen.toLocaleDateString()}</div>
-					<div className="account-block__block__info">{allAccounts[data.idAaccount].bank}</div>
+					<div className="account-block__block__info">{allAccounts[data.type_id].bank}</div>
 				</div>
 				{isVisible ?
 					<div className="account-block__moreData">
 						<div>Сумма: {priceConverter(data.amount)}<Highlighter>₽</Highlighter></div>
 						<div>Дата открытия {data.dateOpen.toLocaleDateString()}</div>
-						<div>Процент: {allAccounts[data.idAaccount].percent}<Highlighter>%</Highlighter></div>
-						<div>Банк: {allAccounts[data.idAaccount].bank}</div>
+						<div>Процент: {allAccounts[data.type_id].percent}<Highlighter>%</Highlighter></div>
+						<div>Банк: {allAccounts[data.type_id].bank}</div>
 					</div>
 					:
 					<div></div>

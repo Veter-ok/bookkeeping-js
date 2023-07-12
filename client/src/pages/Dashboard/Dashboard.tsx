@@ -11,9 +11,10 @@ import { CardBlock } from 'components/ui/Blocks/CardBlock/cardBlock'
 import { BankList, PriceList, AccountList } from '../../components/ui/Lists/Lists'
 import {useSelector} from 'react-redux'
 import {selectCards, selectYears } from 'store/slices/paymentSlice'
-import { Card, Years } from 'types/userType'
+import { Years } from 'types/userType'
 import { DEFAULT_URL } from 'utils/constants/routerLinks'
 import axios from 'axios'
+import { Card } from 'types/mainTypes'
 
 const Dashboard:FC = () => {
 	const [banks, setBanks] = useState([])

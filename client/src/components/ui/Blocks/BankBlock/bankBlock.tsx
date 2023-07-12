@@ -2,7 +2,7 @@ import './bankBlock.scss'
 import React, {FunctionComponent as FC} from 'react'
 import { priceConverter } from '../../../../utils/helpers/priceConverter'
 import { Highlighter } from '../../Text/highlighter'
-import { UserBank } from 'types/banksTypes'
+import { UserBank } from 'types/userType'
 
 interface IBankBlockProps {
 	data: UserBank

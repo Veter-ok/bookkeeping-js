@@ -1,9 +1,8 @@
 import React, {FunctionComponent as FC} from 'react';
 import './cardBlock.scss'
-import { Card } from 'types/userType';
 import {Highlighter} from '../../Text/highlighter'
 import { getBankByID } from 'utils/helpers/getData';
-import { Bank } from 'types/banksTypes';
+import { Bank, Card} from 'types/mainTypes';
 
 interface ICardBlockProps {
 	card: Card,

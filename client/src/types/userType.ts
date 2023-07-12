@@ -6,11 +6,18 @@ export interface Payment {
 	date: Date;
 	bank: string;
 }
+
+export interface UserBank {
+	name: string;
+	money: number;
+}
+
 export interface UserAccount {
-	id: number, // for user accounts
-	idAaccount: number, // for all types of account
-	amount: number;
-	dateOpen: Date;
+	id: number,
+	user_id: number,
+	type_id: number,
+	amount: number,
+	dateOpen: Date
 }
 
 export interface Month {
@@ -21,15 +28,6 @@ export interface Month {
 
 export interface Years {
 	[k: string]: Month[] | []
-}
-
-export interface Card {
-	id: number,
-	title: string,
-	image: string,
-	bank_id: number,
-	percent: number,
-	description: string
 }
 
 export interface User {

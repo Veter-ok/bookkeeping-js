@@ -11,7 +11,7 @@ const AccountAdminBlock:FC<IAccountAdminBlock> = ({account, del}) => {
 	return (
 		<div className="bank-block">
 			<div className="bank-block__content">
-				<div className="bank-block__content__name">{account.title}</div>
+				<div className="bank-block__content__name">{account.name}</div>
 				<button onClick={() => del(account.bank_id)}>Удалить</button>
 			</div>
 		</div>

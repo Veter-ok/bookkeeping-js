@@ -1,7 +1,8 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 import { RootState } from 'store'
 import { AccountPaymentAction, PaymentState } from 'store/types/payment'
-import { Card, Payment} from 'types/userType'
+import { Card } from 'types/mainTypes'
+import { Payment} from 'types/userType'
 import { getAccountByID } from 'utils/helpers/getData'
 
 const initialState:PaymentState = {
@@ -51,7 +52,7 @@ const paymentSlice = createSlice({
 			let month:number = action.payload.dateOpen.getMonth()
 			state.years[year][month].income +=  action.payload.amount
 			for (var index = 0; index < state.banks.length; index++) {
-				if (state.banks[index].name === getAccountByID(action.payload.allAccounts, action.payload.idAaccount).description){
+				if (state.banks[index].name === getAccountByID(action.payload.allAccounts, action.payload.type_id).description){
 					state.banks[index].money += action.payload.amount
 					break
 				}

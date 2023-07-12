@@ -1,18 +1,14 @@
-import {UserAccount, Card, Payment, Years} from '../../types/userType'
-import { BankAccount, UserBank } from 'types/banksTypes';
+import { Account, Card } from "types/mainTypes";
+import { Payment, UserAccount, UserBank, Years } from "types/userType";
 
 export interface PaymentState {
-	banks: Array<UserBank>,
-	cards: Array<Card>,
-	accounts: Array<UserAccount>,
+	banks: UserBank[],
+	cards: Card[],
+	accounts: UserAccount[],
 	years: Years | null,
-	history: Array<Payment>,
+	history: Payment[],
 }
 
-export interface AccountPaymentAction {
-	id: number, // for user accounts
-	idAaccount: number, // for all types of account
-	amount: number,
-	dateOpen: Date,
-	allAccounts: Array<BankAccount> | [],
+export interface AccountPaymentAction extends UserAccount {
+	allAccounts: Account[] | [],
 }

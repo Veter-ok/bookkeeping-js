@@ -11,10 +11,10 @@ import { useNavigate } from 'react-router-dom';
 const Registration:FC = () => {
 	const nav = useNavigate();
 	const [name, setName] = useState("")
-	const [surname, setSurname] = useState<string>("")
-	const [password, setPassword] = useState<string>("")
-	const [email, setEmail] = useState<string>("")
-	const [birthday, setBirthday] = useState<string>("")
+	const [surname, setSurname] = useState("")
+	const [password, setPassword] = useState("")
+	const [email, setEmail] = useState("")
+	const [birthday, setBirthday] = useState("")
 
 	const singUp = (event: FormEvent) => {
 		event.preventDefault()

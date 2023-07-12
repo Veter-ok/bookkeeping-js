@@ -1,7 +1,7 @@
 import React, {FunctionComponent as FC, useEffect, useState} from 'react'
 import { Slider } from '../Slider/Slider';
 import { CardBlock } from '../Blocks/CardBlock/cardBlock';
-import { Card } from 'types/userType';
+import { Bank, Card } from 'types/mainTypes';
 import { Button } from '../Buttons/button';
 import { NotificationSuccess,  NotificationError} from '../Notification/notification';
 import {addCard} from 'store/slices/paymentSlice'
@@ -12,8 +12,8 @@ import { Select } from '../Select/select';
 
 export const CardForm:FC = () => {
 	const dispatch = useDispatch()
-	const [cards, setCards] = useState([])
-	const [banks, setBanks] = useState([])
+	const [cards, setCards] = useState<[] | Card[]>([])
+	const [banks, setBanks] = useState<[] | Bank[]>([])
 	const [errorMsgAddCard, setErrorMsgAddCard] = useState<string | null>(null) 
 	const [successMsgAddCard, setSuccessMsgAddCard] = useState<string | null>(null)
 	const [cardIndex, setCardIndex] = useState(0)
@@ -35,7 +35,7 @@ export const CardForm:FC = () => {
 		const newCard = cards[cardIndex]
 		console.log(newCard)
 		dispatch(addCard(newCard))
-		setSuccessMsgAddCard(`Карта ${newCard.name} успешна добавлена`)
+		setSuccessMsgAddCard(`Карта ${newCard.title} успешна добавлена`)
 		setErrorMsgAddCard(null)
 	}
 

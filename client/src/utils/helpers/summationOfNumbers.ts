@@ -1,4 +1,4 @@
-import { Years } from "types/userType"
+import { Years } from "types/mainTypes"
 
 export const totalSum = (years: Years):number => {
 	let answer:number = 0

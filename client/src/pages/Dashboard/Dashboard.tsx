@@ -1,8 +1,9 @@
 import './dashboard.scss'
-import React, {FunctionComponent as FC, useEffect, useState} from 'react'
+import React, {FunctionComponent as FC, useEffect, useMemo, useState} from 'react'
 import {totalSum} from '../../utils/helpers/summationOfNumbers'
 import { priceConverter } from '../../utils/helpers/priceConverter'
 import { Highlighter } from '../../components/ui/Text/highlighter'
+import { Bank, Card } from 'types/mainTypes'
 import { BarChart } from '../../components/ui/BarChart/barChart'
 import {Container} from '../../components/Containers/container'
 import {LinkUI} from '../../components/ui/Link/linkUI'
@@ -11,15 +12,15 @@ import { CardBlock } from 'components/ui/Blocks/CardBlock/cardBlock'
 import { BankList, PriceList, AccountList } from '../../components/ui/Lists/Lists'
 import {useSelector} from 'react-redux'
 import {selectCards, selectYears } from 'store/slices/paymentSlice'
-import { Years } from 'types/userType'
 import { DEFAULT_URL } from 'utils/constants/routerLinks'
 import axios from 'axios'
-import { Card } from 'types/mainTypes'
 
 const Dashboard:FC = () => {
-	const [banks, setBanks] = useState([])
-	const years:Years = useSelector(selectYears)
-	const cards:Card[] = useSelector(selectCards)
+	const [banks, setBanks] = useState<Bank[] | []>([])
+	const years = useSelector(selectYears)
+	const cards = useSelector(selectCards)
+
+	const totalSumOfMoney = useMemo(() => totalSum(years), [years])
 
 	useEffect(() => {
 		axios.get(`${DEFAULT_URL}/banks`).then((resp) => {
@@ -27,7 +28,7 @@ const Dashboard:FC = () => {
 				setBanks(resp.data)
 			}
 		})
-	})
+	}, [])
 
 	return (
 		<div>
@@ -39,9 +40,9 @@ const Dashboard:FC = () => {
 				<Container id="container-2" title="Сальдо:">
 					{years ? 
 						<>
-							<div className="container__content__text"><strong>{priceConverter(totalSum(years))}<Highlighter>₽</Highlighter></strong></div>
-							<div className="container__content__text">{priceConverter((totalSum(years) / 59.9).toFixed(2))}<Highlighter>$</Highlighter></div>
-							<div className="container__content__text">{priceConverter((totalSum(years) / 59.33).toFixed(2))}<Highlighter>€</Highlighter></div>
+							<div className="container__content__text"><strong>{priceConverter(totalSumOfMoney)}<Highlighter>₽</Highlighter></strong></div>
+							<div className="container__content__text">{priceConverter((totalSumOfMoney / 59.9).toFixed(2))}<Highlighter>$</Highlighter></div>
+							<div className="container__content__text">{priceConverter((totalSumOfMoney / 59.33).toFixed(2))}<Highlighter>€</Highlighter></div>
 						</>
 						:
 						<>

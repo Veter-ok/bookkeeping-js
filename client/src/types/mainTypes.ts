@@ -21,3 +21,13 @@ export interface Bank {
 	name: string
 	description?: string
 }
+
+export interface Month {
+	month: string;
+	income: number;
+	expenditure: number;
+}
+
+export interface Years {
+	[k: string]: Month[] | []
+}

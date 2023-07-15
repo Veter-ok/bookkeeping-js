@@ -5,7 +5,7 @@ import { UserBlock } from "components/ui/Blocks/UserBlock/userBlock";
 import AddUserForm from "components/ui/Forms/addUserForm";
 import React, {FunctionComponent as FC, useEffect, useState} from "react";
 import { User } from "types/userType";
-import { ADMIN_HEADER } from "utils/constants/routerLinks";
+import { ADMIN_HEADER, DEFAULT_URL } from "utils/constants/routerLinks";
 
 const UsersAdminWindow:FC = () => {
 	const [users, setUsers] = useState<User[]>([])
@@ -15,7 +15,7 @@ const UsersAdminWindow:FC = () => {
 	}, []) 
 
 	const getUsers = () => {
-		axios.get(`http://localhost:5000/api/v1/admin/users`, ADMIN_HEADER).then((resp) => {
+		axios.get(`${DEFAULT_URL}/admin/users`, ADMIN_HEADER).then((resp) => {
 			setUsers(resp.data)
 		}).catch((err) => {
 			console.log(err)
@@ -27,8 +27,7 @@ const UsersAdminWindow:FC = () => {
 	}
 
 	const deleteUser = (user_id: number) => {
-		console.log(user_id)
-		axios.delete(`http://localhost:5000/api/v1/admin/${1}/delete_user/${user_id}`).then((resp) => {
+		axios.delete(`${DEFAULT_URL}/admin/delete_user/${user_id}`).then((resp) => {
 			getUsers()
 		}).catch((err) => {
 			console.log(err)

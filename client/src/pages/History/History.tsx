@@ -1,5 +1,5 @@
 import './history.scss'
-import React, {FunctionComponent as FC, useState} from 'react'
+import React, {FunctionComponent as FC, useMemo, useState} from 'react'
 import { Payment } from 'types/userType'
 import { Container } from '../../components/Containers/container'
 import { PriceList } from '../../components/ui/Lists/Lists'
@@ -13,7 +13,7 @@ const History:FC = () => {
 	const years = useSelector(selectYears)
 	const history = useSelector(selectHistory)
 
-	const currentlyPayments = history.filter((payment: Payment) => {
+	const currentlyPayments = useMemo(() => history.filter((payment: Payment) => {
 		if (payment.price.toString().includes(searchValue)){
 			return true
 		}else if(payment.date.toLocaleDateString().includes(searchValue)){
@@ -23,7 +23,7 @@ const History:FC = () => {
 		}else {
 			return payment.info.toLowerCase().includes(searchValue.toLowerCase())
 		}
-	})
+	}), [history, searchValue])
 	console.log(years)
 
 	return (

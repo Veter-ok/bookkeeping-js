@@ -6,7 +6,6 @@ import AccountAdminWindow from 'components/adminsWindows/accountWindow'
 import CardAdminWindow from 'components/adminsWindows/cardsWindow'
 
 const AdminPanel:FC = () => {
-	//const id = useSelector()
 	const [windowIndex, setWindowIndex] = useState<number>(0)
 	const windows = [<UsersAdminWindow/>, <BanksAdminWindow/>, <CardAdminWindow/>, <AccountAdminWindow/>]
 

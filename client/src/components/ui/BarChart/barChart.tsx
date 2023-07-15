@@ -4,7 +4,7 @@ import './barChart.scss'
 import React, {FunctionComponent as FC} from 'react'
 import {Bar} from 'react-chartjs-2'
 import {Chart as ChartJS, registerables} from 'chart.js'
-import { Month } from 'types/userType'
+import { Month } from 'types/mainTypes'
 
 interface IBarChartProps {
 	dataChart: Array<Month>

@@ -20,16 +20,6 @@ export interface UserAccount {
 	dateOpen: Date
 }
 
-export interface Month {
-	month: string;
-	income: number;
-	expenditure: number;
-}
-
-export interface Years {
-	[k: string]: Month[] | []
-}
-
 export interface User {
 	id: number;
 	name: string;

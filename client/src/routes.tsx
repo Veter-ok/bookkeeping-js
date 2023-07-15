@@ -23,6 +23,7 @@ export const Navigation = () => {
     axios.get(`${DEFAULT_URL}/auth/isAuth`, ADMIN_HEADER).then((response) => {
       if (response.status === 200){
         const user = response.data
+        console.log(user)
         dispatch(login({
 					Auth: true,
 					id: user.id,

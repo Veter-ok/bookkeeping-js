@@ -1,4 +1,4 @@
-import React, {FunctionComponent as FC, useEffect, useState} from 'react'
+import React, {FunctionComponent as FC, useEffect, useState, memo} from 'react'
 import AccountBlock from '../Blocks/AccountBlock/accountBlock'
 import { BankBlock } from '../Blocks/BankBlock/bankBlock'
 import { PriceBlock } from '../Blocks/PriceBlock/priceBlock'
@@ -8,7 +8,7 @@ import { UserAccount } from 'types/userType'
 import { Payment } from 'types/userType'
 import { UserBank } from 'types/userType'
 
-export const AccountList:FC = () => {
+export const AccountList:FC = memo(() => {
 	const accounts = useSelector(selectAccounts)
 
 	return (
@@ -18,9 +18,9 @@ export const AccountList:FC = () => {
 			)}
 		</div>
 	)
-}
+})
 
-export const BankList:FC = () => {
+export const BankList:FC = memo(() => {
 	const banks = useSelector(selectBanks)
 	return (
 		<div>
@@ -29,14 +29,14 @@ export const BankList:FC = () => {
 			)}
 		</div>
 	)
-}
+})
 
 interface IPriceListProps {
 	full: boolean,
 	data?: Payment[]
 }
 
-export const PriceList:FC<IPriceListProps> = ({full, data}) => {
+export const PriceList:FC<IPriceListProps> = memo(({full, data}) => {
 	const hitory = useSelector(selectHistory)
 	const [currentlyData, setCurrentlyData] = useState(data ? data : hitory)
 
@@ -71,4 +71,4 @@ export const PriceList:FC<IPriceListProps> = ({full, data}) => {
 			}
 		</div>
 	)
-}
+})

@@ -1,5 +1,5 @@
-import { Account, Card } from "types/mainTypes";
-import { Payment, UserAccount, UserBank, Years } from "types/userType";
+import { Account, Card, Years } from "types/mainTypes";
+import { Payment, UserAccount, UserBank } from "types/userType";
 
 export interface PaymentState {
 	banks: UserBank[],

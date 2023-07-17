@@ -2,14 +2,13 @@ import {Request, Response} from 'express'
 import pool from '../../database/index.js'
 import { Account } from '../../types/mainTypes.js'
 
-
 interface RequestAddAccountPropsType extends Request {
 	admin_token: string
 	accountData: Account
 }
 
 class Accounts {
-	async accounts(req:Request, res:Response) {
+	async get_accounts(req:Request, res:Response) {
 		await pool.query("SELECT * FROM accounts").then((response) => {
 			res.status(200).send(response.rows)
 		}).catch((err) => {

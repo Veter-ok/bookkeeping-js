@@ -1,6 +1,6 @@
 import { Router} from 'express'
-import AdminUser from '../controllers/adminUser.js'
-import AdminBanks from '../controllers/AdminBanks.js'
+import AdminUser from '../controllers/users.js'
+import AdminBanks from '../controllers/banks.js'
 import accounts from '../controllers/accounts.js'
 import cards from '../controllers/cards.js'
 

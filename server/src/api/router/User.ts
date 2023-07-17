@@ -1,10 +1,12 @@
 import { Router} from 'express'
-import UserController from '../controllers/userController.js'
+import PaymentsController from '../controllers/payments.js'
+import UserAccountsController from '../controllers/user_accounts.js'
 
 export const userRouter = Router()
 
-userRouter.get('/payments', UserController.payments)
-userRouter.get('/payment/:id_payment', UserController.payment)
-userRouter.post('/add_payment', UserController.add_payment)
-userRouter.get('/accounts', UserController.get_accounts)
-userRouter.post('/add_account', UserController.add_account)
+userRouter.get('/payments', PaymentsController.get)
+userRouter.get('/payment/:id_payment', PaymentsController.getOne)
+userRouter.post('/add_payment', PaymentsController.add)
+
+userRouter.get('/accounts', UserAccountsController.get)
+userRouter.post('/add_account', UserAccountsController.add)

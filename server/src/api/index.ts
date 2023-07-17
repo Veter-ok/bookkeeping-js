@@ -10,7 +10,7 @@ import { adminRouter } from './router/Admin.js'
 export const router = Router()
 
 router.use('/auth', authRouter)
-router.use('/user/:id', verifyToken, userRouter)
+router.use('/user', verifyToken, userRouter)
 router.use('/admin', checkPermission, adminRouter)
 
 router.get('/accounts', Accounts.get_accounts)

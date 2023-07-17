@@ -10,7 +10,7 @@ class AdminUserController {
 		})
 	}
 	async add_user(req: Request, res: Response){
-		const {admin_token, name, surname, role, email, password, birthday} = req.body
+		const {name, surname, role, email, password, birthday} = req.body
 		await pool.query("INSERT INTO users (role, name, email, surname, password, birthday) VALUES($1, $2, $3, $4, $5, $6)", 
 		[role, name, email, surname, password, birthday]).then((resp) => {
 			res.status(200).json({"msg": "success"})
@@ -19,7 +19,7 @@ class AdminUserController {
 		})
 	}
 	async delete_user(req: Request, res: Response){
-		const {admin_token, user_id} = req.params
+		const {user_id} = req.params
 		await pool.query("DELETE FROM users WHERE id=$1", [user_id]).then((response) => {
 			if (response.rowCount == 0){
 				res.status(500).json({'msg': 'user with given id not found'})

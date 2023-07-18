@@ -5,18 +5,69 @@ import './input.scss'
 interface IInputProps {
 	placeholder: string,
 	type: string,
+	lenght?: number,
 	value: string | number,
-	onChange: Function
+	onChange(value: any): void
 }
 
-export const Input:FC<IInputProps> = ({placeholder, type, value, onChange}) => {
+export const Input:FC<IInputProps> = ({placeholder, type, lenght, value, onChange}) => {
 	return (
 		<div className="input-element">
-			{typeof value === "number" ? 
-				<input type={type} step="any" min="0" placeholder={placeholder} value={value} onChange={(e) => onChange(Number(e.target.value))}/>
+			{type === "number" ? 
+				<input 
+					type={type} 
+					step="any" 
+					min="0" 
+					style={{width: `${lenght}%`}}
+					placeholder={placeholder} 
+					value={value} 
+					onChange={(e) => onChange(Number(e.target.value))}
+				/>
 				:
-				<input type={type} placeholder={placeholder} value={value} onChange={(e) => onChange(e.target.value)}/>
+				<input 
+					type={type} 
+					placeholder={placeholder} 
+					value={value} 
+					onChange={(e) => onChange(e.target.value)}
+				/>
 			}
+		</div>
+	)
+}
+
+interface InputCardNumberProps {
+	placeholder: string,
+	lenght?: number,
+	value: number,
+	onChange(value: any): void
+}
+
+export const InputCardNumber:FC<InputCardNumberProps> = ({placeholder, lenght, value, onChange}) => {
+	const putMask = (value: number):string => {
+		let stringValue = `${value}`
+		if (value > 9999999999999999){
+			stringValue = stringValue.slice(0, stringValue.length - 1)
+		}
+		const newValue = stringValue.replace(/\B(?=(\d{4})+(?!\d))/g, " ");
+		return newValue
+	}
+
+	const unmask = (value: string) => {
+		console.log(value)
+		value = value.replace(/[^0-9.]/g, "")
+		console.log(value)
+		onChange(Number(value))
+	}
+
+	return (
+		<div className="input-element">
+			<input 
+				type="text"
+				style={{width: `${lenght}%`}}
+				placeholder={placeholder} 
+				value={putMask(value)} 
+				onChange={(e) => unmask(e.target.value)}
+			/>
 		</div>
 	)
 }

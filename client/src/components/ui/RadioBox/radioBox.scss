@@ -1,0 +1,26 @@
+@import '../../../styles/variables.scss';
+
+.radio-box {
+	display: block;
+	position: relative;
+	margin: 10px auto;
+	height: auto;
+	width: 500px;
+	padding: 20px;
+	&__list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		overflow: auto;
+		&__element {
+			display: block;
+			position: relative;
+			float:right;
+			width: 100%;
+			label {
+				display: block;
+				margin: auto;
+			}
+		}
+	}
+}

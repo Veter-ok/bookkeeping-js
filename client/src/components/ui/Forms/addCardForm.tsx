@@ -9,13 +9,18 @@ import {useDispatch} from 'react-redux'
 import axios from 'axios';
 import { DEFAULT_URL } from 'utils/constants/routerLinks';
 import { Select } from '../Select/select';
+import { Radio } from '../RadioBox/radioBox';
+import { Input, InputCardNumber } from '../Input/input';
 
 export const CardForm:FC = () => {
 	const dispatch = useDispatch()
 	const [cards, setCards] = useState<[] | Card[]>([])
 	const [banks, setBanks] = useState<[] | Bank[]>([])
+	const [radio, setRadio] = useState(0)
 	const [errorMsgAddCard, setErrorMsgAddCard] = useState<string | null>(null) 
 	const [successMsgAddCard, setSuccessMsgAddCard] = useState<string | null>(null)
+	const [cardNumber, setCardNumber] = useState<number>(0)
+	const [accountNumber, setAccountNumber] = useState<number>()
 	const [cardIndex, setCardIndex] = useState(0)
 
 	useEffect(() => {
@@ -48,7 +53,13 @@ export const CardForm:FC = () => {
 				<CardBlock key={index} card={card} banks={banks}/>
 			)}
 		</Slider>
+		<InputCardNumber placeholder='Номер карты' lenght={60} value={cardNumber} onChange={setCardNumber}/>
+		<Radio list={["Привязать к существющему", "Добавить новый текущий счёт"]} callback={setRadio}/>
+		{radio === 0 ?
 		<Select options={[]} onChange={undefined} length={60}/>
+		:
+		<Input placeholder='Номер счёта' type='number' lenght={60} value={accountNumber} onChange={setAccountNumber}/>
+		}
 		<Button text="Добавить" onClick={() => AddCard()}/>
 	</>
 	)

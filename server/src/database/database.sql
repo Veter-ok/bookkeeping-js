@@ -50,6 +50,7 @@ CREATE TABLE users_cards(
 	id SERIAL PRIMARY KEY,
 	user_id INTEGER,
 	type_id INTEGER,
+	account_id INTEGER,
 	amount NUMERIC(15, 3),
 	date DATE,
 	FOREIGN KEY (user_id) REFERENCES users(id),
